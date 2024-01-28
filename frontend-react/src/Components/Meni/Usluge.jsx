@@ -195,41 +195,41 @@ const Usluge = () => {
                             {/* <div className="paket_slike">
                                 <img className="pslika" src={fist3} alt="" />
                             </div> */}
-                            <div className='paket_naziv'>PAKET 1</div>
+                            <div className='paket_naziv'>PAKET  1</div>
                             <div className='paket_tretman'>4 tretmana</div>
-                            <div className='paket_cena'>6.000 dinara</div>
+                            <div className='paket_cena'>6.000 RSD</div>
                         </div>
                         <div className="paket3">
                             {/* <div className="paket_slike">
                                 <img className="pslika" src={fist3} alt="" />
                             </div> */}
-                            <div className='paket_naziv'>PAKET 2</div>
+                            <div className='paket_naziv'>PAKET  2</div>
                             <div className='paket_tretman'>8 tretmana</div>
-                            <div className='paket_cena'>12.000 dinara</div>
+                            <div className='paket_cena'>12.000 RSD</div>
                         </div>
                         <div className="paket3">
                             {/* <div className="paket_slike">
                                 <img className="pslika" src={fist3} alt="" />   
                             </div> */}
-                            <div className='paket_naziv'>PAKET 3</div>
+                            <div className='paket_naziv'>PAKET  3</div>
                             <div className='paket_tretman'>12 tretmana</div>
-                            <div className='paket_cena'>18.000 dinara</div>
+                            <div className='paket_cena'>18.000 RSD</div>
                         </div>
                         <div className="paket3">
                             {/* <div className="paket_slike">
                                 <img className="pslika" src={fist3} alt="" />
                             </div> */}
-                            <div className='paket_naziv'>PAKET 4</div>
+                            <div className='paket_naziv'>PAKET  4</div>
                             <div className='paket_tretman'>18 tretmana</div>
-                            <div className='paket_cena'>27.000 dinara</div>
+                            <div className='paket_cena'>27.000 RSD</div> 
                         </div>
                         <div className="paket3">
                             {/* <div className="paket_slike">
                                 <img className="pslika" src={fist3} alt="" />
                             </div> */}
-                            <div className='paket_naziv'>PAKET 5</div>
+                            <div className='paket_naziv'>PAKET  5</div>
                             <div className='paket_tretman'>24 tretmana</div>
-                            <div className='paket_cena'>36.000 dinara</div>
+                            <div className='paket_cena'>36.000 RSD</div>
                         </div>
                         {/* <div className="paket3">
                             <div className='paket_naziv'>PAKET 6</div>
@@ -255,7 +255,7 @@ const Usluge = () => {
                             <div className="poremecaj_prvideo">
                                 <div className='por_icon1'><img className="por" src={autizam} alt="" /></div>
                                 <div className="poremecaj_naziv">
-                                    <div className='por_naziv'>Pervazivni razvojni poremecaji</div>
+                                    <div className='por_naziv'>Pervazivni razvojni poremećaji</div>
                                     <button className="poremecaj_icon" onClick={toggleModal1}>
                                         {icon1 ? 
                                         (<img className="poremecaj_iconica" src={up} alt=""/>) 
@@ -533,7 +533,7 @@ const Usluge = () => {
                             <div className="poremecaj_prvideo">
                                 <div className='por_icon3'><img className="por" src={grafmot_spos} alt="" /></div>
                                 <div className="poremecaj_naziv">
-                                    <div className='por_naziv'>Razvoj grafomotorickih sposobnosti</div>
+                                    <div className='por_naziv'>Razvoj grafomotoričkih sposobnosti</div>
                                     <button className="poremecaj_icon" onClick={toggleModal9}>
                                         {icon9 ? 
                                         (<img className="poremecaj_iconica" src={up} alt=""/>) 

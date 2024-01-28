@@ -26,7 +26,7 @@ const TretmanPacijent = ({tretman}) => {
         setTretmanData(newTretmanData);
       }
 
-    function dodajSadrzaj() {
+    function dodajSadrzajTretmanu() {
         let id_tretmana = tretman.id; 
         console.log("id tretmana je: " + id_tretmana); 
         
@@ -66,11 +66,11 @@ const TretmanPacijent = ({tretman}) => {
               tretman.sadrzaj_tretmana == ' ' || tretman.sadrzaj_tretmana == ''
               ? (<div className="tretman_sadrzaj">
                   <textarea type="text" name="sadrzaj_tretmana" onInput={handleInput}/>
-                  <button className="dugme_sadrzaj" onClick={dodajSadrzaj}>DODAJ SADRŽAJ</button>
+                  <button className="dugme_sadrzaj" onClick={dodajSadrzajTretmanu}>DODAJ SADRŽAJ</button>
                 </div>)
               : (<div className="tretman_sadrzaj">
                 <textarea type="text"  name="sadrzaj_tretmana" onInput={handleInput} defaultValue={tretman.sadrzaj_tretmana} />
-                <button className="dugme_sadrzaj" onClick={dodajSadrzaj}>IZMENI SADRŽAJ</button> 
+                <button className="dugme_sadrzaj" onClick={dodajSadrzajTretmanu}>IZMENI SADRŽAJ</button> 
                 </div>) 
             }
             {/* <input type="text" name="sadrzaj_tretmana" onInput={handleInput}/> */} 

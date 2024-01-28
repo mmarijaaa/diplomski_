@@ -67,6 +67,16 @@ class PacijentController extends Controller
     } 
 
     //************************************************************************************* 
+    //PACIJENAT PREMA ID PACIJENTA
+    public function pacijent($id_pacijenta) {
+        $pacijent = Pacijent::get()->where('id',$id_pacijenta);
+        if(is_null($pacijent)) {
+            return response()->json("Pacijenta nema");
+        }
+        return new LogopedPacijentResource($pacijent);  
+    }
+
+    //************************************************************************************* 
     //IZMENA PACIJENTA
     public function update(Request $request, $id_pacijenta) {
         

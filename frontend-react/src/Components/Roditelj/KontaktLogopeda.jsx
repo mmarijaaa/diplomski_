@@ -47,16 +47,14 @@ const KontaktLogopeda = () => {
             </div>
 
            <div className='kont_info'>
-                <b>Broj telefona:</b> 
+                <b>Broj telefona logopeda:</b> 
                 061/1111-222
             </div>
 
            <div className='kont_info'>
-                <b>Email:</b> 
+                <b>Email logopeda:</b> 
                 <div id='kont_email_log'>{logopedIme}{logopedPrezime}@gmail.com</div>
             </div> 
-
-            {/*FORMA ZA SLANJE MEJLA LOGOPEDU*/}
            
         </div>
     )

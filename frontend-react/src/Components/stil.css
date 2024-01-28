@@ -3,6 +3,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400&family=Gruppo&family=Rajdhani:wght@300;400&display=swap');
+/*
+font-family: "Gruppo", sans-serif;
+font-family: "Chakra Petch", sans-serif;
+font-family: "Rajdhani", sans-serif;
+font-weight: 400;
+font-style: normal;
+ */
 /* {
     /* margin: 0;
     padding: 0; */
@@ -115,8 +123,9 @@ html {
     border: 2px solid #003C62;
     background-color: #fdfced;
     border-radius: 50px;
-    padding: 10px 0px 10px 0px;
-    width: 120px;
+    padding: 10px 20px 10px 20px;
+    margin: 0px 0px 0px 10px;
+    /*width: 120px;*/
     text-decoration: none;
     font-size: 20px;
     font-family: 'Kanit', sans-serif;
@@ -149,17 +158,17 @@ html {
 } */
 
 .meni .meni_linkovi {
-    flex: 70%;
+    flex: 60%;
     display: flex;
     flex-direction: row;
     background-color: #fdfced;
 }
 .meni .meni_linkovi2 {
-    flex: 30%;
+    flex: 50%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 30px;
+    padding-right: 40px;
 }
 .meni .meni_linkovi1 {
     flex: 40%;
@@ -324,6 +333,8 @@ html {
     color: #003C62;
     font-size: 35px;
     font-family: 'Poiret One', sans-serif;
+    /*font-family: "Chakra Petch", sans-serif;*/
+    /*font-weight: 300;*/
     text-align: center;
     border-bottom: 5px solid #f5dae1;
     width: 310px;
@@ -680,12 +691,17 @@ html {
     margin-right: 20px;
     cursor: pointer;
 }
+
 .pocetna7 .pitanja .pitanje .pitanje_modal .contentP {
     margin: 30px 0px 15px 0px;
     padding-right: 100px;
     font-size: 17px;
     color: #03273d;
     font-family: 'Nunito Sans', sans-serif;
+
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;    
 }
 .picon {
     height: 30px;
@@ -968,6 +984,10 @@ html {
     font-size: 16px;
     margin: 20px 40px 15px 0px;
     text-align: justify;
+
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;   
 }
 .usluge_poremecaji .poremecaji .poremecaj .por_icon1 {
     background-color: #d2e7d6;
@@ -1055,20 +1075,20 @@ html {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .usluge_paketi .paket_naziv{
-    flex: 25%;   
+    flex: 33%;   
     text-align: center;
     color: #003c62;
     font-size:25px;
 }
 .usluge_paketi .paket_tretman{
-    flex: 35%;
+    flex: 33%;
     text-align: center;
-    color: #03273d;
+    color: #003C62;
     font-size:22px;
 }
 .usluge_paketi .paket_cena{
-    flex: 35%;
-    text-align: center;
+    flex: 33%;
+    text-align: center; 
     color: #003C62;
     font-size:22px;
 }
@@ -1205,11 +1225,11 @@ html {
 .forme {
     display: flex;
     flex-direction: row; 
-    margin: 30px 0px 70px 0px;
+    margin: 20px 0px 70px 0px;
 
     animation: fadeInAnimation ease 1s;
     animation-iteration-count: 1;
-    animation-fill-mode: backwards;  
+    animation-fill-mode: backwards;   
 }
 .forme .pl {
     display: flex;
@@ -1235,7 +1255,7 @@ html {
     border-radius: 50%;
     background-color: #e2f1f7;
     height: 180px;
-    width: 180px;
+    width: 180px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1243,7 +1263,7 @@ html {
 }
 .forme .prijava_forma .prijava_icon_logoped .prij{
     height: 100px;
-    width: 100px;  
+    width: 100px; 
 }
 .forme .prijava_forma .prijava_icon_roditelj {
     border-radius: 50%;
@@ -1360,6 +1380,123 @@ html {
     padding: 7px;
     margin: 7px;
     border-radius: 50%;
+}
+/******************************************************/
+/*ZAKAZIVANJE PREGLEDA*/
+.pre {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    margin: 20px 0px 0px 0px;
+    
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards; 
+}
+.pr_forma {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+.pregled_forma {
+    width: 600px; 
+    height: 550px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;  */
+    align-items: center;
+    margin-top: -90px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.pr_forma p{
+    font-size: 28px;
+    color: #003C62;
+    font-family: 'Poiret One', sans-serif;
+    font-weight: bold;
+    padding-top: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.pr_forma .pregled_icon {
+    border-radius: 50%;
+    background-color: #d2e7d6;
+    height: 180px;
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.pr_forma .pregled_icon .preg{
+    height: 100px;
+    width: 100px;
+}
+.pregled_forma .pregled_roditelj .polje{
+    width: 250px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 50px;
+    margin: 10px 0px 10px 0px; 
+}
+.pregled_forma .pregled_roditelj input{
+    font-size: 17px;
+    border-radius: 50px;
+    padding: 15px 30px 15px 30px;
+}
+.pregled_forma .pregled_roditelj input:focus{
+    outline: none;
+}
+.pregled_forma .pregled_datum .polje{
+    width: 250px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 50px;
+    margin: 10px 0px 10px 0px; 
+}
+.pregled_forma .pregled_datum input{
+    font-size: 17px;
+    border-radius: 50px; 
+    padding: 15px 30px 15px 30px;
+}
+.pregled_forma .pregled_datum input{
+    outline: none;
+}
+.pregled_forma .pregled_vreme select{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 50px;
+    border: none;
+    background-color: #fdfced;
+    font-size: 17px;
+    padding: 15px 30px 15px 30px;
+    margin: 10px 0px 10px 0px;
+}
+.pregled_forma .polje{
+    background-color: #fdfced;
+    border: none;
+    width: 100%;
+    color: #003353;
+    font-family: 'Nunito Sans', sans-serif;
+}
+.pregled_forma .dugme {
+    background-color: #fdfced;
+    border-radius: 50px;
+    border: 2px solid #003C62; 
+    padding: 10px 20px 10px 20px;
+    font-size: 20px;
+    color: #003353;
+    font-family: 'Nunito Sans', sans-serif;
+    cursor: pointer; 
+    transition: 0.3s;
+    margin: 30px 0px 30px 0px;
+}
+.pregled_forma .dugme:hover {
+    background-color: #003353;
+    color: #fdfced;
+    cursor: pointer;
 }
 /******************************************************/
 /*FOOTER*/
@@ -1567,6 +1704,7 @@ html {
     flex-direction: row;
     align-items: center;
     padding-bottom: 20px;
+    padding-right: 20px;
 } 
 .log_profil .log_logoped .log_linkovi .log_link_red .log_link {
     text-decoration: none;
@@ -1602,8 +1740,36 @@ html {
     width: 40px;
     padding: 0px 20px 0px 20px; 
 }
-
-
+.arrow_back {
+    height: 20px; 
+    cursor: pointer;
+}
+.back {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 50px;
+}
+.back #back_povratak{
+    font-size: 17px;
+    margin-left: 10px;
+    color: #003353;
+    text-decoration: none;
+    font-family: 'Nunito Sans', sans-serif;
+}
+.deca_linkovi {
+    margin: 0px 0px 30px 30px;
+    display: flex;
+    flex-direction: column;
+}
+.deca_linkovi .dete_info {
+    margin-bottom: 5px;
+}
+.deca_linkovi .dete_info .dete_link{
+    text-decoration: none;
+    font-size: 18px;
+    color: #003353;
+    font-family: 'Nunito Sans', sans-serif;
+}
 /******************************************************/
 /*KREIRAJ FORMA*/
 .kreiraj_forma {
@@ -1621,7 +1787,8 @@ html {
     font-size: 17px;
     color: #003353;
     font-family: 'Nunito Sans', sans-serif;
-    width: 250px;
+    /* width: 250px; */
+    width: 70%;
     padding: 10px 20px 10px 20px;
     margin: 10px 0px 10px 0px;
     /* border: 2px solid #003353; */ 
@@ -1638,9 +1805,10 @@ html {
     font-size: 17px;
     color: #003353;
     font-family: 'Nunito Sans', sans-serif;
-    width: 450px;
+    /* width: 450px; */
+    width: 100%;
     padding: 10px 20px 10px 20px;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 10px 10px 0px;
     /* border: 2px solid #003353; */
     border: none;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -1658,7 +1826,8 @@ html {
     background-color: #fdfced;
     border-radius: 50px;
     padding: 10px 20px 10px 20px;
-    width: 290px;
+    /* width: 290px; */
+    width: 80%;
     color: #003353;
     cursor: pointer;
 }
@@ -1670,6 +1839,9 @@ html {
 
 /******************************************************/
 /*LISTA PACIJENATA*/
+.lista {
+    padding-bottom: 30px;
+}
 .pretraga {
     width: 350px;
     font-family: 'Nunito Sans', sans-serif;
@@ -1867,7 +2039,8 @@ html {
     color: #003353;
     font-size: 18px;
     margin-right: 10px;
-    border-bottom: 1px solid #003C62; 
+    font-weight: bold;
+    /*border-bottom: 1px solid #003C62;*/ 
 }
 .pac_det .polje .pp{
     color: #003c62;
@@ -2093,16 +2266,28 @@ html {
 
 /******************************************************/
 /*LISTA RODITELJA*/
+.rod_info {
+    display: flex;
+    flex-direction: row;
+    flex: 80%;
+}
+.rod_deca {
+    flex: 20%;
+}
+.rod_dugmad {
+    flex: 5%;
+}
 .lista_roditelja {
-    padding-bottom: 70px;
+    /*padding-bottom: 70px;*/
+    width: 100%;
 }
 .tabela_roditelja {
     display: flex;
     flex-direction: row;
     margin: 0px 0px 20px 0px;
     padding: 10px;
-    width: 1100px;
-    /* width: 75%; */
+    /* width: 1100px; */
+    /* width: 100%; */
     font-size: 18px;
     font-family: 'Nunito Sans', sans-serif;
     color: #003353;
@@ -2450,29 +2635,34 @@ html {
 .kontakt_logopeda {
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
+    margin: 20px;
+    font-size: 18px;
+    color: #003353;
+    font-family: 'Nunito Sans', sans-serif;
 }
-.kontakt_logopeda #kont_naslov {
+/* .kontakt_logopeda #kont_naslov {
     color: #003C62;
     font-family: 'Kanit', sans-serif;
     font-size: 35px;
     margin-bottom: 50px;
-}
+} */
 .kontakt_logopeda .kont_info {
     color: #003C62;
-    font-size: 25px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: row;
-    font-family: 'Nunito Sans', sans-serif;
-    margin-bottom: 10px;
+    align-items: center;
 }
 .kontakt_logopeda .kont_info b {
     margin-right: 10px;
 }
 .kontakt_logopeda #kont_email_log {
     color: #003C62;
-    font-size: 25px;
     text-transform: lowercase;
+}
+.kontakt_logopeda .kont_info .log_icon {
+    height: 30px;
+    padding-right: 20px;
 }
 /******************************************************/
 /*RESPONZIVNOST*/
@@ -2517,7 +2707,7 @@ html {
         /* padding-right: 40px; */
     }
     #check:checked~.meni_linkovi{ 
-       height: 250px;
+       height: 300px;
     }
     .meni .meni_linkovi {
         /*top: 100%;*/
@@ -2539,9 +2729,25 @@ html {
     }
     .meni .meni_linkovi .meni_linkovi2 {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         padding-right: 0px; 
         padding-bottom: 20px;
+    }
+    .meni .meni_linkovi .meni_linkovi2 .link_prijava {
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 650px) {
+    .pregled_forma {
+        width: 400px;
+        height: 550px;
+    }
+    .pr_forma p{
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
     }
 }
 
@@ -3124,7 +3330,7 @@ html {
     }
 }
 
-/*PROFIL RODITELJA*/
+/*PROFILI*/
 @media(max-width:1250px) and (min-width: 1023px) {
     .roditelj_deca {
         width: 700px;
@@ -3214,6 +3420,9 @@ html {
         margin-left: 0px;  
         margin-right: 30px;  
     }
+    .kreiraj_forma {
+        padding-right: 30px;
+    }
 }
 @media(max-width:450px) {
     .log_profil {
@@ -3291,6 +3500,9 @@ html {
         margin-left: 0px;    
         margin-right: 30px;
     }
+    .kreiraj_forma {
+        padding-right: 30px;
+    }
 }
 
 /*PROFIL LOGOPEDA*/
@@ -3345,5 +3557,63 @@ html {
     }
     .tretmani_svi .tretmani_zak{
         margin-left: 0px;    
+    }
+}
+
+/*LISTA RODITELJA*/
+@media(max-width: 1240px) and (min-width: 950px){
+    .rod_info {
+        flex-direction: column;
+        flex: 35%;
+    }
+    .rod_deca {
+        flex: 35%;
+    }
+    .rod_dugmad {
+        flex: 30%;
+    }
+    .lista_roditelja {
+        width: 650px;
+    }
+    .lista_header {
+        width: 600px;
+    }
+}
+
+@media(max-width: 950px) and (min-width: 750px){
+    .rod_info {
+        flex-direction: column;
+        flex: 35%;
+    }
+    .rod_deca {
+        flex: 35%;
+    }
+    .rod_dugmad {
+        flex: 30%;
+    }
+    .lista_roditelja {
+        width: 450px;
+    }
+    .lista_header {
+        width: 450px;
+    }
+}
+@media(max-width: 750px) {
+    .rod_info {
+        flex-direction: column;
+        flex: 35%;
+    }
+    .rod_deca {
+        flex: 35%;
+    }
+    .rod_dugmad {
+        flex: 30%;
+    }
+    .lista_roditelja {
+        width: 450px;
+        
+    }
+    .lista_header {
+        width: 450px;
     }
 }

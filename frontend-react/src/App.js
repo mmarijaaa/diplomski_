@@ -20,10 +20,12 @@ import Paketi from './Components/Meni/Paketi';
 import Kontakt from './Components/Meni/Kontakt'; 
 import Prijava from './Components/Meni/Prijava';
 import Deca from './Components/Roditelj/Deca';
+import Dete from './Components/Roditelj/Dete';
 import Meni from './Components/Meni/Meni';
+import Pregled from './Components/Meni/Pregled';
 import KontaktLogopeda from './Components/Roditelj/KontaktLogopeda';
 import ListaTretmanaPacijenta from './Components/Logoped/ListaTretmanaPacijenta'; 
-
+import EvidentirajTretman from './Components/Logoped/EvidentirajTretman'; 
 function App() {
 
   //token za prijavu logopeda
@@ -55,6 +57,7 @@ function App() {
           <Route path='prijavaLogopeda' element={<LoginLogoped addToken={addToken}/>}></Route>
           <Route path='prijavaRoditelja' element={<LoginRoditelj addToken2={addToken2}/>}></Route>
         </Route>
+        <Route path='/pregled' element={<Pregled />}></Route>
 
         {/* PROFIL LOGOPEDA */}
         {/* <Route path='/prijavaLogopeda' element={<LoginLogoped addToken={addToken}/>}></Route> */}
@@ -65,12 +68,14 @@ function App() {
             <Route path='listaPacijenata' element={<ListaPacijenata />}/>
             <Route path='listaRoditelja' element={<ListaRoditelja />}/>
             <Route path='listaTretmanaPacijenta' element={<ListaTretmanaPacijenta />}/>
+            <Route path='evidencijaTretmana' element={<EvidentirajTretman />}/>
         </Route>
 
         {/* PROFIL RODITELJA */}
         {/* <Route path='/prijavaRoditelja' element={<LoginRoditelj addToken2={addToken2}/>}></Route> */}
         <Route path='/roditelj' element={<PocetnaRoditelj/>}>
           <Route path='deca' element={<Deca/>}/>
+          <Route path='dete' element={<Dete/>}/>
           <Route path='listaTretmanaZakazanih' element={<ListaTretmanaZakazanih />}/>
           <Route path='kontaktLogopeda' element={<KontaktLogopeda />}/>
         </Route> 

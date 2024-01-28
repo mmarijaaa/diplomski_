@@ -7,8 +7,11 @@ import { useState, useEffect } from 'react';
 import lista from '../Slike/checklist.png'; 
 import create from '../Slike/edit.png'; 
 import logout from '../Slike/logout.png'; 
-import user from '../Slike/user.png';  
+import user from '../Slike/user.png'; 
+import write from '../Slike/write.png'; 
 import '../stil.css'; 
+import roditelj from '../Slike/roditelj.png'; 
+import logopedIcon from '../Slike/logoped.png';  
 
 const PocetnaLogoped = ({}) => {
 
@@ -112,14 +115,14 @@ const PocetnaLogoped = ({}) => {
           <div className="log_logoped">
           
             <div className="log_info">
-              <img className="log_icon" src={user} alt="" />
+              <img className="log_icon" src={logopedIcon} alt="" /> 
               <p>Logoped {logopedIme} {logopedPrezime}</p> 
             </div>
 
           <div className='log_linkovi'>
               <div className="log_link_red">
-                <img className="log_icon" src={create} alt="" />
-                <Link to='/logoped/kreirajRoditelja' onClick={noviIdRoditelja} className='log_link'>Kreiraj roditelja</Link>
+                <img className="log_icon" src={lista} alt="" />
+                <Link to='/logoped/listaPacijenata' className='log_link'>Lista pacijenata</Link> 
               </div>
               <div className="log_link_red">
                 <img className="log_icon" src={create} alt="" />
@@ -127,11 +130,23 @@ const PocetnaLogoped = ({}) => {
               </div>
               <div className="log_link_red">
                 <img className="log_icon" src={lista} alt="" />
-                <Link to='/logoped/listaPacijenata' className='log_link'>Lista pacijenata</Link> 
+                <Link to='/logoped/listaRoditelja' className='log_link'>Lista roditelja</Link>
               </div>
               <div className="log_link_red">
-                <img className="log_icon" src={lista} alt="" />
-                <Link to='/logoped/listaRoditelja' className='log_link'>Lista roditelja</Link>
+                <img className="log_icon" src={create} alt="" />
+                <Link to='/logoped/kreirajRoditelja' onClick={noviIdRoditelja} className='log_link'>Kreiraj roditelja</Link>
+              </div>
+              {/* <div className="log_link_red">
+                <img className="log_icon" src={write} alt="" />
+                <Link to='/logoped/evidencijaTretmana' className='log_link'>Evidentiraj tretman</Link>
+              </div> */}
+              <div className="log_link_red">
+                <img className="log_icon" src={write} alt="" />
+                <Link to='/logoped/evidencijaTretmana' className='log_link'>Lista zahteva roditelja</Link>
+              </div>
+              <div className="log_link_red">
+                <img className="log_icon" src={write} alt="" />
+                <Link to='/logoped/evidencijaTretmana' className='log_link'>Lista zakazanih pregleda</Link>
               </div>
           </div>
 

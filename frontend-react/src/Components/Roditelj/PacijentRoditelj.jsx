@@ -66,8 +66,9 @@ const PacijentRoditelj = ({pacijent}) => {
     const [brojTretmanaPaketa, setBrojTretmanaPaketa] = useState();
 
     const[tretmaniLogopeda, setTretmaniLogopeda] = useState();
-    const[tretmaniZak, setTretmaniZak] = useState();
-    let duzina_zakazanih;
+    const[tretmaniPac, setTretmaniPac] = useState();
+
+    let duzina_svih;
 
     function toggleModal() {
         setModal(!modal);
@@ -115,23 +116,23 @@ const PacijentRoditelj = ({pacijent}) => {
           });
           }
 
-        //lista zakazanih tretmana
+        //lista svih tretmana
         let id_pacijenta_1 = pacijent.id;
-        if(tretmaniZak == null) {
+        if(tretmaniPac == null) {
         var config = {
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/listaTretmanaZakazanih/' + id_pacijenta_1,
+            url: 'http://127.0.0.1:8000/api/listaTretmana/' + id_pacijenta_1,
             headers: { 
               'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
             },
-            data : tretmaniZak, 
+            data : tretmaniPac, 
           };
 
         axios(config)
         .then((response) => {
             console.log(JSON.stringify(response.data));
-            console.log("Lista ZAKAZANIH TRETMANA prikazana");
-            setTretmaniZak(response.data.tretmani);  
+            console.log("Lista SVIH TRETMANA prikazana");
+            setTretmaniPac(response.data.tretmani);   
         })
         .catch((error) => {
             console.log(error);
@@ -234,7 +235,7 @@ const PacijentRoditelj = ({pacijent}) => {
         datum_tretmana:"",
         vreme_tretmana:"",
         //naziv_tretmana: "",
-        redni_broj_tretmana: "",
+        redni_broj_tretmana: "", 
         //sadrzaj_tretmana: "",
         id_pacijenta: "",
         id_logopeda: "",
@@ -365,13 +366,12 @@ const PacijentRoditelj = ({pacijent}) => {
 
         // setTretmanData(newTretmanData); 
 
-        //proverda da li je datum pre datuma poslednje zakazanog tretmana
-        
-        duzina_zakazanih = tretmaniZak.length;
-        console.log(duzina_zakazanih); 
-        console.log(tretmaniZak[duzina_zakazanih-1].datum_tretmana);        
+        //provera da li je datum pre datuma poslednje zakazanog tretmana
+        duzina_svih = tretmaniPac.length; 
+        console.log(duzina_svih); 
+        console.log(tretmaniPac[duzina_svih-1].datum_tretmana);        
 
-        let poslednji_tretman_datum = tretmaniZak[duzina_zakazanih-1].datum_tretmana;
+        let poslednji_tretman_datum = tretmaniPac[duzina_svih-1].datum_tretmana;
         let pt_dan = moment(poslednji_tretman_datum).format('D');
         let pt_mesec = moment(poslednji_tretman_datum).format('M'); 
         let pt_godina = moment(poslednji_tretman_datum).format('YYYY'); 
@@ -428,6 +428,7 @@ const PacijentRoditelj = ({pacijent}) => {
 
     }
     let zakazi;
+    
     function handleKreirajTretman(e) {
 
         e.preventDefault();
@@ -607,9 +608,9 @@ const PacijentRoditelj = ({pacijent}) => {
         axios.request(config)
         .then((response) => {
             console.log(JSON.stringify(response.data));
-            console.log("Tretman kreiran.");
+            console.log("Tretman kreiran!");
             Swal.fire({
-              title: 'Uspesno zakazan tretman!',
+              title: 'Uspešno zakazan tretman!',
             }).then(function(){
               window.location.reload();
             });
@@ -658,7 +659,7 @@ const PacijentRoditelj = ({pacijent}) => {
             setTretmani(response.data.tretmani); 
         })
         .catch((error) => {
-            console.log(error);
+            console.log(error); 
             console.log("Lista tretmana NIJE prikazana");
         });
         }

@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController\RoditeljController;
 use App\Http\Controllers\PacijentController;    
 use App\Http\Controllers\TretmanController;    
 use App\Http\Controllers\PaketController;
+use App\Http\Controllers\PaketiPacijentController;
+use App\Http\Controllers\ZahtevController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +85,18 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
     //brisanje roditelja
     Route::delete('/brisanjeRoditelja/{id_roditelja}', [RoditeljController::class, 'delete']); 
 
+    //kreiranje zahteva
+    Route::post('/kreirajZahtev', [ZahtevController::class, 'create']);   
+
+    //lista zahteva
+    Route::get('/zahteviLogopeda', [ZahtevController::class, 'zahtevi']);  
+
+    //kreiranje paketa pacijenta
+    Route::post('/kreirajNoviPaket', [PaketiPacijentController::class, 'create']); 
+
+    //lista paketa pacijenta
+    Route::get('/paketiPacijentaLogoped', [PaketiPacijentController::class, 'paketi']);  
+
     //log out logopeda
     Route::post('/logout', [LogopedController::class, 'logout']);
 });
@@ -126,8 +140,14 @@ Route::group(['middleware'=> ['auth:sanctum','abilities:roditelj']], function() 
     //brisanje tretmana pacijenta 
     Route::delete('/brisanjeTretmana/{id_pacijenta}', [TretmanController::class, 'delete']); 
 
+    //pacijent prema id pacijenta 
+    Route::get('/pacijent/{id_pacijenta}', [PacijentController::class, 'pacijent']);
+
     //logoped 
     Route::get('/logoped/{id_logopeda}', [LogopedController::class, 'logoped']); 
+
+    //lista paketa pacijenta
+    Route::get('/paketiPacijentaRoditelj', [PaketiPacijentController::class, 'paketi']);   
 
     //log out logopeda
     Route::post('/logoutRoditelja', [RoditeljController::class, 'logout']);

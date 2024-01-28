@@ -138,10 +138,14 @@ const Roditelj = ({roditelj}) => {
             <div className="roditelj">
 
                 <div className="tabela_roditelja">
+                
+                <div className="rod_info">
                   <div id="rod_ime">{roditeljData.ime} {roditeljData.prezime}</div>
                   <div id="rod_kime">{roditeljData.korisnicko_ime}</div>
                   <div id="rod_email">{roditeljData.email}</div>
                   <div id="rod_tel">{roditeljData.broj_telefona}</div>
+                </div>
+                
                   <div id="rod_deca">  
                       {
                       deca == null 
@@ -149,6 +153,7 @@ const Roditelj = ({roditelj}) => {
                       : (deca.map((pacijent) => <PacijentRoditelj2 pacijent={pacijent} key={pacijent.id}/>))
                       } 
                   </div>
+                
                   <div id='rod_dugmad'>
                     <button className='rod_dugme' onClick={toggleModalIzmena}>
                       IZMENI

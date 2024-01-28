@@ -35,7 +35,7 @@ const ListaPacijenata = () => {
     }, []); 
     
     const [search, setSearch] = useState('');
-    console.log(search); 
+    //console.log(search); 
 
     return (
         <div className="lista">

@@ -25,7 +25,7 @@ class Tretman extends Model
         return $this->belongsTo(User::class, 'id_logopeda');
     }
 
-     //jedan tretman pripada samo jednom pacijentu
+    //jedan tretman pripada samo jednom pacijentu
      public function pacijent(){
         return $this->belongsTo(Pacijent::class, 'id_pacijenta'); 
     }

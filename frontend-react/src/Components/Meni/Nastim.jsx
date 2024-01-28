@@ -66,16 +66,14 @@ const Nastim = () => {
                         <div className='log_tekst'>
                             <h3>Andrea Kovačev</h3>
                             <p>
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                            sed do eiusmod tempor incididunt ut labore et dolore magna 
-                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                            ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            Duis aute irure dolor in reprehenderit in voluptate velit 
-                            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                            occaecat cupidatat non proident, sunt in culpa qui officia 
-                            deserunt mollit anim id est laborum.Excepteur sint 
-                            occaecat cupidatat non proident, sunt in culpa qui officia 
-                            deserunt mollit anim id est laborum."
+                            Andrea Kovačev, rođena 14. septembra 1999. godinez. Godine 2021. je diplomirala 
+                            na Visokoj školi socijalnog rada u Boegradu, na smeru Logopedija i dobila zvanje
+                            Diplomiranog Logopeda. Iste godine upisuje master studije i uspešno ih završava 
+                            2022. godine braneći master rad pod nazivom "Poremećaj glasa kod vokalnih profesionalaca".
+                            Osnivač je i rukovodilac logopedskog centra Kovačev.                            
+                            U centru primenjuje metodologiju bio-psiho-socijalnog, lingvističkog i bihejvioralnog pristupa u dijagnostici, 
+                            terapiji i savetovanju roditelja dece.
+
                             </p>
                         </div>
                 </div>
@@ -87,56 +85,47 @@ const Nastim = () => {
                         <img className="log" src={st1} alt="" />
                         <h3>Aleksandra Milović</h3>
                         <p>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore magna 
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit 
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                        occaecat cupidatat non proident, sunt in culpa qui officia 
-                        deserunt mollit anim id est laborum."
+                        Diplomirala 2019.godine na Fakultetu za specijalnu edukaciju i rehabilitaciju 
+                        Univerziteta u Beogradu na odseku za logopediju i dobila zvanje Defektolog-Logoped.
+                        U toku studiranja volontirala je u humanitarnoj organizaciji "Dečije srce".
+                        Od 2020.godine je deo stručnog tima "Kovačev Logopedskog centra" .
+                        Nastavlja stručno usavršavanje kao polaznik Edukacije za Senzorno-integracijskog 
+                        pedagoga.
                         </p>
                     </div>
                     <div className="logoped">
                         <img className="log" src={st2} alt="" />
                         <h3>Hristina Stanišić</h3>
                         <p>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore magna 
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit 
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                        occaecat cupidatat non proident, sunt in culpa qui officia 
-                        deserunt mollit anim id est laborum."
+                        Diplomirala 2017. godine na Fakultetu za specijalnu edukaciju i rehabilitaciju 
+                        Univerziteta u Beogradu na odseku za logopediju.
+                        U periodu od 2017. do 2019. godine stažirala u Domu zdravlja 
+                        "Zvezdara" "Razvojno savetovalište u službi za zdravstvenu zaštitu dece i školske dece". 
+                        Od septembra 2019. do februara 2020. godine je pedagoški i personalni asistent u 
+                        Osnovnoj školi "Montesori" u Beogradu.
                         </p>
                     </div>
                     <div className="logoped">
                         <img className="log" src={st3} alt="" />
                         <h3>Milica Mihailović</h3>
                         <p>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore magna 
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit 
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                        occaecat cupidatat non proident, sunt in culpa qui officia 
-                        deserunt mollit anim id est laborum."
+                        2017. godine upisala Fakultet za specijalnu i edukaciju i rehabilitaciju u Beogradu. 
+                        Diplomirala na osnovnim akademskim studijama 2021. godine i tako stekla zvanje diplomiranog 
+                        logopeda. Master studije upisala iste godine u oktobru. 
+                        Od novembra 2022.godine pedagoški asistent u vrtiću i nižim razredima osnovne škole.
+                        U "Kovačev Logopedskom Centru" radi od novembra 2022.godine.
                         </p>
                     </div>
                     <div className="logoped">
-                        <img className="log" src={st4} alt="" />
+                        <img className="log" src={st4} alt="" /> 
                         <h3>Kristina Nešković</h3>
                         <p>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore magna 
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit 
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                        occaecat cupidatat non proident, sunt in culpa qui officia 
-                        deserunt mollit anim id est laborum."
+                        2020. godine diplomirala na Fakultetu za specijalnu edukaciju i rehabilitaciju 
+                        sa zvanjem diplomirani defektolog-logoped. Od 2020. do 2021.
+                        je volonterski radila na Institutu za eksperimentalnu fonetiku i patologiju govora 
+                        "Đorđe Kostić", kao audiolingvista. Radila je na dijagnostici i tretmanu 
+                        patologije verbalne komunikacije. 
+                        Završila je edukaciju za primenu tretmana mucanja po Švarc metodi.  
                         </p>
                     </div>
                 </div>

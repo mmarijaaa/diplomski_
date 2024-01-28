@@ -42,9 +42,9 @@ const Kontakt = () => {
                         
                         <div className="kontakt_txt"><p>RADNO VREME</p>
                             Ponedeljak-Petak<br></br>
-                            12h-21h<br></br>
+                            12:00-20:00<br></br>
                             Subota-Nedelja<br></br>
-                            Neradne
+                            NE RADIMO
                         </div>
                     </div>    
 

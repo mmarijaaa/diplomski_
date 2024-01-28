@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import TretmanPacijent from './TretmanPacijent';
 import Swal from 'sweetalert2';
+import arrow from '../Slike/arrow_back.png'; 
 
 const ListaTretmanaPacijenta = () => {
 
@@ -68,6 +69,11 @@ const ListaTretmanaPacijenta = () => {
 
     return (
         <div className='lista_tretmana_pacijenta'>
+                    <div className='back'>
+                      <Link to="/logoped/listaPacijenata" ><img className="arrow_back" src={arrow} alt="" /></Link> 
+                      <div id="back_povratak">Povratak na listu pacijenata</div>
+                    </div>
+
                     <div className="tretman_pac">
                       <div id='tret_pac'>Pacijent {ime} {prezime}</div>
                     </div>

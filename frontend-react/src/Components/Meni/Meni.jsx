@@ -36,6 +36,7 @@ const Meni = () => {
                         </div>
                         <div className="meni_linkovi2">
                             <Link to="/prijava" className="link_prijava">PRIJAVA</Link>
+                            <Link to="/pregled" className="link_prijava">ZAKAŽITE PREGLED</Link>
                         </div>
                     </div>
                 
