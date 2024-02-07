@@ -142,7 +142,7 @@ class DatabaseSeeder extends Seeder
         $paket5->save(); 
 
         //Tretmani
-        $terapija1 = new Tretman;
+        /*$terapija1 = new Tretman;
         $terapija1->datum_tretmana = '2023-10-22';
         $terapija1->vreme_tretmana = '14h';
         $terapija1->redni_broj_tretmana = 1;
@@ -188,7 +188,7 @@ class DatabaseSeeder extends Seeder
         $terapija5->id_logopeda = 2;
         $terapija5->id_pacijenta = 2;
         $terapija5->id_paketa = 2;
-        $terapija5->save(); 
+        $terapija5->save(); */
 
     }
 }

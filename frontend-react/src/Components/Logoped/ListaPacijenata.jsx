@@ -14,7 +14,8 @@ const ListaPacijenata = () => {
         if(pacijents == null) {
         var config = {
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/logopedListaPacijenata/' + id_logopeda,
+            //url: 'http://127.0.0.1:8000/api/logopedListaPacijenata/' + id_logopeda,
+            url: 'http://127.0.0.1:8000/api/svipac/' + id_logopeda,
             headers: { 
               'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"),
             },
@@ -23,9 +24,9 @@ const ListaPacijenata = () => {
 
         axios(config)
         .then((response) => {
-            console.log(JSON.stringify(response.data));
+            //console.log(JSON.stringify(response.data));
             console.log("Lista pacijenata prikazana");
-            setPacijents(response.data.pacijenti); 
+            setPacijents(response.data.data); 
         })
         .catch((error) => {
             console.log(error);

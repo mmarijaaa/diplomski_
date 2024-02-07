@@ -26,7 +26,8 @@ const PocetnaLogoped = ({}) => {
     if(logoped == null) { 
     var config = {
         method: 'get',
-        url: 'http://127.0.0.1:8000/api/logoped/' + id_logopeda,
+        // url: 'http://127.0.0.1:8000/api/logoped/' + id_logopeda,
+        url: 'http://127.0.0.1:8000/api/sviLogopedi/' + id_logopeda,
         headers: { 
           'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"),
         },
@@ -37,8 +38,8 @@ const PocetnaLogoped = ({}) => {
     .then((response) => {
         console.log(JSON.stringify(response.data));
         console.log("Logoped");
-        setLogopedIme(response.data.logoped[1].ime);  
-        setLogopedPrezime(response.data.logoped[1].prezime);  
+        setLogopedIme(response.data[0].ime);  
+        setLogopedPrezime(response.data[0].prezime);  
     })
     .catch((error) => {
         console.log(error);
@@ -141,12 +142,17 @@ const PocetnaLogoped = ({}) => {
                 <Link to='/logoped/evidencijaTretmana' className='log_link'>Evidentiraj tretman</Link>
               </div> */}
               <div className="log_link_red">
-                <img className="log_icon" src={write} alt="" />
-                <Link to='/logoped/evidencijaTretmana' className='log_link'>Lista zahteva roditelja</Link>
+                <img className="log_icon" src={lista} alt="" />
+                <Link to='/logoped/listaZahteva' className='log_link'>Lista zahteva</Link> 
               </div>
               <div className="log_link_red">
-                <img className="log_icon" src={write} alt="" />
-                <Link to='/logoped/evidencijaTretmana' className='log_link'>Lista zakazanih pregleda</Link>
+                <img className="log_icon" src={create} alt="" />
+                <Link to='/logoped/kreirajZahtev' className='log_link'>Kreiraj zahtev</Link> 
+              </div>
+  
+              <div className="log_link_red">
+                <img className="log_icon" src={lista} alt="" />
+                <Link to='/logoped/listaTretmana' className='log_link'>Lista pregleda i tretmana</Link>
               </div>
           </div>
 

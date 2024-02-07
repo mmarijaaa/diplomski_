@@ -183,4 +183,18 @@ class RoditeljController extends Controller
         $roditelj->delete();
         return response()->json('Roditelj uspesno obrisan'); 
     }
+
+    //RESURS PRIKAZA RODITELJA
+
+    public function index() {
+        $roditelji = Roditelj::all();
+        return RoditeljResource::collection($roditelji);  
+    }
+    public function show($id) {
+        $rod = Roditelj::find($id);
+        if(is_null($rod)) {
+            return response()->json("Roditelja nema");
+        }
+        return response()->json(['success'=>true, new RoditeljResource($rod)]); 
+    }
 }

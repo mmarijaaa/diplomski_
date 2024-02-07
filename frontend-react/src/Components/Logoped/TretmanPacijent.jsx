@@ -60,8 +60,6 @@ const TretmanPacijent = ({tretman}) => {
     return (
         <div className="tretman">
             <div id='tret'>{tretman.naziv_tretmana} {tretman.redni_broj_tretmana} -- {datum} -- {tretman.vreme_tretmana}</div>
-            {/* <p>{datum} - {tretman.vreme_tretmana} </p> */}
-            {/* <p>Sadržaj tretmana:</p> */}
             {
               tretman.sadrzaj_tretmana == ' ' || tretman.sadrzaj_tretmana == ''
               ? (<div className="tretman_sadrzaj">

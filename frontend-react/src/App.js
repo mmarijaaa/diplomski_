@@ -26,6 +26,11 @@ import Pregled from './Components/Meni/Pregled';
 import KontaktLogopeda from './Components/Roditelj/KontaktLogopeda';
 import ListaTretmanaPacijenta from './Components/Logoped/ListaTretmanaPacijenta'; 
 import EvidentirajTretman from './Components/Logoped/EvidentirajTretman'; 
+import ListaZahteva from './Components/Logoped/ListaZahteva'; 
+import KreirajZahtev from './Components/Logoped/KreirajZahtev';
+import ListaTretmana from './Components/Logoped/ListaTretmana'; 
+
+
 function App() {
 
   //token za prijavu logopeda
@@ -69,6 +74,9 @@ function App() {
             <Route path='listaRoditelja' element={<ListaRoditelja />}/>
             <Route path='listaTretmanaPacijenta' element={<ListaTretmanaPacijenta />}/>
             <Route path='evidencijaTretmana' element={<EvidentirajTretman />}/>
+            <Route path='kreirajZahtev' element={<KreirajZahtev/>}/>
+            <Route path='listaZahteva' element={<ListaZahteva />}/>
+            <Route path='listaTretmana' element={<ListaTretmana />}/>
         </Route>
 
         {/* PROFIL RODITELJA */}

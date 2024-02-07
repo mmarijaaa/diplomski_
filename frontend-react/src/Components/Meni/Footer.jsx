@@ -24,7 +24,7 @@ const Footer = () => {
             </div>
 
             <div className="finfo">
-                <div><b>TEL:</b>  011/1111-000<br></br></div>
+                <div><b>TELEFON:</b>  011/1111-000<br></br></div>
                 <div><b>EMAIL:</b>  kovacev@gmail.com<br></br></div>
                 <div><b>INSTARGRAM:</b>  lc_kovacev<br></br></div>
                 <div><b>FACEBOOK:</b>  LC Kovacev </div>

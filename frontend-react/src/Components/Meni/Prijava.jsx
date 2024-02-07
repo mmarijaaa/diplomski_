@@ -146,7 +146,8 @@ const Prijava = ({addToken, addToken2}) => {
                             className="polje"
                             placeholder="Unesite Vaše korisničko ime..."
                             onInput={handleInput1}
-                            name="korisnicko_ime"/>
+                            name="korisnicko_ime"
+                            spellcheck="false"/>
                         </div>
                             <h6>{greskaKIme}</h6>
 
@@ -157,7 +158,8 @@ const Prijava = ({addToken, addToken2}) => {
                             className="polje"
                             placeholder="Unesite Vašu lozinku..."
                             onInput={handleInput1}
-                            name="password"/>
+                            name="password"
+                            spellcheck="false"/>
                         </div>
 
                             <h6>{greskaPass}</h6>   

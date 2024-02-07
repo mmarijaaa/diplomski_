@@ -13,7 +13,8 @@ const PacijentLogoped = ({pacijent}) => {
         prezime: pacijent.prezime,
         uzrast: pacijent.uzrast,
         poremecaj: pacijent.poremecaj, 
-        //paket: pacijent.id_paketa.naziv_paketa,
+        roditelj: pacijent.roditelj,
+        paket: pacijent.paket,
       });
 
       let navigate = useNavigate();
@@ -139,49 +140,49 @@ const PacijentLogoped = ({pacijent}) => {
       let id_paketa_pacijenta = pacijent.id_paketa;
 
       //roditelj
-      var config = {
-          method: 'get',
-          url: 'http://127.0.0.1:8000/api/roditeljPacijenta/' + id_roditelja_pacijenta,
-          headers: { 
-            'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"),
-          },
-          data : roditelj,
-        };
-        axios(config)
-        .then((response) => {
-          console.log(JSON.stringify(response.data));
-          console.log("PROBLEM???"); 
-          console.log(response.data.roditelj);
-          setIme(response.data.roditelj[0].ime);
-          setPrezime(response.data.roditelj[0].prezime);
-          console.log("Roditelj JESTE prikazan"); 
-          setRoditelj(response.data.roditelj);  
-        })
-        .catch((error) => {
-            console.log(error);
-            console.log("Roditelj NIJE prikazan");
-        }); 
+      // var config = {
+      //     method: 'get',
+      //     url: 'http://127.0.0.1:8000/api/roditeljPacijenta/' + id_roditelja_pacijenta,
+      //     headers: { 
+      //       'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"),
+      //     },
+      //     data : roditelj,
+      //   };
+      //   axios(config)
+      //   .then((response) => {
+      //     console.log(JSON.stringify(response.data));
+      //     console.log("PROBLEM???"); 
+      //     console.log(response.data.roditelj);
+      //     setIme(response.data.roditelj[0].ime);
+      //     setPrezime(response.data.roditelj[0].prezime);
+      //     console.log("Roditelj JESTE prikazan"); 
+      //     setRoditelj(response.data.roditelj);  
+      //   })
+      //   .catch((error) => {
+      //       console.log(error);
+      //       console.log("Roditelj NIJE prikazan");
+      //   }); 
 
         //paket
-        var config = {
-          method: 'get',
-          url: 'http://127.0.0.1:8000/api/paketPacijenta/' + id_paketa_pacijenta,
-          headers: { 
-            'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"),
-          },
-          data : paket,
-        };
-        axios(config)
-        .then((response) => {
-          console.log(JSON.stringify(response.data)); 
-          setNazivPaketa(response.data.paket[0].naziv_paketa);
-          setBrojTretmanaPaketa(response.data.paket[0].broj_tretmana);
-          console.log("Paket JESTE prikazan"); 
-        })
-        .catch((error) => {
-            console.log(error);
-            console.log("Paket NIJE prikazan");
-        }); 
+        // var config = {
+        //   method: 'get',
+        //   url: 'http://127.0.0.1:8000/api/paketPacijenta/' + id_paketa_pacijenta,
+        //   headers: { 
+        //     'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"),
+        //   },
+        //   data : paket,
+        // };
+        // axios(config)
+        // .then((response) => {
+        //   console.log(JSON.stringify(response.data)); 
+        //   setNazivPaketa(response.data.paket[0].naziv_paketa);
+        //   setBrojTretmanaPaketa(response.data.paket[0].broj_tretmana);
+        //   console.log("Paket JESTE prikazan"); 
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        //     console.log("Paket NIJE prikazan");
+        // }); 
 
 
         setModal2(!modal2);
@@ -461,10 +462,11 @@ const PacijentLogoped = ({pacijent}) => {
                     <p className='ppp'>Poremećaj: </p> <p className='pp'>{pacijentData.poremecaj}</p>
                     </div>
                     <div className="polje">
-                    <p className='ppp'>Paket: </p> <p className='pp'>{nazivPaketa}, tretmana: {brojTretmanaPaketa}</p>
+                    <p className='ppp'>Paket: </p> <p className='pp'>{pacijent.paket.naziv_paketa}, tretmana: {pacijent.paket.broj_tretmana}</p>
                     </div>
                     <div className="polje">
-                    <p className='ppp'>Roditelj: </p> <p className='pp'>{ime} {prezime} </p>
+                    {/* <p className='ppp'>Roditelj: </p> <p className='pp'>{ime} {prezime} </p> */}
+                    <p className='ppp'>Roditelj: </p> <p className='pp'>{pacijent.roditelj.ime} {pacijent.roditelj.prezime} </p>
                     </div>
                   </div>
                 </div>

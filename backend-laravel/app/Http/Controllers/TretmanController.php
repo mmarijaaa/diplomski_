@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\TretmanResource; 
-
+use App\Http\Resources\TretmanResource2; 
+use App\Http\Resources\PregledResource; 
 
 class TretmanController extends Controller
 {
@@ -51,6 +52,36 @@ class TretmanController extends Controller
         ]); 
 
         return new TretmanResource($tretman);
+    }
+
+    //************************************************************************************* 
+    //KREIRANJE PREGLEDA
+    public function createPregled(Request $request) {
+
+        $validator=Validator::make($request->all(), [
+            'datum_tretmana' => 'required',
+            'vreme_tretmana' => 'required|string',
+            'naziv_tretmana' => 'string',
+            'redni_broj_tretmana' => '',
+            'sadrzaj_tretmana' => 'required|string'
+        ]); 
+
+        if($validator->fails())
+        return response()->json(['success'=> false, $validator->errors()]);
+
+        $tretman = Tretman::create([
+            'datum_tretmana' => $request->datum_tretmana,
+            'vreme_tretmana' => $request->vreme_tretmana,
+            'naziv_tretmana' => 'Pregled',
+            'redni_broj_tretmana' => 0, 
+            'sadrzaj_tretmana' => $request->sadrzaj_tretmana,
+            'id_pacijenta'=>0,
+            'id_logopeda'=>0,
+            'id_paketa'=>0,
+        ]); 
+
+        return response()->json(['success'=>true, new TretmanResource($tretman)]);
+        //return new TretmanResource($tretman); 
     }
 
     //************************************************************************************* 
@@ -127,6 +158,28 @@ class TretmanController extends Controller
         }
         return new TretmanResource($tretmani);   
     }
+
+    //************************************************************************************* 
+    //LISTA PREGLEDA PREMA LOGOPEDU
+    public function preglediLogoped() {
+        $pregledi = Tretman::get()->where('naziv_tretmana','Pregled'); 
+        if(is_null($pregledi)) {
+            return response()->json("Pregleda nema");
+        }
+        return PregledResource::collection($pregledi);      
+    }
+
+    //************************************************************************************* 
+    //LISTA ZAKAZANIH TRETMANA PREMA PACIJENTU
+    public function listaZakazanihLogoped($id_logopeda) {
+        $timestamp = time();
+        $currentDate = gmdate('Y-m-d', $timestamp); 
+        $tretmani = Tretman::get()->where('id_logopeda',$id_logopeda)->where('datum_tretmana','>',$currentDate);
+        if(is_null($tretmani)) {
+            return response()->json("Tretmana nema");
+        }
+        return TretmanResource2::collection($tretmani);  
+    } 
 
     //************************************************************************************* 
     //BRISANJE TRETMANA PACIJENTA

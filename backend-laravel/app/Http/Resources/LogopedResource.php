@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PaketResource extends JsonResource
+class LogopedResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -13,15 +13,15 @@ class PaketResource extends JsonResource
      * @return array<string, mixed>
      */
 
-    public static $wrap='paket';
-
-    public function toArray(Request $request): array
+    public static $wrap='logoped';
+    public function toArray(Request $request):array
     {
         //return parent::toArray($request);
 
         return [
-            'naziv_paketa' => $this->resource->naziv_paketa,
-            'broj_tretmana' => $this->resource->broj_tretmana
+            'id' => $this->resource->id,
+            'ime'=> $this->resource->ime,
+            'prezime'=>$this->resource->prezime,
         ];
     }
 }

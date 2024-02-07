@@ -53,6 +53,16 @@ html {
   ::-webkit-scrollbar-thumb:hover {
     background: #03273d; 
   }
+
+input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px #fdfced inset; /* Change the color to your own background color */
+    -webkit-text-fill-color: 003353;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px #fdfced inset;
+    -webkit-text-fill-color: #003353;
+}
 /******************************************************/
 /*MENI*/
 /* .meni_res {
@@ -1814,6 +1824,9 @@ html {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 50px;
 }
+.kreiraj_forma select:focus {
+    outline: none;
+}
 .kreiraj_forma h6 {
     font-size: 15px;
     color: #003C62;
@@ -1836,7 +1849,50 @@ html {
     background-color: #003C62;
     cursor: pointer;
 }
-
+.kreiraj_forma .dugme1 {
+    font-size: 18px;
+    font-family: 'Nunito Sans', sans-serif;
+    border: 2px solid #003C62;
+    background-color: #fdfced;
+    border-radius: 50px;
+    padding: 10px 20px 10px 20px;
+    margin-top: 50px;
+    width: 90%; 
+    color: #003353;
+    cursor: pointer;
+}
+.kreiraj_forma .dugme1:hover {
+    color: #fffedf;
+    background-color: #003C62;
+    cursor: pointer;
+}
+.kreiraj_forma .polje1{
+    background-color: #fdfced;
+    font-size: 17px;
+    color: #003353;
+    font-family: 'Nunito Sans', sans-serif;
+    /* width: 250px; */
+    width: 80%; 
+    padding: 10px 20px 10px 20px;
+    margin: 10px 0px 10px 0px;
+    /* border: 2px solid #003353; */ 
+    border: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    /* border-radius: 50px; */
+}
+.kreiraj_forma textarea {
+    height: 100px;
+    border-radius: 20px;
+}
+.kreiraj_forma input {
+    border-radius: 50px;
+}
+.kreiraj_forma textarea:focus {
+    outline: none;
+}
+.kreiraj_forma input:focus {
+    outline: none;
+}
 /******************************************************/
 /*LISTA PACIJENATA*/
 .lista {
@@ -1999,19 +2055,25 @@ html {
 }
 .pacijent .pacijent_info .pac1 {
     flex: 35%;
+    background-color: #f5f5df;
+    padding: 15px;
 }
 .pacijent .pacijent_info .pac2 {
     flex: 20%;
     padding-right: 15px;
+    padding: 15px;
 }
 .pacijent .pacijent_info .pac3 {
     flex: 45%;
+    background-color: #f5f5df;
+    padding: 15px;
 }
 .pacijent .pacijent_dugmad {
     flex: 40%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    padding-left: 10px;
 }
 .pacijent .pacijent_dugmad .dugme{
     font-size: 16px;
@@ -2281,7 +2343,11 @@ html {
     /*padding-bottom: 70px;*/
     width: 100%;
 }
+.roditelji {
+    width: 150%;
+}
 .tabela_roditelja {
+    width: 100%;
     display: flex;
     flex-direction: row;
     margin: 0px 0px 20px 0px;
@@ -2297,7 +2363,9 @@ html {
 }
 .tabela_roditelja #rod_ime {
     flex: 17%;
-    padding: 0px 10px 0px 5px; 
+    /* padding: 0px 10px 0px 5px;  */
+    /* background-color: #f5f5df; */
+    height: 100%;
 }
 .tabela_roditelja #rod_kime {
     flex: 13%;
@@ -2306,6 +2374,7 @@ html {
 .tabela_roditelja #rod_email {
     flex: 25%;
     padding: 0px 10px 0px 0px;
+    /* background-color: #f5f5df; */
 }
 .tabela_roditelja #rod_tel {
     flex: 15%;
@@ -2314,6 +2383,7 @@ html {
 .tabela_roditelja #rod_deca {
     flex: 20%;
     padding: 0px 10px 0px 0px;
+    /* background-color: #f5f5df; */
 }
 .tabela_roditelja #rod_dugmad {
     flex: 10%;
@@ -2664,6 +2734,79 @@ html {
     height: 30px;
     padding-right: 20px;
 }
+
+
+
+/*ZAHTEV*/
+.zahtevi {
+    width: 120%;
+}
+.zahtev {
+    border-radius: 10px;
+    border: none;
+    font-size: 18px;
+    color: #003353;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.zahtev_sadrzaj {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.zahtev_sadrzaj .ztip {
+    flex: 15%;
+    padding: 5px 10px;
+    background-color: #f5f5df;
+}
+.zahtev_sadrzaj .zlog {
+    flex: 20%;
+    padding-left: 15px; 
+}
+.zahtev_sadrzaj .zrod {
+    flex: 25%;
+    padding-left: 15px;
+    background-color: #f5f5df;
+}
+.zahtev_sadrzaj .zpac {
+    flex: 25%;
+    padding-left: 15px;
+    
+}
+.zahtev_sadrzaj .zinfo {
+    flex: 15%;
+    padding-left: 15px;
+    background-color: #f5f5df;
+}
+
+
+/*PREGLEDI I TRETMANI*/
+.dugmadP {
+    display: flex;
+    flex-direction: row;
+}
+.dugmadP .dugmeP{
+    border: 2px solid #003C62;
+    background-color: #fdfced;
+    border-radius: 50px;
+    padding: 10px 20px 10px 20px;
+    margin-right: 10px;
+    /*width: 120px;*/
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Kanit', sans-serif;
+    color: #003353;  
+    text-align: center;
+    transition: 0.3s;
+}
+.dugmadP .dugmeP:hover {
+    border: 2px solid #003C62;
+    background-color: #003C62;
+    color: #fdfced;  
+}
+
 /******************************************************/
 /*RESPONZIVNOST*/
 

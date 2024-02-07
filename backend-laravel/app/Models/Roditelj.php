@@ -52,4 +52,9 @@ class Roditelj extends Authenticatable
     public function pacijent() {
         return $this->hasMany(Pacijent::class);  
     }
+
+    //jedan roditelj pripada samo jednom logopedu
+    public function logoped(){
+        return $this->belongsTo(User::class, 'id_logopeda'); 
+    }
 }

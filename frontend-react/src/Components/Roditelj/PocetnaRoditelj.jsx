@@ -26,7 +26,6 @@ const PocetnaRoditelj = ({}) => {
     let id_roditelja = window.sessionStorage.getItem("roditelj_user_id");
 
     //LISTA DECE RODITELJA
-    // useEffect(() => {
       useEffect(() => {
         var config = {
             method: 'get',
@@ -84,7 +83,7 @@ const PocetnaRoditelj = ({}) => {
     useEffect(() => {
       var config = {
         method: 'get',
-        url: 'http://127.0.0.1:8000/api/roditelj/' + id_roditelja,
+        url: 'http://127.0.0.1:8000/api/sviRoditelji/' + id_roditelja,
         headers: { 
           'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token2"),
         },
@@ -93,37 +92,36 @@ const PocetnaRoditelj = ({}) => {
       axios(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        console.log(response.data.roditelj);
-        setIme(response.data.roditelj[0].ime);
-        setPrezime(response.data.roditelj[0].prezime);
-
-        setLogopedID(response.data.roditelj[0].id_logopeda);
-        id_logopeda = response.data.roditelj[0].id_logopeda;
-        console.log(id_logopeda);
-        console.log("Roditelj JESTE prikazan"); 
-        setRoditelj(response.data.roditelj);  
+        console.log('Roditelj');
+        setIme(response.data[0].ime);
+        setPrezime(response.data[0].prezime);
+        setLogopedIme(response.data[0].logoped.ime);  
+        setLogopedPrezime(response.data[0].logoped.prezime);
+        setLogopedID(response.data[0].logoped.id);
+        console.log('id logopeda: ' + logopedID);
+        //setRoditelj(response.data.roditelj);  
 
         //INFO LOGOPEDA U MENIJU
-        if(logoped == null) { 
-          var config = {
-              method: 'get',
-              url: 'http://127.0.0.1:8000/api/logoped/' + id_logopeda, 
-              headers: { 
-                'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token2"),
-              },
-              data : logoped,
-            };
-            axios(config)
-            .then((response) => {
-                console.log(JSON.stringify(response.data));
-                setLogopedIme(response.data.logoped[1].ime);  
-                setLogopedPrezime(response.data.logoped[1].prezime);  
-            })
-            .catch((error) => {
-                console.log(error);
-                console.log("Logopeda NEMA");
-            });
-            }
+        // if(logoped == null) { 
+        //   var config = {
+        //       method: 'get',
+        //       url: 'http://127.0.0.1:8000/api/logoped/' + id_logopeda, 
+        //       headers: { 
+        //         'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token2"),
+        //       },
+        //       data : logoped,
+        //     };
+        //     axios(config)
+        //     .then((response) => {
+        //         console.log(JSON.stringify(response.data));
+        //         setLogopedIme(response.data.logoped[1].ime);  
+        //         setLogopedPrezime(response.data.logoped[1].prezime);  
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //         console.log("Logopeda NEMA");
+        //     });
+        //     }
         
 
       })
@@ -185,7 +183,7 @@ const PocetnaRoditelj = ({}) => {
               <div className='kont_info'>
                 <img className="log_icon" src={email} alt="" />
                   <div className="knt">
-                    <b>Email:</b> <br></br>
+                    <b>E-mail:</b> <br></br>
                     <div id='kont_email_log'>{logopedIme}{logopedPrezime}@gmail.com</div>
                   </div> 
                 </div> 
@@ -212,14 +210,14 @@ const PocetnaRoditelj = ({}) => {
                 : (deca.map((pacijent) => <PacijentRoditelj pacijent={pacijent} key={pacijent.id}/>))
             }
             </div> */}
-            <div className="deca_linkovi">
+              <div className="deca_linkovi">
                   {
                       deca == null 
                       ? (<></>)
                       : (deca.map((pacijent) => <PacijentRoditelj2 pacijent={pacijent} key={pacijent.id}/>))
                   }
               </div>
-            <Outlet/>
+            {/* <Outlet/> */}
           </div> 
           
         </div>

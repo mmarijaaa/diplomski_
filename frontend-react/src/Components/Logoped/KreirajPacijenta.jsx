@@ -17,7 +17,7 @@ const KreirajPacijenta = ({}) => {
     });
 
     //setovanje polja na prazno kada se kreira pacijent 
-    const [polje, setPolje] = useState();
+    const [polje, setPolje] = useState(); 
 
     function handleInput(e) {
         let newPacijentData = pacijentData;
@@ -148,7 +148,7 @@ const KreirajPacijenta = ({}) => {
                     >
                     KREIRAJ PACIJENTA
                     </button>
-                    <br></br>
+                    
             </div>
 
             </form>

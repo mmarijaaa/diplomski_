@@ -22,10 +22,17 @@ const PacijentRoditelj2 = ({pacijent}) => {
    
     return (
         <div className="dete_info">
-            {/* <Link className="dete_link" to="/roditelj/dete" onClick={sacuvajIdPacijenta}>{pacijent.ime} {pacijent.prezime}</Link>   */}
-            <button  className="dete_link" onClick={sacuvajIdPacijenta}>
-                {pacijent.ime} {pacijent.prezime}
-            </button>
+            <div className="dete_dugme">
+                <button  className="dete_link" onClick={sacuvajIdPacijenta}>
+                    {pacijent.ime} {pacijent.prezime}
+                </button>
+                <Outlet/>
+            </div> 
+
+            {/* <div className="dete_outlet">
+                <Outlet/>
+            </div> */}
+            
         </div>
     ); 
 }

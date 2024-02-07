@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('zahtevs', function (Blueprint $table) {
             $table->id();
             $table->string('tip_zahteva');
-            $table->integer('odobren');
-            $table->integer('pregledan');
-            $table->foreignId('id_logopeda'); 
+            $table->integer('odobren')->default(0);
+            $table->integer('pregledan')->default(0);
+            $table->foreignId('id_logopeda_kreira');  
+            $table->foreignId('id_logopeda_prima'); 
             $table->foreignId('id_pacijenta'); 
             $table->foreignId('id_roditelja'); 
-            $table->string('info_zahteva');
+            $table->string('info_pacijenta');
+            $table->string('info_roditelja'); 
+            // $table->string('info_zahteva');
             $table->timestamps(); 
         });
     }

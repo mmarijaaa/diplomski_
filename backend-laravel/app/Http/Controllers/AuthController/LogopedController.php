@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\LogopedResource;
 
 class LogopedController extends Controller
 {
@@ -91,6 +92,28 @@ class LogopedController extends Controller
             return response()->json("Logopeda nema");
         }
         return response()->json(['success'=>true, 'logoped'=>$logoped]);
- 
+        //return new LogopedResource($logoped);  
     }
+
+    public function index() {
+        $logo = User::all();
+        return LogopedResource::collection($logo); 
+    }
+    public function show($id) {
+        $log = User::find($id);
+        if(is_null($log)) {
+            return response()->json("Logopeda nema");
+        }
+        return response()->json(['success'=>true, new LogopedResource($log)]); 
+    }
+
+    //************************************************************************************* 
+    //LISTA SVIH LOGOPEDA
+    public function lista() {
+        $logopedi = User::all();
+        if(is_null($logopedi)) {
+            return response()->json("Logopeda nema");
+        }
+        return new LogopedResource($logopedi);   
+    } 
 }

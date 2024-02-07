@@ -13,10 +13,10 @@ const Dete = ({}) => {
 
     return (
         <div className="dete">
-            <div className='back'>
+            {/* <div className='back'>
                 <a href="/roditelj/deca" ><img className="arrow_back" src={arrow} alt="" /></a> 
                 <div id="back_povratak">Povratak na listu</div>
-            </div>
+            </div> */}
 
             {window.sessionStorage.getItem("ime_deteta")}  {window.sessionStorage.getItem("prezime_deteta")}
 

@@ -5,6 +5,7 @@ import st2 from '../Slike/st2.jpg';
 import st3 from '../Slike/st3.jpeg';  
 import st4 from '../Slike/st4.jpg';  
 import st from '../Slike/st.jpg';  
+import log from '../Slike/Logg.jpg';  
 import Footer from './Footer';
 const Nastim = () => {
     return(
@@ -61,7 +62,7 @@ const Nastim = () => {
 
                 <div className="logoped1">
                         <div className="log_slika">
-                            <img className="log" src={st} alt="" />
+                            <img className="log" src={log} alt="" />
                         </div>
                         <div className='log_tekst'>
                             <h3>Andrea Kovačev</h3>

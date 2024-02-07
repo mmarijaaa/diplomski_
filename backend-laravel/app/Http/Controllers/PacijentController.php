@@ -67,13 +67,29 @@ class PacijentController extends Controller
     } 
 
     //************************************************************************************* 
-    //PACIJENAT PREMA ID PACIJENTA
+    //PACIJENT PREMA ID PACIJENTA
     public function pacijent($id_pacijenta) {
         $pacijent = Pacijent::get()->where('id',$id_pacijenta);
         if(is_null($pacijent)) {
             return response()->json("Pacijenta nema");
         }
-        return new LogopedPacijentResource($pacijent);  
+        //return new LogopedPacijentResource($pacijent);  
+        return new PacijentResource($pacijent);
+    }
+    // public function show($id) {
+    //     $pac = Pacijent::find($id);
+    //     //return response()->json($pac);
+    //     return $pac;
+    // }
+    public function show($id) {
+        $pac = Pacijent::find($id);
+        return new PacijentResource($pac); 
+    }
+   
+    public function index() {
+        $paci = Pacijent::all();
+        //return new PacijentResource($paci);
+        return $paci;
     }
 
     //************************************************************************************* 

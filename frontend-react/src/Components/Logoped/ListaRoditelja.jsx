@@ -43,14 +43,14 @@ const ListaRoditelja = ({}) => {
           <p id='lista_naslov'>LISTA RODITELJA</p>
           <div className='pretraga'><input type='text' className='pretraga' placeholder='Pretraži roditelje' onChange={(e) => setSearch(e.target.value)}></input></div>
 
-          <div className="lista_header">
+          {/* <div className="lista_header">
                 <div id="rod_ime">Ime i prezime</div>
                 <div id="rod_kime">Kor. ime</div>
                 <div id="rod_email">Email</div>
                 <div id="rod_tel">Broj telefona</div>
                 <div id="rod_deca">Deca </div>
                 <div id="rod_dugmad"></div>
-          </div>
+          </div> */}
             
             <div className="lista_roditelja">
               
