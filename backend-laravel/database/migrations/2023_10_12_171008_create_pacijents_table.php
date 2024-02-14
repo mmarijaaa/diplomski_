@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('prezime');
             $table->integer('uzrast');
             $table->string('poremecaj');
-            $table->foreignId('id_roditelja')->default(100);
-            $table->foreignId('id_logopeda')->default(100);
-            $table->foreignId('id_paketa')->default(100);
+            $table->foreignId('id_roditelja');
+            $table->foreignId('id_logopeda');
+            $table->foreignId('id_paketa');
+            // $table->foreignId('id_trenutnog_paketa'); 
             $table->timestamps();
         });
     }

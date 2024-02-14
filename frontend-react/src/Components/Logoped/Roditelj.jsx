@@ -137,16 +137,14 @@ const Roditelj = ({roditelj}) => {
 
             <div className="roditelj">
 
-                <div className="tabela_roditelja">
-                
                 <div className="rod_info">
-                  <div id="rod_ime">{roditeljData.ime} {roditeljData.prezime}</div>
-                  <div id="rod_kime">{roditeljData.korisnicko_ime}</div>
-                  <div id="rod_email">{roditeljData.email}</div>
-                  <div id="rod_tel">{roditeljData.broj_telefona}</div>
+                  <div className="rod_ime">{roditeljData.ime} {roditeljData.prezime}</div>
+                  <div className="rod_kime">{roditeljData.korisnicko_ime}</div>
+                  <div className="rod_email">{roditeljData.email}</div>
+                  <div className="rod_tel">{roditeljData.broj_telefona}</div>
                 </div>
                 
-                  <div id="rod_deca">  
+                  <div className="rod_deca">  
                       {
                       deca == null 
                       ? (<></>) 
@@ -154,7 +152,7 @@ const Roditelj = ({roditelj}) => {
                       } 
                   </div>
                 
-                  <div id='rod_dugmad'>
+                  <div className='rod_dugmad'>
                     <button className='rod_dugme' onClick={toggleModalIzmena}>
                       IZMENI
                     </button>
@@ -162,8 +160,7 @@ const Roditelj = ({roditelj}) => {
                       OBRIŠI
                     </button>
                   </div>
-                </div>
-                
+                 
               </div>
 
             {modal && (

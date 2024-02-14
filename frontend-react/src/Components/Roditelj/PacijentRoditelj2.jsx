@@ -12,8 +12,9 @@ import moment from 'moment';
 const PacijentRoditelj2 = ({pacijent}) => {
 
     let navigate = useNavigate();
-
-    function sacuvajIdPacijenta() {
+    var deteime;
+    var deteprezime;
+    function dete() {
         window.sessionStorage.setItem("id_deteta",pacijent.id);
         window.sessionStorage.setItem("ime_deteta",pacijent.ime);
         window.sessionStorage.setItem("prezime_deteta",pacijent.prezime); 
@@ -23,15 +24,14 @@ const PacijentRoditelj2 = ({pacijent}) => {
     return (
         <div className="dete_info">
             <div className="dete_dugme">
-                <button  className="dete_link" onClick={sacuvajIdPacijenta}>
+                {/* <button  className="dete_link" onClick={sacuvajIdPacijenta}>
                     {pacijent.ime} {pacijent.prezime}
-                </button>
-                <Outlet/>
+                </button> */}
+            <a href='/roditelj/dete' onClick={dete}> {pacijent.ime} {pacijent.prezime}</a> 
+
             </div> 
 
-            {/* <div className="dete_outlet">
-                <Outlet/>
-            </div> */}
+            
             
         </div>
     ); 

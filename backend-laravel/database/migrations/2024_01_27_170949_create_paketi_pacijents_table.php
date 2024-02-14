@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('paketi_pacijents', function (Blueprint $table) {
             $table->id();
             $table->string('naziv_paketa');
-            $table->integer('broj_tretmana');
-            $table->dateTime('datum_od');
-            $table->dateTime('datum_do');
+            $table->dateTime('datum_od')->nullable();
+            $table->dateTime('datum_do')->nullable();
             $table->foreignId('id_pacijenta');  
+            $table->foreignId('id_logopeda'); 
+            $table->integer('zavrsen')->default(0);
             $table->timestamps(); 
         });
     }

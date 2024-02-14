@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\TretmanResource; 
 use App\Http\Resources\TretmanResource2; 
+use App\Http\Resources\TretmanResource3; 
 use App\Http\Resources\PregledResource; 
 
 class TretmanController extends Controller
@@ -27,7 +28,7 @@ class TretmanController extends Controller
 
     //************************************************************************************* 
     //KREIRANJE TRETMANA - ZAKAZIVANJE TRETMANA
-    public function create(Request $request, $id_logopeda, $id_pacijenta, $id_paketa, $redni_broj_tretmana) {
+    public function create(Request $request, $id_logopeda, $id_pacijenta, $id_paketa, $redni_broj_tretmana, $id_paketa_pacijenta) {
 
         $validator=Validator::make($request->all(), [
             'datum_tretmana' => 'required',
@@ -49,6 +50,7 @@ class TretmanController extends Controller
             'id_pacijenta'=>$id_pacijenta,
             'id_logopeda'=>$id_logopeda,
             'id_paketa'=>$id_paketa,
+            'id_paketa_pacijenta'=>$id_paketa_pacijenta
         ]); 
 
         return new TretmanResource($tretman);
@@ -78,6 +80,7 @@ class TretmanController extends Controller
             'id_pacijenta'=>0,
             'id_logopeda'=>0,
             'id_paketa'=>0,
+            'id_paketa_pacijenta'=>0 
         ]); 
 
         return response()->json(['success'=>true, new TretmanResource($tretman)]);
@@ -114,26 +117,32 @@ class TretmanController extends Controller
 
     //************************************************************************************* 
     //LISTA ODRADJENIH TRETMANA PREMA PACIJENTU
-    public function listaOdradjenih($id_pacijenta) {
+    public function listaOdradjenih($id_pacijenta, $id_paketa_pacijenta) {
         $timestamp = time();
         $currentDate = gmdate('Y-m-d', $timestamp); 
-        $tretmani = Tretman::get()->where('id_pacijenta',$id_pacijenta)->where('datum_tretmana','<',$currentDate);
+        $tretmani = Tretman::get()->where('id_pacijenta',$id_pacijenta)
+                                ->where('id_paketa_pacijenta', $id_paketa_pacijenta)
+                                ->where('datum_tretmana','<',$currentDate);
         if(is_null($tretmani)) {
             return response()->json("Tretmana nema");
         }
-        return new TretmanResource($tretmani);  
-    } 
+        //return new TretmanResource($tretmani);  
+        return TretmanResource3::collection($tretmani);
+    }
 
     //************************************************************************************* 
     //LISTA ZAKAZANIH TRETMANA PREMA PACIJENTU
-    public function listaZakazanih($id_pacijenta) {
+    public function listaZakazanih($id_pacijenta, $id_paketa_pacijenta) {
         $timestamp = time();
         $currentDate = gmdate('Y-m-d', $timestamp); 
-        $tretmani = Tretman::get()->where('id_pacijenta',$id_pacijenta)->where('datum_tretmana','>',$currentDate);
+        $tretmani = Tretman::get()->where('id_pacijenta',$id_pacijenta) 
+                                ->where('id_paketa_pacijenta', $id_paketa_pacijenta)
+                                ->where('datum_tretmana','>',$currentDate);
         if(is_null($tretmani)) {
             return response()->json("Tretmana nema");
         }
-        return new TretmanResource($tretmani);  
+        //return new TretmanResource($tretmani);  
+        return TretmanResource3::collection($tretmani);   
     } 
 
     //************************************************************************************* 
@@ -146,7 +155,8 @@ class TretmanController extends Controller
         if(is_null($tretmani)) {
             return response()->json("Tretmana nema"); 
         }
-        return new TretmanResource($tretmani);  
+        //return new TretmanResource($tretmani);
+        return TretmanResource2::collection($tretmani);
     } 
 
     //************************************************************************************* 

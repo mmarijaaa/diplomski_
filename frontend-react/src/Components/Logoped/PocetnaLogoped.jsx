@@ -154,6 +154,11 @@ const PocetnaLogoped = ({}) => {
                 <img className="log_icon" src={lista} alt="" />
                 <Link to='/logoped/listaTretmana' className='log_link'>Lista pregleda i tretmana</Link>
               </div>
+
+              <div className="log_link_red">
+                <img className="log_icon" src={create} alt="" />
+                <Link to='/logoped/kreirajZahtev' className='log_link'>Kreiraj tretman</Link> 
+              </div>
           </div>
 
           <div className="log_odjava">

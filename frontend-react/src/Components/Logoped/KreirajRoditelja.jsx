@@ -16,8 +16,8 @@ const KreirajRoditelja = ({}) => {
         id_logopeda:""
     });
 
-      //setovanje polja na prazno kada se kreira roditelj 
-      const [polje, setPolje] = useState();
+    //setovanje polja na prazno kada se kreira roditelj 
+    const [polje, setPolje] = useState();
 
     let navigate = useNavigate();
 
@@ -47,7 +47,7 @@ const KreirajRoditelja = ({}) => {
                 window.sessionStorage.setItem("roditelj_id", response.data.roditelj_id);
                 // navigate('/logoped/kreirajPacijenta');
                 Swal.fire({
-                    title: 'Uspesno sacuvan roditelj!',
+                    title: 'Uspešno sačuvan roditelj!',
                     showConfirmButton: true,
                   }).then(function(){
                     window.location.reload();
@@ -63,6 +63,11 @@ const KreirajRoditelja = ({}) => {
           console.log(error);
         });
     }
+
+
+//******** ISNTRUKCIJE ZA KORISCENJE APLIKACJE ZA RODITELJE
+//******** SVE INSTRUKCIJE POSLATE PUTEM MEJLA KAD SE POSALJU I KOR IME I SIFRA NALOGA
+
 
     return (
         <div className="log_forma">

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('id_logopeda'); 
             $table->foreignId('id_pacijenta');
             $table->foreignId('id_paketa');
+            $table->foreignId('id_paketa_pacijenta');
             $table->timestamps();
         });
     }

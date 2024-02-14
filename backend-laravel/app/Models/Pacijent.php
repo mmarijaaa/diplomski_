@@ -17,7 +17,7 @@ class Pacijent extends Model
         'id_roditelja',
         'id_logopeda',
         'id_paketa',
-        'id_paketi_pacijent'  
+        // 'id_paketi_pacijent'  
     ];
 
     //jedan pacijent pripada samo jednom logopedu
@@ -36,7 +36,7 @@ class Pacijent extends Model
     }
 
     //jedan pacijent ima vise paketi_pacijenta (lista odabranih paketa)
-    public function paketiPacijent() {
-        return $this->hasMany(PaketiPacijent::class, );   
-    }
+    // public function paketiPacijent() {
+    //     return $this->hasMany(PaketiPacijent::class, );   
+    // }
 }

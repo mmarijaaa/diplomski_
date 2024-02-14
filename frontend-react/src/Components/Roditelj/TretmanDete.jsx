@@ -11,11 +11,17 @@ const TretmanDete = ({tretman}) => {
     let datum1 = tretman.datum_tretmana;
     let datum = moment(datum1).local().format('ll'); //srediti 
 
+    //OTKAZIVANJE TRETMANA UBACTITI!!!!!
+
     return (
-        <div className="tretman_dete">
-            
-            <p>{tretman.naziv_tretmana} {tretman.redni_broj_tretmana} --- {datum} --- {tretman.vreme_tretmana}</p>
-            <p id='tretman_opis'><b>Opis tretmana:</b> {tretman.sadrzaj_tretmana}</p>
+        <div className="tretman_d">
+
+            <div className='tretman_info'>
+                <div>{tretman.naziv_tretmana} {tretman.redni_broj_tretmana}</div> 
+                <div>{tretman.vreme_tretmana}</div>
+                <div>{datum}</div>
+            </div>
+            <div id='tretman_opis'>Opis: {tretman.sadrzaj_tretmana}</div>
  
         </div>
     );

@@ -29,7 +29,9 @@ import EvidentirajTretman from './Components/Logoped/EvidentirajTretman';
 import ListaZahteva from './Components/Logoped/ListaZahteva'; 
 import KreirajZahtev from './Components/Logoped/KreirajZahtev';
 import ListaTretmana from './Components/Logoped/ListaTretmana'; 
-
+import PrethodniPaketi from './Components/Roditelj/PrethodniPaketi';
+import ZakazivanjeTretmana from './Components/Roditelj/ZakazivanjeTretmana';
+import TrenutniPaket from './Components/Roditelj/TrenutniPaket';
 
 function App() {
 
@@ -82,10 +84,13 @@ function App() {
         {/* PROFIL RODITELJA */}
         {/* <Route path='/prijavaRoditelja' element={<LoginRoditelj addToken2={addToken2}/>}></Route> */}
         <Route path='/roditelj' element={<PocetnaRoditelj/>}>
+          <Route path='prethodniPaketi' element={<PrethodniPaketi/>}/> 
+          <Route path='trenutniPaket' element={<TrenutniPaket/>}/> 
           <Route path='deca' element={<Deca/>}/>
           <Route path='dete' element={<Dete/>}/>
           <Route path='listaTretmanaZakazanih' element={<ListaTretmanaZakazanih />}/>
           <Route path='kontaktLogopeda' element={<KontaktLogopeda />}/>
+          <Route path='zakazivanjeTretmana' element={<ZakazivanjeTretmana />}/>
         </Route> 
       </Routes>
     </BrowserRouter>

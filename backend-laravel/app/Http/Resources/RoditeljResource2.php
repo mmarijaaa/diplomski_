@@ -4,8 +4,9 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\LogopedResource;
 
-class PaketiPacijentResource extends JsonResource
+class RoditeljResource2 extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -13,20 +14,20 @@ class PaketiPacijentResource extends JsonResource
      * @return array<string, mixed>
      */
 
-    public static $wrap='paketi';
+    public static $wrap='roditelj';
 
     public function toArray(Request $request): array
     {
         //return parent::toArray($request);
 
         return [
-            'id'=> $this->resource->id,
-            'naziv_paketa' => $this->resource->naziv_paketa,
-            'datum_od' => $this->resource->datum_od,
-            'datum_do' => $this->resource->datum_do,
-            'pacijent'=> new PacijentResource($this->resource->pacijent), 
+            'id' => $this->resource->id,
+            'ime'=> $this->resource->ime,
+            'prezime'=>$this->resource->prezime,
+            'korisnicko_ime' => $this->resource->korisnicko_ime,
+            'email' => $this->resource->email,
+            'broj_telefona' => $this->resource->broj_telefona,
             'logoped'=> new LogopedResource($this->resource->logoped),
-            'zavrsen' => $this->resource->zavrsen
         ];
     }
 }

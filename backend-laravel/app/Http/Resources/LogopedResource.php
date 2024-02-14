@@ -22,6 +22,7 @@ class LogopedResource extends JsonResource
             'id' => $this->resource->id,
             'ime'=> $this->resource->ime,
             'prezime'=>$this->resource->prezime,
+            'broj_telefona'=>$this->resource->broj_telefona
         ];
     }
 }

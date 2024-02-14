@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\LogopedResource;
 use App\Http\Resources\RoditeljResource;
 use App\Http\Resources\PaketResource;
+use App\Http\Resources\PaketiPacijentResource;
 
 class PacijentResource extends JsonResource
 {
@@ -21,7 +22,7 @@ class PacijentResource extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            // 'id'=>$this->resource->id,
+            'id'=>$this->resource->id, 
             'ime' => $this->resource->ime,
             'prezime' => $this->resource->prezime, 
             'uzrast' => $this->resource->uzrast,
@@ -30,8 +31,9 @@ class PacijentResource extends JsonResource
             // 'id_roditelja'=>new RoditeljResource($this->resource->id_roditelja),
             'logoped'=> new LogopedResource($this->resource->logoped),
             //'id_logopeda'=>new LogopedResource($this->resource->id_logopeda),
-            'paket'=> new PaketResource($this->resource->paket)  
+            'paket'=> new PaketResource($this->resource->paket),
             // 'id_paketa'=>new PaketResource($this->resource->id_paketa)
+            // 'id_paketi_pacijent' => new PaketiPacijentResource($this->resource->paket)  
         ];
     }
 }

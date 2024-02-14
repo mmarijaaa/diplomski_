@@ -35,9 +35,9 @@ const KreirajPacijentaRoditelja = ({}) => {
           axios(config)
           .then((response) => {
             console.log(JSON.stringify(response.data)); 
-            console.log(response.data.roditelj);
+            console.log(response.data.data);
             console.log("Roditelj JESTE prikazan"); 
-            setRoditelji(response.data.roditelj);  
+            setRoditelji(response.data.data);  
           })
           .catch((error) => {
               console.log(error);
@@ -49,17 +49,51 @@ const KreirajPacijentaRoditelja = ({}) => {
         let newPacijentData = pacijentData;
         newPacijentData[e.target.name] = e.target.value;
         setPacijentData(newPacijentData);
+        //setPaketPac plus handle input za odrednjena polja 
+        //dve funckije za neka polja treba da se odrade
+        //function dve() handleinput i handleinput2
+    }
+
+    function handleInput2(e) {
+        let newPaketPac = paketPac;
+        setPaketPac[e.target.name] = e.target.value;
+        setPaketPac(newPaketPac);
+    }
+
+    function dve(e) {
+        handleInput(e);
+        handleInput2(e);
+        id_roditelja = e.target.value;
+        console.log(e.target.value);
+    }
+
+    function hanldex2(e) {
+        handleInput(e);
+        handleInput2(e);
+        naziv_paketa = e.target.options[e.target.selectedIndex].text
+        console.log(e.target.options[e.target.selectedIndex].text);
     }
 
     let id_roditelja;
     const [polje, setPolje] = useState(); 
     const [porukaGreske, setPorukaGreske] = useState();
 
+    const[paketPac, setPaketPac] = useState({
+        naziv_paketa:"",
+        datum_od:"",
+        datum_do:"",
+        id_pacijenta:"",
+        id_logopeda:"",
+    });
+    var id_pac;
+    var naziv_paketa;
+
     function handleKreirajPacijenta(e) {
         e.preventDefault();
 
         let id_paketa = document.getElementById("paket").value;
-
+        
+        //KREIRANJE PACIJENTA
         var config = {
             method: 'post',
             url: 'http://127.0.0.1:8000/api/kreirajPacijenta/'+ id_roditelja + '/' + id_paketa,
@@ -71,31 +105,82 @@ const KreirajPacijentaRoditelja = ({}) => {
 
         axios(config)
         .then((response) => {
-            // console.log(JSON.stringify(response.data));
-            // console.log("Pacijent uspesno kreiran");
-            // setPolje('');
-            //console.log(response.data.success);
             if(response.data.success === true) {
                 console.log("Pacijent uspesno kreiran");
                 console.log(JSON.stringify(response.data));
+                window.sessionStorage.setItem('id_pac',response.data[0].id);
+                id_pac = response.data[0].id;
                 //setPolje(''); 
                 Swal.fire({
                     title: 'Uspesno sacuvan pacijent!',
                     showConfirmButton: true,
-                  }).then(function(){
-                    window.location.reload();
-                    });
-                //window.location.reload(false);
-            } else {
+                    //confirmButtonText: "Kreiraj paket!"
+                // }).then(function(){ 
+
+                // window.location.reload();
+
+                     }).then((result) => {
+                        if (result.isConfirmed) {
+                   
+                                console.log(id_pac);
+                                console.log(id_roditelja);
+                                console.log(naziv_paketa);
+                                var config = {
+                                    method: 'post',
+                                    url: 'http://127.0.0.1:8000/api/kreirajNoviPaket/'+ naziv_paketa + '/' + id_pac + '/' + id_logopeda,
+                                    headers: { 
+                                    'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"), 
+                                    },
+                                    data: paketPac,
+                                };
+            
+                                axios(config)
+                                .then((response) => {
+                                    console.log(JSON.stringify(response.data));
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                });  
+                            }
+                    })
+                    //then(function(){
+                    //     window.location.reload();
+                    // });
+                    
+            
+        } else {
                 console.log("Pacijent NIJE USPESNO kreiran");
                 console.log(response.data.poruka);
                 setPorukaGreske(response.data.poruka);
-            } 
+            }
         })
         .catch((error) => {
             console.log(error);
             //console.log("Pacijent NIJE USPESNO kreiran");
         });
+
+        //KREIRANJE PAKETA PACIJENTA 
+        // var config = {
+        //     method: 'post',
+        //     url: 'http://127.0.0.1:8000/api/kreirajNoviPaket/,'+ naziv_paketa + '/' + id_pac + '/' + id_roditelja,
+        //     headers: { 
+        //       'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"), 
+        //     },
+        //     data: paketPac,
+        // };
+
+        // axios(config)
+        // .then((response) => {
+        //     if(response.data.success === true) {
+        //         console.log(JSON.stringify(response.data));
+        //         console.log('kreiran je i paket pacijenta uspesno');
+        //     } else {
+        //     } 
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
+
 
     };
 
@@ -127,11 +212,7 @@ const KreirajPacijentaRoditelja = ({}) => {
     //         }); 
     // }
     
-    function dve(e) {
-        handleInput(e);
-        id_roditelja = e.target.value;
-        console.log(e.target.value);
-    }
+   
 
     return (
         <div className="log_forma">
@@ -149,6 +230,7 @@ const KreirajPacijentaRoditelja = ({}) => {
                         onInput={handleInput}
                         name="ime"
                         value={polje}
+                        autoComplete="off"
                     />
                     
                     <input 
@@ -159,6 +241,7 @@ const KreirajPacijentaRoditelja = ({}) => {
                         onInput={handleInput}
                         name="prezime"
                         value={polje}
+                        autoComplete="off"
                     />
                     
                     <input 
@@ -169,9 +252,11 @@ const KreirajPacijentaRoditelja = ({}) => {
                         onInput={handleInput}
                         name="uzrast"
                         value={polje}
+                        autoComplete="off"
                     />
                    
-                    <select name="poremecaj" onChange={handleInput}>
+                    <select name="poremecaj" onChange={handleInput} defaultValue={"placeholder"}>
+                        <option value={"placeholder"}>Izaberi poremećaj</option>
                         <option value="Pervazivni razvojni poremecaji - autizam">Pervazivni razvojni poremecaji - autizam</option>
                         <option value="Afazija">Afazija</option>
                         <option value="Artikulacija">Artikulacija</option>
@@ -186,7 +271,8 @@ const KreirajPacijentaRoditelja = ({}) => {
                         <option value="Savladavanje školskog gradiva">Savladavanje školskog gradva</option>
                     </select>
                    
-                    <select name="id_paketa" id="paket" onChange={handleInput}>
+                    <select name="id_paketa" id="paket" onChange={hanldex2} defaultValue={"placeholder"}>
+                        <option value={"placeholder"}>Izaberi paket</option>
                         <option value="1">Paket 1 - 4 tretmana</option>
                         <option value="2">Paket 2 - 8 tretmana</option>
                         <option value="3">Paket 3 - 12 tretmana</option>
@@ -194,7 +280,8 @@ const KreirajPacijentaRoditelja = ({}) => {
                         <option value="5">Paket 5 - 24 tretmana</option>
                     </select>
                     
-                    <select name="id_roditelja" id="roditelj" onChange={dve}> 
+                    <select name="id_roditelja" id="roditelj" onChange={dve} defaultValue={"placeholder"}> 
+                        <option value={"placeholder"}>Izaberi roditelja</option>
                         {roditelji == null 
                             ? (<></>)
                             :

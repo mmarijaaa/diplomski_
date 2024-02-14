@@ -25,7 +25,7 @@ const ListaRoditelja = ({}) => {
           .then((response) => {
             console.log(JSON.stringify(response.data));
             console.log("Roditelji prikazani"); 
-            setRoditelji(response.data.roditelj);   
+            setRoditelji(response.data.data);   
           })
           .catch((error) => {
               console.log(error);

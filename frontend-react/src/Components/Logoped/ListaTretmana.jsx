@@ -17,7 +17,59 @@ const ListaTretmana = () => {
 
     var id_logopeda =  window.sessionStorage.getItem("user_id");
 
-    function preglediLista() {
+    useEffect(() => {
+      if(pregledi == null) {
+        var config = {
+          method: 'get',
+          url: 'http://127.0.0.1:8000/api/listaPregleda', 
+          headers: { 
+            'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+          },
+          data : pregledi
+        };
+        
+        axios.request(config)
+        .then((response) => {
+            console.log(JSON.stringify(response.data)); 
+            setPregledi(response.data.data);
+          if(response.data.success == true) {
+            setPregledi(response.data.data);
+            } else {
+                // Swal.fire({
+                //     title: 'Nemate zahteva!', 
+                // }); 
+            }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
+
+      if(tretmani == null) {
+      var config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: 'http://127.0.0.1:8000/api/listaTretmanaLogoped/' + id_logopeda,
+        headers: { 
+          'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+        },
+        data : tretmani
+      };
+      
+      axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        setTretmani(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+    }, 
+    []);
+
+
+    /*function preglediLista() {
         setModalP(!modalP);
         var config = {
           method: 'get',
@@ -43,9 +95,9 @@ const ListaTretmana = () => {
         .catch((error) => {
           console.log(error);
         });
-    }
+    }*/
 
-    function tretmaniLista() {
+    /*function tretmaniLista() {
         setModalT(!modalT);
         var config = {
             method: 'get',
@@ -65,7 +117,7 @@ const ListaTretmana = () => {
           .catch((error) => {
             console.log(error);
         });
-    }
+    }*/
 
     return (
         <div className="lista">
@@ -73,12 +125,24 @@ const ListaTretmana = () => {
           <p id='lista_naslov'>LISTA PREGLEDA I TRETMANA</p>   
 
         <div className="dugmadP">
-            <button className='dugmeP' onClick={preglediLista}>PREGLEDI</button>
-            <button className='dugmeP' onClick={tretmaniLista}>TRETMANI</button>
+            {/* <button className='dugmeP' onClick={preglediLista}>PREGLEDI</button>
+            <button className='dugmeP' onClick={tretmaniLista}>TRETMANI</button> */}
         </div>
          
+                { 
+                pregledi == null 
+                ? (<></>)
+                : (pregledi.map((pregled) => <Pregled pregled={pregled} key={pregled.id}/>))
+                }
 
-                {modalP && (
+                { 
+                tretmani == null 
+                ? (<></>)
+                : (tretmani.map((tretman) => <Tretman tretman={tretman} key={tretman.id}/>))
+                }
+               
+
+                {/* {modalP && (
                 <div className='modalP'>
                 <div className='overlayP' onClick={preglediLista}></div>
                 <div className='contentP'>
@@ -92,9 +156,9 @@ const ListaTretmana = () => {
                 
                 </div>
                 </div>
-                )}
+                )} */}
 
-                {modalT && (
+                {/* {modalT && (
                 <div className='modalT'>
                 <div className='overlayT' onClick={tretmaniLista}></div>
                 <div className='contentT'>
@@ -108,7 +172,7 @@ const ListaTretmana = () => {
                
                 </div>
                 </div>
-                )}
+                )} */}
           
           </div>
     )

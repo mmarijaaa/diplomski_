@@ -18,6 +18,7 @@ class Tretman extends Model
         'id_pacijenta',
         'id_logopeda',
         'id_paketa',
+        'id_paketa_pacijenta'
     ];
 
      //jedan tretman pripada samo jednom logopedu
@@ -33,6 +34,11 @@ class Tretman extends Model
     //jedan tretman pripada samo jednom paketu ???????
     public function paket(){
         return $this->belongsTo(Paket::class, 'id_paketa');
+    }
+
+    //jedan tretman pripada samo jednom paketu pacijenta
+    public function paketPacijent(){ 
+        return $this->belongsTo(PaketiPacijent::class, 'id_paketa_pacijenta'); 
     }
 
 

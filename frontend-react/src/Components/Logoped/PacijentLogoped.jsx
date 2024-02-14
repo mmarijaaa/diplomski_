@@ -40,19 +40,19 @@ const PacijentLogoped = ({pacijent}) => {
           headers: { 
             'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),  
           },
-          data : pacijentData
+          data : pacijentData 
         };
 
         axios.request(config)
         .then((response) => {
-          console.log(JSON.stringify(response.data));
-          console.log("Pacijent uspesno izmenjen.");
-          console.log(response.data.pacijent.ime);
-          setPacijentData(response.data.pacijent);
-          setImeP(response.data.pacijent.ime);
-          setPrezimeP(response.data.pacijent.prezime);
-          setUzrastP(response.data.pacijent.uzrast);
-          setPoremecajP(response.data.pacijent.poremecaj);
+          console.log(JSON.stringify(response.data[1]));
+          console.log("Pacijent uspesno izmenjen."); 
+          // console.log(response.data[1].ime); 
+          // setPacijentData(response.data.pacijent);
+          // setImeP(response.data[1].ime);
+          // setPrezimeP(response.data[1].prezime);
+          // setUzrastP(response.data.pacijent.uzrast);
+          // setPoremecajP(response.data.pacijent.poremecaj);
           Swal.fire({
             title: 'Pacijent uspesno izmenjen!', 
           })
@@ -411,7 +411,7 @@ const PacijentLogoped = ({pacijent}) => {
                     </div>
                     
                     
-                    <select name="poremecaj" onChange={handleInput} defaultValue={pacijentData.poremecaj} > 
+                    {/* <select name="poremecaj" onChange={handleInput} defaultValue={pacijentData.poremecaj} > 
                         <option value="Pervazivni razvojni poremecaji - autizam">Pervazivni razvojni poremecaji - autizam</option>
                         <option value="Afazija">Afazija</option>
                         <option value="Artikulacija">Artikulacija</option>
@@ -423,7 +423,7 @@ const PacijentLogoped = ({pacijent}) => {
                         <option value="Razvoj gradomotorickih sposobnosti">Razvoj gradomotorickih sposobnosti</option>
                         <option value="Agramatizam">Agramatizam</option>
                         <option value="Razvoj verbalne memorije">Razvoj verbalne memorije</option>
-                    </select>
+                    </select> */}
                     
                     <br></br>
               

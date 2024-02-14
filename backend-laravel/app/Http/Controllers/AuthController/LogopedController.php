@@ -21,7 +21,7 @@ class LogopedController extends Controller
             'korisnicko_ime'=>'required|string|max:100',
             'email'=>'required|string|max:100|email|unique:users',
             'password'=>'required|string|min:6',
-            'sifra_logopeda'=>'required|integer|min:5'
+            'broj_telefona'=>'required|integer|min:5'
         ]); 
 
         if($validator->fails())
@@ -33,7 +33,7 @@ class LogopedController extends Controller
             'korisnicko_ime'=>$request->korisnicko_ime,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
-            'sifra_logopeda'=>$request->sifra_logopeda
+            'broj_telefona'=>$request->broj_telefona
 
         ]);
 

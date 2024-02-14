@@ -71,10 +71,10 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
     Route::get('/paketPacijenta/{id_paketa_pacijenta}', [PaketController::class, 'get']); 
 
     //lista odraDJenih tretmana odredjenog pacijenta
-    Route::get('/listaTretmanaOdradjenih/{id_pacijenta}', [TretmanController::class, 'listaOdradjenih']);
+    Route::get('/listaTretmanaOdradjenih/{id_pacijenta}/{id_pak_pac}', [TretmanController::class, 'listaOdradjenih']);
 
     //lista zakazanih tretmana odredjenog pacijenta 
-    Route::get('/listaTretmanaZakazanih/{id_pacijenta}', [TretmanController::class, 'listaZakazanih']); 
+    Route::get('/listaTretmanaZakazanih/{id_pacijenta}/{id_pak_pac}', [TretmanController::class, 'listaZakazanih']); 
 
     //lista danasnjih tretmana odredjenog pacijenta ???????
     Route::get('/listaTretmanaDanasnjih/{id_pacijenta}', [TretmanController::class, 'listaDanasnjih']);
@@ -117,15 +117,15 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
     Route::resource('sviZahtevi', ZahtevController::class);
 
     //kreiranje paketa pacijenta
-    Route::post('/kreirajNoviPaket', [PaketiPacijentController::class, 'create']); 
+    Route::post('/kreirajNoviPaket/{naziv_paketa}/{id_pacijenta}/{id_logopeda}', [PaketiPacijentController::class, 'create']); 
 
     //lista paketa pacijenta
-    Route::get('/paketiPacijentaLogoped', [PaketiPacijentController::class, 'paketi']);  
+    Route::get('/paketiPacijentaLogoped/{id_pacijenta}', [PaketiPacijentController::class, 'paketi']);  
 
     //log out logopeda
     Route::post('/logout', [LogopedController::class, 'logout']); 
 
-    //paketi proba
+    //paketi proba 
     Route::get('/pak', [PaketController::class, 'get2']); 
 });
 
@@ -143,7 +143,7 @@ Route::group(['middleware'=> ['auth:sanctum','abilities:roditelj']], function() 
     Route::resource('sviRoditelji', RoditeljController::class); 
 
     //kreiranje tretmana 
-    Route::post('/kreiranjeTretmana/{id_logopeda}/{id_pacijenta}/{id_paketa}/{redni_broj_tretmana}', [TretmanController::class, 'create']); 
+    Route::post('/kreiranjeTretmana/{id_logopeda}/{id_pacijenta}/{id_paketa}/{redni_broj_tretmana}/{id_paketa_pacijenta}', [TretmanController::class, 'create']); 
 
     //lista svih tretmana odredjenog pacijenta
     Route::get('/listaTretmana/{id_pacijenta}', [TretmanController::class, 'lista']);
@@ -151,12 +151,12 @@ Route::group(['middleware'=> ['auth:sanctum','abilities:roditelj']], function() 
     //lista svih tretmana odredjenog logopeda
     Route::get('/listaTretmanaLogoped/{id_logopeda}', [TretmanController::class, 'listaLogoped']); 
 
-    //lista odrajdenih tretmana odredjenog pacijenta
-    Route::get('/listaTretmanaOdradjenih/{id_pacijenta}', [TretmanController::class, 'listaOdradjenih']);
+    //lista odraDJenih tretmana odredjenog pacijenta
+    Route::get('/listaTretmanaOdradjenih/{id_pacijenta}/{id_pak_pac}', [TretmanController::class, 'listaOdradjenih']);
 
     //lista zakazanih tretmana odredjenog pacijenta 
-    Route::get('/listaTretmanaZakazanih/{id_pacijenta}', [TretmanController::class, 'listaZakazanih']);
-
+    Route::get('/listaTretmanaZakazanih/{id_pacijenta}/{id_pak_pac}', [TretmanController::class, 'listaZakazanih']); 
+ 
     //lista pacijenata odredjenog roditelja
     Route::get('/listaDece/{id_roditelja}', [PacijentController::class, 'listaR']);
 
@@ -182,7 +182,16 @@ Route::group(['middleware'=> ['auth:sanctum','abilities:roditelj']], function() 
     Route::get('/listaLogopeda', [LogopedController::class, 'lista']);
 
     //lista paketa pacijenta
-    Route::get('/paketiPacijentaRoditelj', [PaketiPacijentController::class, 'paketi']);   
+    Route::get('/paketiPacijentaRoditelj', [PaketiPacijentController::class, 'paketi']);  
+    
+    //lista paketa pacijenta
+    Route::get('/paketiPacijentaLogoped/{id_pacijenta}', [PaketiPacijentController::class, 'paketi']);  
+
+    //lista paketa zavrsenih
+    Route::get('/paketiZavrseni/{id_pacijenta}', [PaketiPacijentController::class, 'paketiZavrseni']); 
+
+    //paket trenutni
+    Route::get('/paketTrenutni/{id_pacijenta}', [PaketiPacijentController::class, 'paketTrenutni']); 
 
     //log out logopeda
     Route::post('/logoutRoditelja', [RoditeljController::class, 'logout']);

@@ -23,7 +23,7 @@ class User extends Authenticatable
         'korisnicko_ime',
         'email',
         'password',
-        'sifra_logopeda',
+        'broj_telefona',
     ];
 
     /**

@@ -6,19 +6,48 @@ import { Outlet } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import arrow from '../Slike/arrow_back.png'; 
 
-const Dete = ({}) => {
+const Dete = () => {
 
-    var ime_deteta = window.sessionStorage.getItem("ime_deteta");
-    var prezime_deteta = window.sessionStorage.getItem("prezime_deteta");
+    const[dete, setDete] = useState();
+    const[deteIme, setDeteIme] = useState();
+    const[detePrezime, setDetePrezime] = useState();
+
+    var i = window.sessionStorage.getItem("ime_deteta");
+    var p = window.sessionStorage.getItem("prezime_deteta"); 
+
+   /* useEffect(() => {
+        var config = {
+            method: 'get',
+            url: 'http://127.0.0.1:8000/api/pacijent/' + id_dete,
+            headers: { 
+              'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token2"),
+            },
+            data : dete,
+          };
+
+        axios(config)
+        .then((response) => {
+            console.log(JSON.stringify(response.data.pacijenti)); 
+            console.log("ima deteta");
+            setDete(response.data.pacijenti);
+            setDeteIme(response.data.pacijenti.ime);
+            setDetePrezime(response.data.pacijenti.prezime);
+        })
+        .catch((error) => {
+            console.log(error);
+            console.log("nema deteta");
+        });
+        
+      }, []);*/
+
 
     return (
         <div className="dete">
-            {/* <div className='back'>
-                <a href="/roditelj/deca" ><img className="arrow_back" src={arrow} alt="" /></a> 
-                <div id="back_povratak">Povratak na listu</div>
-            </div> */}
+            <h1>DETE: {i} {p}</h1>
 
-            {window.sessionStorage.getItem("ime_deteta")}  {window.sessionStorage.getItem("prezime_deteta")}
+            
+            <button className='dugmeP' >ZAKAZI TRETMAN</button>
+            <button className='dugmeP' >TRETMANI</button>
 
         </div>
     )

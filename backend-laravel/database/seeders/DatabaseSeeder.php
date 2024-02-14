@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Roditelj;
 use App\Models\Pacijent;
 use App\Models\Tretman;
+use App\Models\PaketiPacijent;
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,8 +37,8 @@ class DatabaseSeeder extends Seeder
         $logoped1->prezime = 'Kovacev';
         $logoped1->korisnicko_ime = 'andrea_kovacev';
         $logoped1->email = 'andrea.kovacev@gmail.com';
-        $logoped1->password = 'andreakovacev';
-        $logoped1->sifra_logopeda = '11111';
+        $logoped1->password = 'andreakovacev'; 
+        $logoped1->broj_telefona = '060/1111-111';
         $logoped1->save(); 
 
         $logoped2 = new User;
@@ -46,7 +47,7 @@ class DatabaseSeeder extends Seeder
         $logoped2->korisnicko_ime = 'ana_pesic';
         $logoped2->email = 'ana.pesic@gmail.com';
         $logoped2->password = 'anapesic';
-        $logoped2->sifra_logopeda = '22222';
+        $logoped2->broj_telefona = '060/2222-222';
         $logoped2->save(); 
 
         $logoped3 = new User;
@@ -55,7 +56,7 @@ class DatabaseSeeder extends Seeder
         $logoped3->korisnicko_ime = 'milica_jovanovic';
         $logoped3->email = 'milica.jovanovic@gmail.com';
         $logoped3->password = 'milicajovanovic';
-        $logoped3->sifra_logopeda = '33333';
+        $logoped3->broj_telefona = '060/3333-333';
         $logoped3->save(); 
 
         //Roditelji
@@ -66,7 +67,7 @@ class DatabaseSeeder extends Seeder
         $roditelj1->email = 'mira@gmail.com';
         $roditelj1->password = 'mira123';
         $roditelj1->broj_telefona = '060/1111-222';
-        $roditelj1->id_logopeda = 1;
+        $roditelj1->id_logopeda = 2;
         $roditelj1->save();
 
         $roditelj2 = new Roditelj;
@@ -78,6 +79,16 @@ class DatabaseSeeder extends Seeder
         $roditelj2->broj_telefona = '060/1111-222';
         $roditelj2->id_logopeda = 2;
         $roditelj2->save();
+
+        $roditelj3 = new Roditelj;
+        $roditelj3->ime = 'Sanja';
+        $roditelj3->prezime = 'Petrovic';
+        $roditelj3->korisnicko_ime = 'sanjapetrovic';
+        $roditelj3->email = 'sanja@gmail.com';
+        $roditelj3->password = 'sanja123'; 
+        $roditelj3->broj_telefona = '060/1111-222';
+        $roditelj3->id_logopeda = 2;
+        $roditelj3->save();
 
         //Pacijenti
         $pacijent1 = new Pacijent;
@@ -106,8 +117,18 @@ class DatabaseSeeder extends Seeder
         $pacijent3->uzrast = 3;
         $pacijent3->poremecaj = 'Artikulacija'; 
         $pacijent3->id_roditelja = 1;
-        $pacijent3->id_logopeda = 1;
+        $pacijent3->id_logopeda = 2;
         $pacijent3->id_paketa = 4;
+        $pacijent3->save();
+
+        $pacijent3 = new Pacijent;
+        $pacijent3->ime = 'Aleksa';
+        $pacijent3->prezime = 'Petrovic';
+        $pacijent3->uzrast = 7;
+        $pacijent3->poremecaj = 'Disgrafija'; 
+        $pacijent3->id_roditelja = 3;
+        $pacijent3->id_logopeda = 2;
+        $pacijent3->id_paketa = 3;
         $pacijent3->save();
 
         //Paketi
@@ -141,54 +162,105 @@ class DatabaseSeeder extends Seeder
         $paket5->cena_paketa = '36.000,00 din';
         $paket5->save(); 
 
+        //Paket pacijenta
+        $pp = new PaketiPacijent;
+        $pp->naziv_paketa = 'Paket 3 - 12 tretmana';
+        $pp->datum_od = '2023-12-25'; 
+        $pp->datum_do = '2024-01-25'; 
+        $pp->id_pacijenta = 2; 
+        $pp->id_logopeda = 2;
+        $pp->zavrsen = 1;
+        $pp->save();
+
+        $pp1 = new PaketiPacijent;
+        $pp1->naziv_paketa = 'Paket 3 - 12 tretmana';
+        $pp1->datum_od = '2024-02-05'; 
+        $pp1->datum_do = '2024-03-05'; 
+        $pp1->id_pacijenta = 2; 
+        $pp1->id_logopeda = 2;
+        $pp1->zavrsen = 0;
+        $pp1->save();
+        
+        $pp2 = new PaketiPacijent;
+        $pp2->naziv_paketa = 'Paket 2 - 8 tretmana';
+        $pp2->datum_od = '2024-02-02';
+        $pp2->datum_do = '2024-03-02';
+        $pp2->id_pacijenta = 1;
+        $pp2->id_logopeda = 2;
+        $pp2->zavrsen = 0;
+        $pp2->save(); 
+
+        $pp3 = new PaketiPacijent;
+        $pp3->naziv_paketa = 'Paket 3 - 12 tretmana';
+        $pp3->datum_od = '2024-01-08';
+        $pp3->datum_do = '2024-02-08';
+        $pp3->id_pacijenta = 4;
+        $pp3->id_logopeda = 2;
+        $pp3->zavrsen = 1;  
+        $pp3->save(); 
+
+        $pp4 = new PaketiPacijent;
+        $pp4->naziv_paketa = 'Paket 3 - 12 tretmana';
+        $pp4->datum_od = '2024-02-10';
+        $pp4->datum_do = '2024-03-10';
+        $pp4->id_pacijenta = 4;
+        $pp4->id_logopeda = 2;  
+        $pp4->zavrsen = 0;
+        $pp4->save(); 
+
         //Tretmani
-        /*$terapija1 = new Tretman;
-        $terapija1->datum_tretmana = '2023-10-22';
+        $terapija1 = new Tretman;
+        $terapija1->datum_tretmana = '2024-02-05';
         $terapija1->vreme_tretmana = '14h';
         $terapija1->redni_broj_tretmana = 1;
         $terapija1->sadrzaj_tretmana = 'kratak opis prvog tretmana';
         $terapija1->id_logopeda = 2;
-        $terapija1->id_pacijenta = 1;
+        $terapija1->id_pacijenta = 2;
         $terapija1->id_paketa = 3;
+        $terapija1->id_paketa_pacijenta = 2;
         $terapija1->save(); 
  
         $terapija2 = new Tretman;
-        $terapija2->datum_tretmana = '2023-10-25';
+        $terapija2->datum_tretmana = '2024-02-07';
         $terapija2->vreme_tretmana = '15h';
         $terapija2->redni_broj_tretmana = 2;
         $terapija2->sadrzaj_tretmana = 'radjeno je to i to';
         $terapija2->id_logopeda = 2;
-        $terapija2->id_pacijenta = 1;
+        $terapija2->id_pacijenta = 2;
         $terapija2->id_paketa = 3;
+        $terapija2->id_paketa_pacijenta = 2;
         $terapija2->save(); 
 
         $terapija3 = new Tretman;
-        $terapija3->datum_tretmana = '2023-11-03';
+        $terapija3->datum_tretmana = '2024-02-16';
         $terapija3->vreme_tretmana = '14h';
         $terapija3->redni_broj_tretmana = 3;
         $terapija3->id_logopeda = 2;
-        $terapija3->id_pacijenta = 1;
+        $terapija3->id_pacijenta = 2;
         $terapija3->id_paketa = 3;
+        $terapija3->id_paketa_pacijenta = 2;
         $terapija3->save(); 
 
         $terapija4 = new Tretman;
-        $terapija4->datum_tretmana = '2023-10-27';
+        $terapija4->datum_tretmana = '2024-02-02';
         $terapija4->vreme_tretmana = '17h';
         $terapija4->redni_broj_tretmana = 1;
         $terapija4->sadrzaj_tretmana = 'sledeci put treba da se uradi to i to';
         $terapija4->id_logopeda = 2;
-        $terapija4->id_pacijenta = 2;
+        $terapija4->id_pacijenta = 1;
         $terapija4->id_paketa = 2;
+        $terapija4->id_paketa_pacijenta = 3;
         $terapija4->save(); 
 
         $terapija5 = new Tretman;
-        $terapija5->datum_tretmana = '2023-11-05';
+        $terapija5->datum_tretmana = '2024-02-15';
         $terapija5->vreme_tretmana = '18h';
         $terapija5->redni_broj_tretmana = 2;
         $terapija5->id_logopeda = 2;
-        $terapija5->id_pacijenta = 2;
+        $terapija5->id_pacijenta = 1;
         $terapija5->id_paketa = 2;
-        $terapija5->save(); */
+        $terapija5->id_paketa_pacijenta = 3;
+        $terapija5->save(); 
 
     }
 }

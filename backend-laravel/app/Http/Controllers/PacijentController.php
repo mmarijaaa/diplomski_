@@ -28,7 +28,7 @@ class PacijentController extends Controller
             'uzrast'=>'required|integer|min:3|max:15', 
             'poremecaj'=>'required|string|max:100'
         ]); 
-
+ 
         if($validator->fails()) 
             return response()->json(['success'=> false, 'poruka'=>'Popunite sva polja!', $validator->errors()]);
 
@@ -118,9 +118,9 @@ class PacijentController extends Controller
         $pacijent->save();
 
         //return response()->json(['success'=>true,'Pacijent uspesno azuriran.', $pacijent]); 
-        //return response()->json(['success'=>true,'Pacijent uspesno azuriran.', new PacijentResource($pacijent)]);  
-        return new PacijentResource($pacijent); 
-
+        return response()->json(['success'=>true,'Pacijent uspešno ažuriran.', new PacijentResource($pacijent)]);  
+        //return new PacijentResource($pacijent);  
+ 
     }
 
      //************************************************************************************* 

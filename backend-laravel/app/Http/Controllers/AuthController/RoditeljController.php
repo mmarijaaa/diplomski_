@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\RoditeljResource; 
+use App\Http\Resources\RoditeljResource2; 
 
 class RoditeljController extends Controller
 {
@@ -132,7 +133,7 @@ class RoditeljController extends Controller
         if(is_null($roditelji)) { 
             return response()->json("Roditelja nema");
         }
-        return new RoditeljResource($roditelji);   
+        return RoditeljResource2::collection($roditelji);   
     } 
 
     //****************************************************************************

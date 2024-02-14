@@ -54,7 +54,9 @@ const KreirajZahtev = ({}) => {
                     Swal.fire({
                         title: 'Uspesno poslat zahtev!',
                         showConfirmButton: true,
-                    }) 
+                    }) .then(function(){
+                        window.location.reload();
+                        });
             }  else {
                 Swal.fire({
                     icon: "error",
@@ -137,7 +139,8 @@ const KreirajZahtev = ({}) => {
                         value={polje}
                         spellcheck="false"
                     />
-                    <select name="id_logopeda_prima" id="id_logopeda_prima" onChange={idRod}> 
+                    <select name="id_logopeda_prima" id="id_logopeda_prima" onChange={idRod} defaultValue={"placeholder"}> 
+                        <option value={"placeholder"}>Izaberi logopeda</option>
                         {logopedi == null
                             ? (<></>)
                             :
