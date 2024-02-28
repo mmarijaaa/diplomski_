@@ -21,7 +21,89 @@ const Pregled = () => {
     function handleInput(e) {
         let newPregledData = pregledData;
         newPregledData[e.target.name] = e.target.value;
-        setPregledData(newPregledData); 
+
+        //uzimanje odabranih vrednosti za datum i vreme
+        //dodavanje promenljivima radi dalje provere
+        if(e.target.name == 'datum_tretmana') {
+            datum_odabran = e.target.value;
+        }
+        if(e.target.name == 'vreme_tretmana') {
+            vreme_odabrano = e.target.value;
+        }
+        console.log(datum_odabran);
+        console.log(vreme_odabrano);
+
+        //izvlacenje dana, meseca i godine iz odabranog datuma
+        var dan_naziv = moment(datum_odabran).format('dddd'); //dan u nedelji
+        const dan = moment(datum_odabran).format('D');
+        const mesec = moment(datum_odabran).format('M');
+        const godina = moment(datum_odabran).format('YYYY');
+        const odabran_dan = moment(datum_odabran).format('L'); //12/04/2023 
+
+        //izvlacenje danasnjeg datuma
+        const today = new Date();
+        const mesec_danas = today.getMonth()+1;
+        const godina_danas = today.getFullYear();
+        const dan_danas = today.getDate();
+        const danasnji_dan = moment(today).format('L'); //12/04/2023 
+
+        //prebacivanje dana u number ???
+        let dan_number = Number(dan);
+        let dan_danas_number = Number(dan_danas);
+        console.log(dan_number);
+        console.log(dan_danas_number);
+
+         //provera da li je odabran vikend
+         if(dan_naziv == "Sunday" || dan_naziv == "Saturday") {
+            console.log("Ne radimo vikendom!");
+            Swal.fire({
+              title: 'Ne radimo vikendom!',
+            })
+        }
+
+        //provera da li se poklapaju datumi
+        if (godina == godina_danas) {
+            if(mesec == mesec_danas) {
+                if(dan  == dan_danas) {
+                  console.log("DANAS NEMA ZAKAZIVANJA !!!");
+                  Swal.fire({
+                    title: 'Danas ne može da se zakaže tretman!', 
+                  })
+                } 
+                else if(dan_danas > dan) {
+                  console.log("DATUM JE PROSAO !!!");
+                  Swal.fire({
+                    title: 'Datum je prošao!', 
+                  })
+                }
+                else {
+                  console.log("MOZE DA SE ZAKAZE !!!");
+                }
+            } 
+            else if(mesec_danas > mesec) {
+                console.log("DATUM JE PROSAO !!!");
+                Swal.fire({
+                  title: 'Datum je prošao!', 
+                })
+            }
+            else {
+                console.log("MOZE DA SE ZAKAZE !!!");
+            }
+          }
+          else if (godina_danas < godina) {
+            console.log("MOZE DA SE ZAKAZE !!!");
+          } 
+          else if (godina_danas > godina){
+            console.log("DATUM JE PROSAO !!!");
+            Swal.fire({
+              title: 'Datum je prošao!', 
+            })
+        }
+        else {
+            setTretmanData(newTretmanData); 
+        }
+
+        // setPregledData(newPregledData); 
     }
 
     function handleKreirajPregled(e) {

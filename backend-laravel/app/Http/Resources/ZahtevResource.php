@@ -19,6 +19,7 @@ class ZahtevResource extends JsonResource
         //return parent::toArray($request);   
 
         return [
+            'id' => $this->resource->id,
             'tip_zahteva' => $this->resource->tip_zahteva,
             'odobren' => $this->resource->odobren,
             'pregledan' => $this->resource->pregledan,
@@ -27,7 +28,7 @@ class ZahtevResource extends JsonResource
             'pacijent'=> new PacijentResource($this->resource->pacijent),
             'roditelj'=> new RoditeljResource($this->resource->roditelj),
             'info_pacijenta' => $this->resource->info_pacijenta,
-            'info_roditelja' => $this->resource->info_roditelja,
+            'info_roditelja' => $this->resource->info_roditelja, 
         ];
     }
 }

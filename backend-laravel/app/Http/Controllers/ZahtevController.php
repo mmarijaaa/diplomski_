@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\ZahtevResource; 
+use App\Http\Resources\ZahtevObnovaResource; 
 
 
 class ZahtevController extends Controller
@@ -23,8 +24,8 @@ class ZahtevController extends Controller
             'tip_zahteva' => '',
             'odobren' => '', 
             'pregledan' => '',
-            'info_pacijenta' => 'string',
-            'info_roditelja' => 'string'
+            'info_pacijenta' => '',
+            'info_roditelja' => ''
         ]); 
 
         if($validator->fails())
@@ -47,14 +48,14 @@ class ZahtevController extends Controller
 
     //************************************************************************************* 
     //KREIRANJE ZAHTEVA OBNOVA PAKETA
-    public function create2(Request $request, $id_logopeda_prima, $id_pacijenta, $id_roditelja) {
+    public function create2(Request $request, $id_logopeda_prima, $id_pacijenta, $id_roditelja, $zahtev) {
 
         $validator=Validator::make($request->all(), [
             'tip_zahteva' => '',
             'odobren' => '', 
             'pregledan' => '',
-            'info_pacijenta' => 'string',
-            'info_roditelja' => 'string'
+            'info_pacijenta' => '',
+            'info_roditelja' => ''
         ]); 
 
         if($validator->fails())
@@ -68,7 +69,7 @@ class ZahtevController extends Controller
             'id_logopeda_prima'=>$id_logopeda_prima,
             'id_pacijenta'=>$id_pacijenta,
             'id_roditelja'=>$id_roditelja,
-            'info_pacijenta' =>  $request->info_pacijenta,
+            'info_pacijenta' => $zahtev,
             'info_roditelja' => '' 
         ]); 
 
@@ -89,8 +90,67 @@ class ZahtevController extends Controller
     
     public function show($id) { 
         $zah = Zahtev::where('id_logopeda_prima',$id)->get();
-        return ZahtevResource::collection($zah);    
+        return ZahtevObnovaResource::collection($zah);    
     }
+
+
+    //************************************************************************************* 
+    //ZAHTEV KAO ALERT ZA RODITELJA
+    public function zahtevAlert($id_roditelja) {
+        $zahtevi = Zahtev::get()->where('id_roditelja',$id_roditelja) 
+                                ->where('odobren',1)
+                                ->where('pregledan',0);  
+        if(is_null($zahtevi)) {
+            return response()->json("Zahteva nema");
+        }
+        //return ZahtevResource::collection($zahtevi); 
+        return response()->json(['success'=>true, ZahtevResource::collection($zahtevi)]);  
+   
+    }
+
+
+    //************************************************************************************* 
+    //IZMENA ZAHTEVA PREGLEDAN = 1
+    public function updateP(Request $request, $id_zahteva)
+    {
+        $validator=Validator::make($request->all(), [
+            'pregledan'=>''
+        ]); 
+
+        if($validator->fails())
+        return response()->json(['success'=> false, $validator->errors()]);
+
+        $zahtev = Zahtev::find($id_zahteva);
+        $zahtev->pregledan = 1;
+
+        $zahtev->save();
+        
+        //return new ZahtevResource($zahtevi);   
+        return response()->json(['success'=>true, new ZahtevResource($zahtev)]);  
+ 
+    }
+
+    //************************************************************************************* 
+    //IZMENA ZAHTEVA ODOBREN = 1
+    public function updateO(Request $request, $id_zahteva)
+    {
+        $validator=Validator::make($request->all(), [
+            'odobren'=>''
+        ]); 
+
+        if($validator->fails())
+        return response()->json(['success'=> false, $validator->errors()]);
+
+        $zahtev = Zahtev::find($id_zahteva);
+        $zahtev->odobren = 1;
+
+        $zahtev->save();
+        
+       // return new ZahtevResource($zahtevi);  
+        return response()->json(['success'=>true, new ZahtevResource($zahtev)]);  
+    }
+
+
 
     /**
      * Display a listing of the resource.
@@ -135,10 +195,7 @@ class ZahtevController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Zahtev $zahtev)
-    {
-        //
-    }
+   
 
     /**
      * Remove the specified resource from storage.

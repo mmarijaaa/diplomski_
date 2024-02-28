@@ -7,6 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\LogopedResource;
 use App\Http\Resources\RoditeljResource;
 use App\Http\Resources\PaketResource;
+use App\Http\Resources\PacijentResource2;
+
 
 class ZahtevObnovaResource extends JsonResource
 {
@@ -20,12 +22,14 @@ class ZahtevObnovaResource extends JsonResource
         //return parent::toArray($request);
 
         return [
+            'id' => $this->resource->id,
             'tip_zahteva' => $this->resource->tip_zahteva,
             'odobren' => $this->resource->odobren,
             'pregledan' => $this->resource->pregledan,
-            'logopedP'=> new LogopedResource($this->resource->logopedP), 
-            'pacijent'=> new PacijentResource($this->resource->pacijent),
+            'pacijent'=> new PacijentResource2($this->resource->pacijent),
             'roditelj'=> new RoditeljResource($this->resource->roditelj), 
+            'info_pacijenta' => $this->resource->info_pacijenta,
+
         ];
     }
 }

@@ -141,7 +141,8 @@ class PacijentController extends Controller
 
         $pacijent->save();
 
-        return new PacijentResource($pacijent); 
+        //return new PacijentResource($pacijent); 
+        return response()->json(['success'=>true, new PacijentResource($pacijent)]);  
 
     }
 

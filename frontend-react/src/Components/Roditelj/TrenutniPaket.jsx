@@ -5,7 +5,10 @@ import {useNavigate} from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import TretmanDete from './TretmanDete';
+import TretmanDete2 from './TretmanDete2';
 import moment from 'moment';
+import Swal from 'sweetalert2';
+
 
 const TrenutniPaket = () => {
 
@@ -21,6 +24,11 @@ const TrenutniPaket = () => {
     //PROMENLJIVE ZA TRETMANE
     const [tretmani3, setTretmani3] = useState();
     const [tretmani4, setTretmani4] = useState();
+    var tret3_br;
+    var tret4_br;
+    var tret3_trig;
+    var tret4_trig;
+    var rbr = 1;
     
     //USE EFFECT ZA AUTOMATSKO UCITAVANJE TRENUTNOG PAKETA
     useEffect(() => {
@@ -49,9 +57,7 @@ const TrenutniPaket = () => {
             setPaketDatOd(response.data.data[0].datum_od);
             setPaketDatDo(response.data.data[0].datum_do);
 
-
-
-                          //odradjeni tretmani
+                      //odradjeni tretmani
                       var config = {
                         method: 'get',
                         url: 'http://127.0.0.1:8000/api/listaTretmanaOdradjenih/' + id_dete + "/" + response.data.data[0].id,
@@ -88,21 +94,16 @@ const TrenutniPaket = () => {
                           console.log(JSON.stringify(response.data));
                           console.log("Lista ZAKAZANIH tretmana prikazana");
                           setTretmani4(response.data.data); 
-                      })
+                        })
                       .catch((error) => {
                           console.log(error);
                           console.log("Lista tretmana NIJE prikazana");
                       });
-
-
-
-
           })
           .catch((error) => {
             console.log(error);
           });
     }, []);
-
 
     //USE EFFECT ZA PRIKAZ SVIH TRETMANA
     /*useEffect(() => {
@@ -151,38 +152,148 @@ const TrenutniPaket = () => {
           });
     }, []);*/
 
+    //OBNOVA PAKETA 
+    var zahtev_paket;
+    var zahtev_poremecaj;
+    var zahtev;
+    var id_log = window.sessionStorage.getItem("id_logopeda_pacijenta");
+    var id_rod = window.sessionStorage.getItem("roditelj_user_id");
+
+    // const[zahtevObnova, setZahtevObnova] = useState({
+    //     info_pacijenta: "",
+    // });
+
+    const[zahtevObnova, setZahtevObnova] = useState();
+
+    function obnovaPaketa() {
+      Swal.fire({
+        title: 'Odaberite paket',
+        input: 'select',
+        inputOptions: {
+        'Isti paket': 'Isti paket',
+        'Paket 1 - 4 tretmana': 'Paket 1 - 4 tretmana',
+        'Paket 2 - 8 tretmana': 'Paket 2 - 8 tretmana',
+        'Paket 3 - 12 tretmana': 'Paket 3 - 12 tretmana',
+        'Paket 4 - 18 tretmana': 'Paket 4 - 18 tretmana',
+        'Paket 5 - 24 tretmana': 'Paket 5 - 24 tretmana', 
+        },
+        confirmButtonText: 'Dalje',
+        showCancelButton: true,
+        cancelButtonText: "Nazad",
+        }).then((result) => {
+                    if (result.isConfirmed) {
+                      zahtev = result.value;
+                        Swal.fire({
+                            title: 'Nakon što pošaljete zahtev, kada ga Vaš logoped odobri, dobićete poruku o odobrenom zahtevu i moći ćete da zakažete prvi tretman Vašeg deteta!',
+                            confirmButtonText: 'Pošaljite zahtev',
+                            showCancelButton: true,
+                            cancelButtonText: "Nazad",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                console.log(zahtev);
+
+                                //kreiranje zahteva
+                                var config = {
+                                  method: 'post',
+                                  url: 'http://127.0.0.1:8000/api/kreirajZahtevObnova/' + id_log + '/' + id_dete + '/' + id_rod + '/' + zahtev,
+                                  headers: { 
+                                      'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token2"),
+                                  },
+                                  data: zahtevObnova,
+                                };
+
+                                    axios(config)
+                                    .then((response) => {
+                                      console.log(JSON.stringify(response.data));
+                                      if(response.data.success == true) {
+                                        setZahtevObnova(response.data.data);
+                                          console.log("poslat zahtev")
+                                          Swal.fire({
+                                            title: "Zahtev je poslat!",
+                                          })
+                                      }
+                                      else {
+                                          console.log("Zahtev NIJE uspesno kreiran!");
+                                      }
+                                  })
+                                  .catch((error) => {
+                                    console.log(error);
+                                  });
+
+                            }
+                        })
+                    }
+                })
+              }
+         
     return (
         <div className="prethodni_paketi">
             <div className='naslovi_dugmica'>TRENUTNI PAKET</div>
 
+          <div className="pakett">
             <div className="trenutni_paket">
                 <div className="tr1">{paketNaziv}  </div>
                 <div className="tr2">{moment(paketDatOd).local().format('ll')} - {moment(paketDatDo).local().format('ll')} </div>
             </div>
+            <div className="obnovi_paket">
+              <button onClick={obnovaPaketa}>
+                  OBNOVITE PAKET
+              </button>
+            </div>
+          </div>
 
             <div className="paket_tretmani">
+            <div className="paketi_tretmani_odradjeni">
+                    <div className='naslovi_tretmana'>ODRAĐENI TRETMANI:</div>
+                         { 
+                            tretmani3 == null 
+                            ? (<></>)
+                            : (tretmani3
+                              .map((tretman) => 
+                              <div className="ceo_tret">
+                                <div className="tret_rbr">{rbr++}</div>
+                                <TretmanDete2 tretman={tretman} key={tretman.id}/>
+                              </div>))
+                        }
+                </div>
                 <div className="paketi_tretmani_zakazani">
                     <div className='naslovi_tretmana'>ZAKAZANI TRETMANI:</div>
-                        { 
+                        {/* { 
                             tretmani4 == null  
                             ? (<></>)
                             : (tretmani4
                               .slice(0)
                               .reverse()
-                              .map((tretman) => <TretmanDete tretman={tretman} key={tretman.id}/>))
+                              .map((tretman) => 
+                              <div>
+                                <div>{rbr--}</div>
+                                <TretmanDete tretman={tretman} key={tretman.id}/>
+                              </div>))
+                        } */}
+                         { 
+                            tretmani4 == null  
+                            ? (<></>)
+                            : (tretmani4
+                              .map((tretman) => 
+                              <div  className="ceo_tret">
+                                <div className="tret_rbr">{rbr++}</div>
+                                <TretmanDete tretman={tretman} key={tretman.id}/>
+                              </div>))
                         }
                 </div>
-                <div className="paketi_tretmani_odradjeni">
+                {/* <div className="paketi_tretmani_odradjeni">
                     <div className='naslovi_tretmana'>ODRAĐENI TRETMANI:</div>
-                        { 
+                         { 
                             tretmani3 == null 
                             ? (<></>)
                             : (tretmani3
-                              .slice(0)
-                              .reverse()
-                              .map((tretman) => <TretmanDete tretman={tretman} key={tretman.id}/>))
+                              .map((tretman) => 
+                              <div>
+                                <div>{rbr++}</div>
+                                <TretmanDete tretman={tretman} key={tretman.id}/>
+                              </div>))
                         }
-                </div>
+                </div> */}
             </div>
         </div>
     );

@@ -31,13 +31,32 @@ class PaketiPacijentController extends Controller
 
         $paketpacijenta = PaketiPacijent::create([
             'naziv_paketa'=>$naziv_paketa, 
-            'datum_od'=>null, 
-            'datum_do'=>null, 
+            'datum_od'=>$request->datum_od, 
+            'datum_do'=>$request->datum_do,  
             'id_pacijenta'=> $id_pacijenta,
             'id_logopeda'=> $id_logopeda,
             'zavrsen'=>0
         ]); 
 
+        return new PaketiPacijentResource($paketpacijenta);
+    }
+
+    //************************************************************************************* 
+    //IZMENA PAKETA PACIJENTA
+    public function update(Request $request, $id_pak_pac) {
+
+        $validator=Validator::make($request->all(), [
+            'zavrsen'=>''
+        ]); 
+
+        if($validator->fails())
+        return response()->json(['success'=> false, $validator->errors()]);
+
+        $paketpacijenta = PaketiPacijent::find($id_pak_pac);
+        $paketpacijenta->zavrsen = 1;
+
+        $paketpacijenta->save();
+        
         return new PaketiPacijentResource($paketpacijenta);
     }
 

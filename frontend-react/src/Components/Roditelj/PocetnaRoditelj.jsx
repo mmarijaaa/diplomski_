@@ -19,8 +19,75 @@ import moment from 'moment';
 import TretmanDete from './TretmanDete';
 import {useNavigate} from 'react-router-dom';
 import PrethodniPaketi from './PrethodniPaketi';
+import Swal from 'sweetalert2';
+
 
 const PocetnaRoditelj = () => { 
+
+
+//*****ALERT ZA ODOBREN ZAHTEV
+
+  const[zahtevNepreg, setZahtevNepreg] = useState();
+  const[zahtevPreg, setZahtevPreg] = useState();
+  const[zahtevID, setZahtevID] = useState();
+  var ima_zahtev;
+  var id_zahteva;
+
+  useEffect(() => {
+      var config = {
+        method: 'get',
+        url: 'http://127.0.0.1:8000/api/zahtevNepregledan/' + id_roditelja,
+        headers: { 
+          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),  
+        },
+        data : zahtevNepreg 
+      };
+      axios.request(config)
+      .then((response) => {
+        if(response.data.success == true) {
+          ima_zahtev = true;
+          console.log("NEPREGLEDAN ZAHTEV");
+          console.log(response.data.success);
+          console.log(response.data[0]);
+          id_zahteva = response.data[0][0].id; 
+          if(response.data[0][0].pregledan == 0) {
+            Swal.fire({
+              title: "Zahtev vam je odobren",
+              confirmButtonText: 'PRIHVATITE ZAHTEV',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                var config = {
+                  method: 'put',
+                  url: 'http://127.0.0.1:8000/api/zahtevPregledan/' + id_zahteva,
+                  headers: { 
+                    'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),  
+                  },
+                  data : zahtevPreg 
+                  };
+                  axios.request(config)
+                  .then((response) => {
+                    if(response.data.success == true) {
+                      console.log("pregledan zahtev !!!");
+                      setZahtevPreg(response.data.data); 
+                    }
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+                  }
+
+            })
+          }
+          
+        }
+      })
+      .catch((error) => {
+      console.log(error);
+      ima_zahtev = false;
+      });
+    }, []);
+
+
 
   let navigate = useNavigate();
 
@@ -50,6 +117,26 @@ const PocetnaRoditelj = () => {
             console.log("Lista dece prikazana");
             window.sessionStorage.setItem("id_logopeda_pacijenta", response.data.deca[0].id_logopeda);
             setDeca(response.data.deca); 
+
+            if(deca.length == 1) {
+              var config = {
+                method: 'get',
+                maxBodyLength: Infinity,
+                url: 'http://127.0.0.1:8000/api/paketTrenutni/' + window.sessionStorage.getItem("iddete"),
+                headers: { 
+                  'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+                  
+                },
+                data : paketTrenutni2 
+              };
+              axios.request(config)
+                .then((response) => {
+                  window.sessionStorage.setItem("id_trenutnog_paketa",response.data.data[0].id);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            }
         })
         .catch((error) => {
             console.log(error);
@@ -263,7 +350,36 @@ function prethodniPaketi() {
   navigate('/roditelj/prethodniPaketi');
 }
 
+const[paketTrenutni, setPaketTrenutni] = useState();
+const[paketTrenutni2, setPaketTrenutni2] = useState();
+
+var br_tret;
 function zakazivanjeTretmana() {
+  //uzimanje idja trenutnog paketa kako bi se za njega zakzao tretman
+  var config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'http://127.0.0.1:8000/api/paketTrenutni/' + window.sessionStorage.getItem("iddete"),
+    headers: { 
+      'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+      
+    },
+    data : paketTrenutni 
+  };
+  
+  axios.request(config)
+  .then((response) => {
+    window.sessionStorage.setItem("id_trenutnog_paketa",response.data.data[0].id);
+    window.sessionStorage.setItem("datum_do",response.data.data[0].datum_do);
+    br_tret = response.data.data[0].naziv_paketa.slice(10,12).trim();
+    window.sessionStorage.setItem("broj_tretmana",br_tret);
+    console.log(response.data.data[0].id);
+    console.log(br_tret);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
   navigate('/roditelj/zakazivanjeTretmana');
 }
 
@@ -271,8 +387,24 @@ function trenutniPaket() {
   navigate('/roditelj/trenutniPaket');
 }
 
-    function ip2() {
-      //console.log("ip2");
+  function ip2() {
+      var config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: 'http://127.0.0.1:8000/api/paketTrenutni/' + window.sessionStorage.getItem("iddete"),
+        headers: { 
+          'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+          
+        },
+        data : paketTrenutni2 
+      };
+      axios.request(config)
+        .then((response) => {
+          window.sessionStorage.setItem("id_trenutnog_paketa",response.data.data[0].id);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
     function t2() {
       //console.log("t2");
@@ -342,9 +474,7 @@ function trenutniPaket() {
                 <Link to='/roditelj/deca' className='log_link'>Tretmani</Link>
               </div> */}
 
-              <div className="proba">
-            
-            </div> 
+             
 
             <div className="log_odjava">
               <div className="log_link_red">
@@ -370,7 +500,11 @@ function trenutniPaket() {
                       <div className="dete_dugme">
 
                         {deca.length == 1 
-                        ? <div hidden>{imej = ime} {prezimej = prezime} {jedno = true} {idj = id}</div>
+                        ? <div hidden>{imej = ime} 
+                        {prezimej = prezime} 
+                        {jedno = true} 
+                        {idj = id}
+                        </div> 
                         : <div></div>
                         }
                         
@@ -397,6 +531,7 @@ function trenutniPaket() {
                                 iddete = id; 
                                 console.log(iddete);
                                 window.sessionStorage.setItem("iddete",iddete);
+                                window.sessionStorage.setItem("id_paketa",id_paketa);
                                 setIzaberi("Izaberite...");
                                 odabir = "Izaberite"; 
                                 setTretmani3([]);
@@ -417,6 +552,8 @@ function trenutniPaket() {
 
               <div className="dete_sve">
 
+                <div className="dete_informacije">
+
                 <div className="dete_ime_prezime">
                       <div id='dete_txt'>IME I PREZIME:</div>  
                      <div className="dete_ip">
@@ -434,6 +571,8 @@ function trenutniPaket() {
                   <button onClick={trenutniPaket}>TRENUTNI PAKET</button>
                   <button onClick={zakazivanjeTretmana}>ZAKAŽITE TRETMAN</button>
                   <button onClick={prethodniPaketi}>PRETHODNI PAKETI</button>
+                </div>
+
                 </div>
 
                 {/* {jedno == true 

@@ -2248,7 +2248,7 @@ input:-webkit-autofill:focus {
 }
 .tretman_pac {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     margin-bottom: 30px;
 }
 .tretman_pac #tret_pac {
@@ -2256,9 +2256,9 @@ input:-webkit-autofill:focus {
     font-size: 22px;
     font-family: 'Nunito Sans', sans-serif;
     color: #003C62;
-    padding: 0px 15px 5px 15px;
-    border-bottom: 2px solid #003C62;
-    border-radius: 50px;
+    padding: 10px 20px;
+    border: 2px solid #003C62;
+    border-radius: 10px;
 }
 .tretman {
     margin-bottom: 30px;
@@ -2273,13 +2273,13 @@ input:-webkit-autofill:focus {
     background-color: #fdfced;
     border-radius: 10px;
     margin: 5px 0px;
-    /* border: 2px solid #003C62; */
     font-family: 'Nunito Sans', sans-serif;
     font-size: 15px; 
     padding: 0px 10px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border: none;
     height: 70px;
+    width: 50%;
 }
 .tretman_sadrzaj .dugme_sadrzaj {
     font-size: 16px;
@@ -2816,45 +2816,165 @@ input:-webkit-autofill:focus {
     width: 120%;
 }
 .zahtev {
+    display: flex;
+    flex-direction: row;
     border-radius: 10px;
     border: none;
     font-size: 18px;
     color: #003353;
-    padding: 10px;
+    /* padding: 10px; */
     margin-bottom: 20px;
-    width: 100%;
+    width: 90%;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .zahtev_sadrzaj {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 100%;
 }
 .zahtev_sadrzaj .ztip {
-    flex: 15%;
-    padding: 5px 10px;
+    flex: 25%;
+    padding: 15px 10px 15px 10px;
     background-color: #f5f5df;
-}
-.zahtev_sadrzaj .zlog {
-    flex: 20%;
-    padding-left: 15px; 
 }
 .zahtev_sadrzaj .zrod {
     flex: 25%;
-    padding-left: 15px;
-    background-color: #f5f5df;
+    padding: 0px 10px;
 }
 .zahtev_sadrzaj .zpac {
     flex: 25%;
-    padding-left: 15px;
-    
+    padding: 15px 10px 15px 10px;
+    background-color: #f5f5df; 
 }
 .zahtev_sadrzaj .zinfo {
-    flex: 15%;
-    padding-left: 15px;
-    background-color: #f5f5df;
+    flex: 25%;
+    padding: 0px 10px;
+}
+.zahtev .zahtev_dugme_obnova button{
+    border: 2px solid #003353;
+    background-color: #fdfced;
+    color: #003353;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 18px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+}
+.zahtev .zahtev_dugme_obnova button:hover{
+    background-color: #003353;
+    color: #fdfced;
+    cursor: pointer;
+}
+.zahtev_odobren {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 15px;
+}
+.zahtev_odobren input {
+    height: 40px;
+    width: 40px;
+    
+}
+.container {
+    cursor: pointer;
+  }
+  
+  .container input {
+    display: none;
+  }
+  
+  .container svg {
+    overflow: visible;
+  }
+  
+  .path {
+    fill: none;
+    stroke: #003353;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+    stroke-dasharray: 241 9999999;
+    stroke-dashoffset: 0;
+  }
+  
+  .container input:checked ~ svg .path {
+    stroke-dasharray: 70.5096664428711 9999999;
+    stroke-dashoffset: -262.2723388671875;
+  }
+
+.omodal{
+    z-index: 1;
+}
+.omodal .ocontent {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    line-height: 1.4;
+    background:#fdfced;
+    padding: 40px;
+    width: 25%;
+    display: flex;
+    flex-direction: column;  
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+    justify-content: center;
+    align-items: center; 
 }
 
+.omodal, .ooverlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+.ooverlay {
+    background: rgba(49, 49, 49, 0.6);
+}
+
+/*OBNOVA PAKETA*/
+.obnova_naslov {
+    font-size: 22px;
+    padding-bottom: 30px;
+}
+.obnova_pacijent {
+    font-size: 20px;
+}
+.obnova_paket select {
+    border: 2px solid #003353; 
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fdfced;
+    font-size: 18px;
+    font-family: 'Nunito Sans', sans-serif;
+    width: 100%;
+    padding: 10px 20px;
+    margin: 20px 0px 10px 0px;
+    color: #003353;
+}
+.obnova_dugme button{
+    background-color: #fdfced;
+    color: #003353;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Nunito Sans', sans-serif;
+    margin: 20px 5px 0px 5px;
+    padding: 10px 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.obnova_dugme button:hover {
+    background-color: #003353;
+    color: #fdfced;
+    cursor: pointer;
+}
 
 /*PREGLEDI I TRETMANI*/
 .dugmadP {
@@ -2897,7 +3017,7 @@ input:-webkit-autofill:focus {
 .tpLista {
     display: flex;
     flex-direction: row;
-    width: 180%;
+    width: 150%;
     border: none;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -2917,7 +3037,7 @@ input:-webkit-autofill:focus {
     padding: 10px;
 }
 .tpLista .tp3 {
-    flex: 10%;
+    flex: 5%;
     background-color: #f5f5df;
     padding: 10px;
 }
@@ -2926,7 +3046,7 @@ input:-webkit-autofill:focus {
     padding: 10px;
 }
 .tpLista .tp5 {
-    flex: 25%;
+    flex: 30%;
     background-color: #f5f5df;
     padding: 10px;
 }
@@ -2944,7 +3064,7 @@ input:-webkit-autofill:focus {
     border-radius: 10px;
     font-size: 20px;
     font-family: 'Nunito Sans', sans-serif;
-    margin: 40px 20px 20px 0px;
+    margin: 20px 20px 0px 0px;
     padding: 10px 15px;
 }
 .deca_links button:hover {
@@ -2962,9 +3082,9 @@ input:-webkit-autofill:focus {
     font-size: 18px;
     font-family: 'Nunito Sans', sans-serif;
     margin: 30px 0px 20px 0px;
-    /* border: 2px solid #003353; */
     border-radius: 10px;
     padding: 10px 20px;
+    width: 600px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .dete_ime_prezime .dete_ip {
@@ -3023,28 +3143,136 @@ input:-webkit-autofill:focus {
     padding: 30px 0px 15px 10px; 
 }
 
-.tretman_d {
+.tret_d {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.tret_d .tretman_dugme_brisanje {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex: 35%;
+}
+.tret_d .tretman_dugme_brisanje button{
+    margin: 10px 0px 10px 5px;
+    padding: 15px 10px;
+    background-color: #fdfced;
+    color: #003353;
+    font-size: 16px;
+    font-family: 'Nunito Sans', sans-serif;
     border: none;
     border-radius: 10px;
     width: 65%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.tret_d .tretman_dugme_brisanje button:hover {
+    background-color: #f5f5df;
+    cursor: pointer;
+}
+.tret_d2 {
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+}
+.tret_d2 .tretman_dugme_brisanje {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex: 35%;
+}
+.tret_d2 .tretman_dugme_brisanje button{
+    margin: 10px 0px 10px 5px;
+    padding: 15px 10px;
+    background-color: #fdfced;
+    color: #003353;
+    font-size: 16px;
+    font-family: 'Nunito Sans', sans-serif;
+    border: none;
+    border-radius: 10px;
+    width: 65%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.tret_d2 .tretman_dugme_brisanje button:hover {
+    background-color: #f5f5df;
+    cursor: pointer;
+}
+.tretman_d {
+    flex: 70%;
+    border: none;
+    border-radius: 10px;
+    width: 50%;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     color:#003353;
     display: flex;
     flex-direction: column;
     margin: 10px 0px;
-    width: 75%;
+    width: 50%;
     font-size: 18px;
     font-family: 'Nunito Sans', sans-serif;
 }
 .tretman_d #tretman_opis {
-    padding: 10px 15px;
+    padding: 5px 15px;
 }
 .tretman_d .tretman_info{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: #f5f5df;
-    padding: 10px 15px;
+    padding: 5px 15px;
+}
+.paket_tretmani {
+    display: flex;
+    flex-direction: row;
+    width: 150%;
+}
+.paketi_tretmani_odradjeni {
+    flex: 50%;
+    padding-bottom: 40px;
+}
+.paketi_tretmani_zakazani {
+    flex: 50%;
+    padding-bottom: 40px;
+}
+.pakett {
+    display: flex;
+    flex-direction: column;
+}
+.pakett .obnovi_paket button{
+    color: #003353;
+    background-color: #fdfced;
+    font-size: 18px;
+    font-family: 'Nunito Sans', sans-serif;
+    border-radius: 10px;
+    border: 2px solid #003353;
+    width: 70%;
+    padding: 10px 20px;
+    margin: 20px 0px 10px 0px;
+    width: 200px;
+}
+.pakett .obnovi_paket button:hover {
+    background-color: #003353;
+    color: #fdfced;
+    cursor: pointer;
+}
+
+.ceo_tret {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.ceo_tret .tret_rbr {
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    margin: 10px;
+    color: #003353;
+    font-size: 20px;
+    font-family: 'Nunito Sans', sans-serif;
+    border: none;
+    border-radius: 10px;
+    background-color: #f5f5df; 
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 /*PRETHODNI PAKETI*/
@@ -3063,6 +3291,101 @@ input:-webkit-autofill:focus {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+
+/*TRENUTNI PAKET LOGOPED*/
+.trenutni_paket_logoped {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #003353;
+    font-size: 18px;
+    font-family: 'Nunito Sans', sans-serif;
+    border-radius: 10px;
+    border: 2px solid #003353;
+    width: 50%;
+    padding: 10px 20px;
+    margin: 20px 0px 10px 0px;
+}
+
+/*ZAKAZIVANJE TRETMANA*/
+.tretman_zakazi {
+    margin-top: 30px;
+}
+.tretman_zakazi input {
+    border: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fdfced;
+    margin-right: 10px;
+    color: #003353;
+}
+.tretman_zakazi select {
+    border: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fdfced;
+    margin-right: 30px;
+    color: #003353;
+    cursor: pointer;
+}
+.tretman_zakazi button {
+    font-size: 18px;
+    background-color: #fdfced;
+    border: none; 
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #003C62;
+    text-transform: uppercase;
+    font-family: 'Nunito Sans', sans-serif;
+}
+.tretman_zakazi button:hover {
+    color: #fdfced;
+    background-color: #003353;
+}
+.zauzeti_tretmani  button {
+    font-size: 16px;
+    background-color: #fdfced;
+    border: none; 
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #003C62;
+    text-transform: uppercase;
+    font-family: 'Nunito Sans', sans-serif;
+    margin: 30px 0px 10px 0px;
+    width: 200px;
+
+}
+.zauzeti_tretmani button:hover {
+    color: #fdfced;
+    background-color: #003353;
+}
+.zauzeti_tret {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 10px; 
+    width: 200px;
+}
+.zauzeti_tret_log {
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 5px 15px;
+    margin: 0px 0px 5px 0px;
+    color: #003C62;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 /******************************************************/

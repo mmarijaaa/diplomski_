@@ -12,10 +12,10 @@ const TretmaniLogopeda = ({tretman}) => {
     let datum = moment(datum1).local().format('ll'); //srediti 
 
     return (
-        <div className="tretman_logoped">
+        <div className="zauzeti_tret_log">
             
-            <p id='datum_kolona'>{datum}</p> 
-            <p id='vreme_kolona'>{tretman.vreme_tretmana}</p> 
+            <div id='datum_kolona'>{datum}</div> 
+            <div id='vreme_kolona'>{tretman.vreme_tretmana}</div> 
  
         </div>
     );

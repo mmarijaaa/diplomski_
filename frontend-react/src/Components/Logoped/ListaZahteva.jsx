@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 const ListaZahteva = () => {
 
     const [zahtevi, setZahtevi] = useState();
+    const [zahtevID, setZahtevID] = useState();
+    const [zahtevPacID, setZahtevPacID] = useState();
     let id_logopeda = window.sessionStorage.getItem("user_id");
 
     useEffect(() => {
@@ -26,7 +28,9 @@ const ListaZahteva = () => {
           console.log(JSON.stringify(response.data.data));
           setZahtevi(response.data.data);
           if(response.data.success == true) {
-              setZahtevi(response.data.zahtevi);
+              setZahtevi(response.data.data);
+              setZahtevID(response.data.data[0].id);
+              setZahtevPacID(response.data.data[0].id_pacijenta);
             } else {
                 // Swal.fire({
                 //     title: 'Nemate zahteva!', 

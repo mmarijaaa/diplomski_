@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\TretmanResource; 
 use App\Http\Resources\TretmanResource2; 
 use App\Http\Resources\TretmanResource3; 
+use App\Http\Resources\TretmanResource4; 
 use App\Http\Resources\PregledResource; 
 
 class TretmanController extends Controller
@@ -25,6 +26,16 @@ class TretmanController extends Controller
         }
         return new TretmanResource($tretmani);  
     } 
+
+    public function listaSvi($id_pacijenta, $id_paketa_pacijenta) {
+        $tretmani = Tretman::get()->where('id_pacijenta',$id_pacijenta)
+                                ->where('id_paketa_pacijenta', $id_paketa_pacijenta);
+        if(is_null($tretmani)) {
+            return response()->json("Tretmana nema");
+        }
+        return TretmanResource4::collection($tretmani);  
+    } 
+
 
     //************************************************************************************* 
     //KREIRANJE TRETMANA - ZAKAZIVANJE TRETMANA
@@ -53,7 +64,8 @@ class TretmanController extends Controller
             'id_paketa_pacijenta'=>$id_paketa_pacijenta
         ]); 
 
-        return new TretmanResource($tretman);
+        //return new TretmanResource($tretman);
+        return response()->json(['success'=>true, new TretmanResource($tretman)]);
     }
 
     //************************************************************************************* 
@@ -145,6 +157,21 @@ class TretmanController extends Controller
         return TretmanResource3::collection($tretmani);   
     } 
 
+     //************************************************************************************* 
+    //LISTA ZAKAZANIH TRETMANA PREMA PACIJENTU sa drugim resursom
+    public function listaZakazanih2($id_pacijenta, $id_paketa_pacijenta) {
+        $timestamp = time();
+        $currentDate = gmdate('Y-m-d', $timestamp); 
+        $tretmani = Tretman::get()->where('id_pacijenta',$id_pacijenta) 
+                                ->where('id_paketa_pacijenta', $id_paketa_pacijenta)
+                                ->where('datum_tretmana','>',$currentDate);
+        if(is_null($tretmani)) {
+            return response()->json("Tretmana nema");
+        }
+        //return new TretmanResource($tretmani);  
+        return TretmanResource4::collection($tretmani);    
+    } 
+
     //************************************************************************************* 
     //LISTA DANASNJIH TRETMANA PREMA PACIJENTU ???????
     public function listaDanasnjih($id_pacijenta) {
@@ -180,7 +207,7 @@ class TretmanController extends Controller
     }
 
     //************************************************************************************* 
-    //LISTA ZAKAZANIH TRETMANA PREMA PACIJENTU
+    //LISTA ZAKAZANIH TRETMANA PREMA LOGOPEDU
     public function listaZakazanihLogoped($id_logopeda) {
         $timestamp = time();
         $currentDate = gmdate('Y-m-d', $timestamp); 
@@ -192,13 +219,23 @@ class TretmanController extends Controller
     } 
 
     //************************************************************************************* 
-    //BRISANJE TRETMANA PACIJENTA
-    public function delete($id_pacijenta) {
-        $tretmani = Tretman::get()->where('id_pacijenta',$id_pacijenta);
-        foreach($tretmani as $t) {
-            $t->delete(); 
+    //LISTA ZAKAZANIH TRETMANA PREMA LOGOPEDU drugi resurs
+    public function listaZakazanihLogoped2($id_logopeda) {
+        $timestamp = time();
+        $currentDate = gmdate('Y-m-d', $timestamp); 
+        $tretmani = Tretman::get()->where('id_logopeda',$id_logopeda)->where('datum_tretmana','>',$currentDate);
+        if(is_null($tretmani)) {
+            return response()->json("Tretmana nema");
         }
-        return response()->json('Tretmani uspesno obrisani');  
+        return TretmanResource4::collection($tretmani);  
+    } 
+
+    //************************************************************************************* 
+    //BRISANJE TRETMANA PACIJENTA
+    public function delete($id_tretmana) {
+        $tretman = Tretman::find($id_tretmana);
+        $tretman->delete();
+        return response()->json('Tretman uspesno obrisan');  
     }
 
 }
