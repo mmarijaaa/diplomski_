@@ -417,6 +417,9 @@ function trenutniPaket() {
     var prezimej;
     var jedno = false; //za proveru ukoliko je jedno prikazuje se odmah ime i prezime
 
+
+    //LOADING 
+    const [loading, setLoading] = useState(false);
     
     return ( 
         <div className='log_profil'>
@@ -469,11 +472,6 @@ function trenutniPaket() {
               
 
             </div>
-
-            {/* <div className="log_link_red">
-                <Link to='/roditelj/deca' className='log_link'>Tretmani</Link>
-              </div> */}
-
              
 
             <div className="log_odjava">

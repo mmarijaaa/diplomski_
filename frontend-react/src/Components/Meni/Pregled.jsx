@@ -3,14 +3,37 @@ import { Outlet } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import Meni from './Meni';
 import axios from "axios";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import '../stil.css';  
 import Footer from './Footer';
 import kalendar from '../Slike/schedule.png'; 
 import Swal from 'sweetalert2';
+import moment from 'moment';
 
 const Pregled = () => {
+
+    //ucitavanje svih zauzetih tretmana i pregleda svih logopeda
+
+    const[zakazaniTretmani, setZakazaniTretmani] = useState();
+    useEffect(() => {
+        var config = {
+            method: 'get',
+            url: 'http://127.0.0.1:8000/api/listaSvihZakazanih',
+            data : zakazaniTretmani,
+        };
+
+        axios(config)
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+            console.log("SVI ZAKAZANI TRETMANI ");
+            setZakazaniTretmani(response.data.data); 
+        })
+        .catch((error) => {
+            console.log(error);
+            console.log("NEMA ZAKAZANIH"); 
+        });
+    }, []);
 
     const [pregledData, setPregledData] = useState({
         datum_tretmana:"",
@@ -18,6 +41,8 @@ const Pregled = () => {
         sadrzaj_tretmana: ""
     });
 
+    var datum_odabran;
+    var vreme_odabrano;
     function handleInput(e) {
         let newPregledData = pregledData;
         newPregledData[e.target.name] = e.target.value;
@@ -30,8 +55,6 @@ const Pregled = () => {
         if(e.target.name == 'vreme_tretmana') {
             vreme_odabrano = e.target.value;
         }
-        console.log(datum_odabran);
-        console.log(vreme_odabrano);
 
         //izvlacenje dana, meseca i godine iz odabranog datuma
         var dan_naziv = moment(datum_odabran).format('dddd'); //dan u nedelji
@@ -50,8 +73,6 @@ const Pregled = () => {
         //prebacivanje dana u number ???
         let dan_number = Number(dan);
         let dan_danas_number = Number(dan_danas);
-        console.log(dan_number);
-        console.log(dan_danas_number);
 
          //provera da li je odabran vikend
          if(dan_naziv == "Sunday" || dan_naziv == "Saturday") {
@@ -65,10 +86,10 @@ const Pregled = () => {
         if (godina == godina_danas) {
             if(mesec == mesec_danas) {
                 if(dan  == dan_danas) {
-                  console.log("DANAS NEMA ZAKAZIVANJA !!!");
-                  Swal.fire({
-                    title: 'Danas ne može da se zakaže tretman!', 
-                  })
+                  //console.log("DANAS NEMA ZAKAZIVANJA !!!");
+                  /*Swal.fire({
+                    title: 'Danas ne može da se zakaže pregled!', 
+                  })*/
                 } 
                 else if(dan_danas > dan) {
                   console.log("DATUM JE PROSAO !!!");
@@ -100,13 +121,60 @@ const Pregled = () => {
             })
         }
         else {
-            setTretmanData(newTretmanData); 
+            setPregledData(newPregledData);  
         }
-
-        // setPregledData(newPregledData); 
     }
 
     function handleKreirajPregled(e) {
+
+        //izvlacenje dana, meseca i godine iz odabranog datuma
+        const dan = moment(datum_odabran).format('D');
+        const mesec = moment(datum_odabran).format('M');
+        const godina = moment(datum_odabran).format('YYYY');
+        const odabran_dan = moment(datum_odabran).format('L'); //12/04/2023 
+
+        var zakazi;
+        var zakaziV;
+        var duzina_liste_zakazanih = zakazaniTretmani.length;
+        var datum_liste;
+        var vreme_liste;
+        var dan_num = Number(dan);
+
+        if(duzina_liste_zakazanih != 0) {
+
+            for(let i=0; i<duzina_liste_zakazanih; i++) {
+                datum_liste = zakazaniTretmani[i].datum_tretmana;
+                vreme_liste = zakazaniTretmani[i].vreme_tretmana;
+                const mesec_liste = moment(datum_liste).format('M'); 
+                const godina_liste = moment(datum_liste).format('YYYY');
+                const dan_liste = moment(datum_liste).format('D');
+
+                if(dan_num == dan_liste && 
+                mesec == mesec_liste && 
+                godina == godina_liste &&
+                vreme_odabrano == vreme_liste) 
+                {
+                console.log("TRETMAN JE ZAUZET !!!!!!!");
+                zakazi = false;
+                break;
+                } 
+                else {
+                zakazi = true;
+                console.log("MOZE MOZE");
+                }
+            }
+            } else {
+                zakazi = true;
+            }
+
+        if(vreme_odabrano == "Vreme") {
+            zakaziV = false;
+        } else {
+            zakaziV = true;
+        }
+
+    if(zakaziV == true) {
+        if(zakazi == true) {
         
         var config = {
             method: 'post',
@@ -126,6 +194,9 @@ const Pregled = () => {
                 window.location.reload();
                 }); 
             } else {
+                Swal.fire({
+                    title: 'Odaberite i datum i vreme!',
+                })
                 console.log("Pregled nije kreiran.");
             }
             
@@ -134,6 +205,17 @@ const Pregled = () => {
             console.log(error);
             console.log("Pregled NIJE kreiran.");
         });
+
+        } else {
+            Swal.fire({
+            title: 'Zauzeto!', 
+            })
+        }
+    }  else {
+    Swal.fire({
+        title: 'Odaberite vreme!', 
+      })
+    }
     }
 
     return (
@@ -171,6 +253,7 @@ const Pregled = () => {
                 </div>
                 <div className="pregled_vreme">
                     <select name="vreme_tretmana" id="vreme_tretmana" onChange={handleInput}>
+                        <option>Vreme</option>
                         <option value="12h">12h</option>
                         <option value="13h">13h</option>
                         <option value="14h">14h</option>

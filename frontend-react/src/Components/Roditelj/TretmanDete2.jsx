@@ -23,7 +23,7 @@ const TretmanDete2 = ({tretman}) => {
                     <div>{tretman.vreme_tretmana}</div>
                     <div>{datum}</div>
                 </div>
-                <div id='tretman_opis'>Opis: {tretman.sadrzaj_tretmana}</div>
+                <div id='tretman_opis2'>Opis: {tretman.sadrzaj_tretmana}</div>
     
             </div>
 

@@ -18,7 +18,8 @@ const ListaTretmanaPacijenta = () => {
     let ime = window.sessionStorage.getItem("ime_pac");
     let prezime = window.sessionStorage.getItem("prezime_pac");
     let id_pacijenta = window.sessionStorage.getItem("id_pacijenta_logoped");
-    let id_pak_pac;
+    let id_paket_pacijenta;
+    let id_paket;
 
     /*function tretmaniPaketaPacijenta(e) {
 
@@ -125,7 +126,9 @@ const ListaTretmanaPacijenta = () => {
           console.log(JSON.stringify(response.data));
           setPaketiPac(response.data.data);
           setPaketID(response.data.data[0].id);
+          window.sessionStorage.setItem("id_trenutnog_paketa",response.data.data[0].id);
           setPaketNaziv(response.data.data[0].naziv_paketa);
+          window.sessionStorage.setItem("id_paketa",response.data.data[0].naziv_paketa.slice(6,8).trim());
           setPaketDatOd(response.data.data[0].datum_od);
           setPaketDatDo(response.data.data[0].datum_do);
 
@@ -182,10 +185,83 @@ const ListaTretmanaPacijenta = () => {
   }, []);
 
   let navigate = useNavigate();
+
   function prethodniPaketi() {
-    //navigate('/logoped/kreirajZahtev');
+    navigate('/logoped/prethodniPaketiPacijenta');
+  }
+
+//*****************KRERIANJE TRETMANA************************
+
+  const [tretmanData, setTretmanData] = useState({
+    datum_tretmana:"",
+    vreme_tretmana:"",
+    redni_broj_tretmana: "", 
+    id_pacijenta: "",
+    id_logopeda: "",
+    id_paketa: "",
+});
+
+  const [zakaziTret, setZakaziTret] = useState();
+  function kreirajTretman() {
+    setZakaziTret(!zakaziTret);
+    id_paket_pacijenta = window.sessionStorage.getItem("id_trenutnog_paketa");
+    id_paket = window.sessionStorage.getItem("id_paketa");
+    console.log("id paketa: "+id_paket);
+    console.log("id paketa pacijenta: "+id_paket_pacijenta);
   }
       
+  const [pacijenti, setPacijenti] = useState();
+  const [pacIdPaketa, setPacIdPaketa] = useState();
+  const [pacIdPakPac, setPacIdPakPac] = useState();
+  const[paketTrenutni, setPaketTrenutni] = useState();
+
+
+    var id_logopeda = window.sessionStorage.getItem("user_id");
+
+    function handleInput(e) {
+      let newTretmanData = tretmanData;
+      newTretmanData[e.target.name] = e.target.value;
+      setTretmanData(newTretmanData);
+    }
+
+  function handleKreirajTretman() {
+      console.log("kreira se tretam");
+      console.log("logoped: "+id_logopeda);
+      console.log("pacijent: "+id_pacijenta);
+      console.log("paket: "+window.sessionStorage.getItem("id_paketa"));
+      console.log("paket pacijenta: "+window.sessionStorage.getItem("id_trenutnog_paketa"));
+
+
+      var config = {
+        method: 'post',
+        url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_pacijenta + '/' + window.sessionStorage.getItem("id_paketa") + '/' + 0 +  '/' + window.sessionStorage.getItem("id_trenutnog_paketa") ,
+        headers: { 
+        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+        },
+        data: tretmanData,
+          }
+          axios.request(config)
+          .then((response) => {
+              if(response.data.success == true) {
+                  console.log(JSON.stringify(response.data.success));
+                  console.log("Tretman kreiran!");
+                  Swal.fire({
+                      title: 'Uspešno zakazan tretman!',
+                  }).then(function(){
+                    window.location.reload(false);
+                  });
+              } else {
+                  Swal.fire({
+                      title: 'Odaberite i datum i vreme!',
+                  })
+              }
+          })
+          .catch((error) => {
+              console.log(error);
+              console.log("Tretman NIJE kreiran.");
+          });
+    }
+
   
     return (
         <div className='lista_tretmana_pacijenta'>
@@ -203,10 +279,13 @@ const ListaTretmanaPacijenta = () => {
                     <div className="tr2">{moment(paketDatOd).local().format('ll')} - {moment(paketDatDo).local().format('ll')} </div>
                   </div>
 
-                  <button onClick={prethodniPaketi}>PRETHODNI PAKETI</button>
+                <div className="tretman_dugmad_logoped">                
+                  <button className="tretman_dugme_logoped" onClick={prethodniPaketi}>PRETHODNI PAKETI</button>
+                  <button className="tretman_dugme_logoped" onClick={kreirajTretman}>KREIRAJ TRETMAN</button>
+                </div>
 
-                  <div className="paket_tretmani">
-                <div className="paketi_tretmani_zakazani">
+                <div className="paket_tretmaniL">
+                  <div className="paketi_tretmani_zakazaniL">
                     <div className='naslovi_tretmana'>ZAKAZANI TRETMANI:</div>
                         { 
                             tretmani4 == null  
@@ -217,7 +296,7 @@ const ListaTretmanaPacijenta = () => {
                               .map((tretman) => <TretmanPacijent tretman={tretman} key={tretman.id}/>))
                         }
                 </div>
-                <div className="paketi_tretmani_odradjeni">
+                <div className="paketi_tretmani_odradjeniL">
                     <div className='naslovi_tretmana'>ODRAĐENI TRETMANI:</div>
                         { 
                             tretmani3 == null 
@@ -230,46 +309,39 @@ const ListaTretmanaPacijenta = () => {
                 </div>
             </div>
 
-
-
-
-
-
-                    {/* <div className="lista_paketa_pacijenta">
-                      <select 
-                      name="id_paketa_pacijenta" 
-                      id="id_paketa_pacijenta" 
-                      onChange={tretmaniPaketaPacijenta}
-                      defaultValue={"placeholder"}
-                      > 
-                          <option value={"placeholder"}>Izaberi paket</option>
-                          {paketiPac == null 
-                              ? (<></>)
-                              :
-                          (paketiPac.map(({id, naziv_paketa, datum_od, datum_do, id_pacijenta, id_logopeda, created_at, updated_at} )=> <option value={id} >{naziv_paketa} ~ {moment(datum_od).local().format('ll')} - {moment(datum_do).local().format('ll')}</option>))} 
-                      </select>
-                    </div> */}
-                    
-                  {/* <div className="tretmani_svi">
-                      
-                      <div className="tretmani_odr" id="odr">
-                            <p id='izm'><b>ODRAĐENI TRETMANI:</b></p>
-                            { 
-                                tretmani3 == null 
-                                ? (<></>)
-                                : (tretmani3.map((tretman) => <TretmanPacijent tretman={tretman} key={tretman.id}/>))
-                            }
-                      </div>
-                      <div className="tretmani_zak">
-                            <p id='izm'><b>ZAKAZANI TRETMANI:</b></p>
-                            { 
-                                tretmani4 == null  
-                                ? (<></>)
-                                : (tretmani4.map((tretman) => <TretmanPacijent tretman={tretman} key={tretman.id}/>))
-                            }
-                      </div>
-                  </div> */}
-
+        {zakaziTret && (
+          <div className='omodal'>
+          <div className='ooverlay' onClick={kreirajTretman}></div>
+          <div className='ocontent'>
+            <div className="kreiraj_tretman_logoped">
+                    <input 
+                        type="date"
+                        id="datum_tretmana"
+                        className="polje"
+                        placeholder="Unesite datum..."
+                        onInput={handleInput}
+                        name="datum_tretmana"
+                    />
+                    <select name="vreme_tretmana" className="vreme_tretmana2" onChange={handleInput}>
+                        <option>Vreme</option>
+                        <option value="12h">12h</option>
+                        <option value="13h">13h</option>
+                        <option value="14h">14h</option>
+                        <option value="15h">15h</option>
+                        <option value="16h">16h</option>
+                        <option value="17h">17h</option>
+                        <option value="18h">18h</option>
+                        <option value="19h">19h</option>
+                        <option value="20h">20h</option> 
+                    </select>
+                    <button className="dugme1" onClick={handleKreirajTretman}>
+                        ZAKAŽI TRETMAN
+                    </button> 
+              </div>
+          </div>
+          </div>
+        )}
+            
                  
         </div>
     )

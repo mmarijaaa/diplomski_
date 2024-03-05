@@ -599,7 +599,7 @@ const ZakazivanjeTretmana = () => {
                         onInput={handleInput}
                         name="datum_tretmana"
                     />
-                    <select name="vreme_tretmana" id="vreme_tretmana" onChange={handleInput}>
+                    <select name="vreme_tretmana" className="vreme_tretmana" onChange={handleInput}>
                         <option>Vreme</option>
                         <option value="12h">12h</option>
                         <option value="13h">13h</option>

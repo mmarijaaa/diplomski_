@@ -143,6 +143,18 @@ class TretmanController extends Controller
     }
 
     //************************************************************************************* 
+    //LISTA SVIH ZAKAZANIH TRETMANA 
+    public function listaSvihZakazanih() {
+        $timestamp = time();
+        $currentDate = gmdate('Y-m-d', $timestamp); 
+        $tretmani = Tretman::get()->where('datum_tretmana','>',$currentDate);
+        if(is_null($tretmani)) {
+            return response()->json("Tretmana nema");
+        }
+        return TretmanResource3::collection($tretmani);   
+    } 
+
+    //************************************************************************************* 
     //LISTA ZAKAZANIH TRETMANA PREMA PACIJENTU
     public function listaZakazanih($id_pacijenta, $id_paketa_pacijenta) {
         $timestamp = time();

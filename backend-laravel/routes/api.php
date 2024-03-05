@@ -30,7 +30,11 @@ Route::post('/register', [LogopedController::class, 'register']);
 Route::post('/login', [LogopedController::class, 'login']); 
 
 //kreiranje pregleda
-Route::post('/kreiranjePregleda', [TretmanController::class, 'createPregled']);   
+Route::post('/kreiranjePregleda', [TretmanController::class, 'createPregled']); 
+
+//lista svih zakazanih tretmana 
+Route::get('/listaSvihZakazanih', [TretmanController::class, 'listaSvihZakazanih']); 
+
 
 
 Route::group(['middleware'=> ['auth:sanctum']], function() {
@@ -139,6 +143,9 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
 
     //izmena zahteva da bude pregledan
     Route::put('/zahtevOdobren/{id_zahteva}', [ZahtevController::class, 'updateO']);  
+
+    //kreiranje tretmana od strane logopeda
+    Route::post('/kreiranjeTretmana/{id_logopeda}/{id_pacijenta}/{id_paketa}/{redni_broj_tretmana}/{id_paketa_pacijenta}', [TretmanController::class, 'create']); 
 
     //brisanje tretmana pacijenta 
     Route::delete('/brisanjeTretmana/{id_tretmana}', [TretmanController::class, 'delete']); 

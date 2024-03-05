@@ -3,66 +3,70 @@ import PacijentLogoped from './PacijentLogoped';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
+import Loading from '../Loading';
 
 const ListaPacijenata = () => {
 
-    const [pacijents, setPacijents] = useState();
+  //LOADING 
+  const [loading, setLoading] = useState(false);
 
-    let id_logopeda = window.sessionStorage.getItem("user_id");
+  const [pacijents, setPacijents] = useState();
 
-    useEffect(() => {
-        if(pacijents == null) {
-        var config = {
-            method: 'get',
-            //url: 'http://127.0.0.1:8000/api/logopedListaPacijenata/' + id_logopeda,
-            url: 'http://127.0.0.1:8000/api/svipac/' + id_logopeda,
-            headers: { 
-              'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"),
-            },
-            data : pacijents,
-          };
+  let id_logopeda = window.sessionStorage.getItem("user_id");
 
-        axios(config)
+  useEffect(() => {
+    if (pacijents == null) {
+      var config = {
+        method: 'get',
+        //url: 'http://127.0.0.1:8000/api/logopedListaPacijenata/' + id_logopeda,
+        url: 'http://127.0.0.1:8000/api/svipac/' + id_logopeda,
+        headers: {
+          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+        },
+        data: pacijents,
+      };
+
+      axios(config)
         .then((response) => {
-            //console.log(JSON.stringify(response.data));
-            console.log("Lista pacijenata prikazana");
-            setPacijents(response.data.data); 
+          //console.log(JSON.stringify(response.data));
+          console.log("Lista pacijenata prikazana");
+          setPacijents(response.data.data);
+          setLoading(true);
         })
         .catch((error) => {
-            console.log(error);
-            console.log("Lista pacijenata NIJE prikazana");
+          console.log(error);
+          console.log("Lista pacijenata NIJE prikazana");
         });
-        }
-    }, []); 
-    
-    const [search, setSearch] = useState('');
-    //console.log(search); 
-
-    return (
-        <div className="lista">
-            <p id='lista_naslov'>LISTA PACIJENATA</p>
-            <div className='pretraga'><input type='text' className='pretraga' placeholder='Pretraži pacijente' onChange={(e) => setSearch(e.target.value)}></input></div>
-            { 
-                // pacijents == null 
-                // ? (<></>)
-                // : (pacijents.map((pacijent) => <PacijentLogoped pacijent={pacijent} key={pacijent.id}/>))
-                pacijents == null 
-                ? (<></>)
-                : pacijents.filter((pacijent) => {
-                    return search.toLowerCase() === ''  
-                    ? pacijent
-                    : (pacijent.ime.toLowerCase().includes(search) 
-                        || pacijent.prezime.toLowerCase().includes(search)
-                        || pacijent.poremecaj.toLowerCase().includes(search)); 
-                  }).map((pacijent)=>(
-          
-                  <PacijentLogoped pacijent={pacijent} key={pacijent.id}/>
-          
-                  ))
-                }
-            
-        </div> 
-      )
     }
-     
-    export default ListaPacijenata;
+  }, []);
+
+  console.log("Loading: " + loading);
+
+  const [search, setSearch] = useState('');
+
+  return (
+    <div className="lista">
+      <p id='lista_naslov'>LISTA PACIJENATA</p>
+      <div className='pretraga'><input type='text' className='pretraga' placeholder='Pretraži pacijente' onChange={(e) => setSearch(e.target.value)}></input></div>
+      {
+        loading ? (
+          pacijents == null
+            ? (<></>)
+            : pacijents.filter((pacijent) => {
+              return search.toLowerCase() === ''
+                ? pacijent
+                : (pacijent.ime.toLowerCase().includes(search)
+                  || pacijent.prezime.toLowerCase().includes(search)
+                  || pacijent.poremecaj.toLowerCase().includes(search));
+            }).map((pacijent) => (
+              <PacijentLogoped pacijent={pacijent} key={pacijent.id} />
+            ))
+        ) :
+        (<Loading/>) 
+      }
+
+    </div>
+  )
+}
+
+export default ListaPacijenata;

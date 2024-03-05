@@ -20,6 +20,7 @@ class PaketResource extends JsonResource
         //return parent::toArray($request);
 
         return [
+            'id'=> $this->resource->id,
             'naziv_paketa' => $this->resource->naziv_paketa,
             'broj_tretmana' => $this->resource->broj_tretmana
         ];

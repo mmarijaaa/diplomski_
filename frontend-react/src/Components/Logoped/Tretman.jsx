@@ -11,7 +11,7 @@ const Tretman = ({tretman}) => {
 
     return (
         <div className="tpLista"> 
-            <div className="tp1"> {tretman.naziv_tretmana} {tretman.redni_broj_tretmana} </div> 
+            <div className="tp1"> {tretman.naziv_tretmana}</div> 
             <div className="tp2"> {moment(tretman.datum_tretmana).local().format('ll')} </div>
             <div className="tp3"> {tretman.vreme_tretmana} </div>
             <div className="tp4"> Pacijent: {tretman.pacijent.ime} {tretman.pacijent.prezime} </div>

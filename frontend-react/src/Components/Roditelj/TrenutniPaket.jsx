@@ -227,7 +227,9 @@ const TrenutniPaket = () => {
               }
          
     return (
+      
         <div className="prethodni_paketi">
+         
             <div className='naslovi_dugmica'>TRENUTNI PAKET</div>
 
           <div className="pakett">
@@ -258,18 +260,6 @@ const TrenutniPaket = () => {
                 </div>
                 <div className="paketi_tretmani_zakazani">
                     <div className='naslovi_tretmana'>ZAKAZANI TRETMANI:</div>
-                        {/* { 
-                            tretmani4 == null  
-                            ? (<></>)
-                            : (tretmani4
-                              .slice(0)
-                              .reverse()
-                              .map((tretman) => 
-                              <div>
-                                <div>{rbr--}</div>
-                                <TretmanDete tretman={tretman} key={tretman.id}/>
-                              </div>))
-                        } */}
                          { 
                             tretmani4 == null  
                             ? (<></>)
@@ -281,20 +271,9 @@ const TrenutniPaket = () => {
                               </div>))
                         }
                 </div>
-                {/* <div className="paketi_tretmani_odradjeni">
-                    <div className='naslovi_tretmana'>ODRAĐENI TRETMANI:</div>
-                         { 
-                            tretmani3 == null 
-                            ? (<></>)
-                            : (tretmani3
-                              .map((tretman) => 
-                              <div>
-                                <div>{rbr++}</div>
-                                <TretmanDete tretman={tretman} key={tretman.id}/>
-                              </div>))
-                        }
-                </div> */}
             </div>
+
+        
         </div>
     );
 }

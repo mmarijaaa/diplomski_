@@ -27,11 +27,13 @@ import KontaktLogopeda from './Components/Roditelj/KontaktLogopeda';
 import ListaTretmanaPacijenta from './Components/Logoped/ListaTretmanaPacijenta'; 
 import EvidentirajTretman from './Components/Logoped/EvidentirajTretman'; 
 import ListaZahteva from './Components/Logoped/ListaZahteva'; 
-import KreirajZahtev from './Components/Logoped/KreirajZahtev';
+import KreirajZahtev from './Components/Logoped/KreirajZahtev'; 
+import KreirajTretman from './Components/Logoped/KreirajTretman';
 import ListaTretmana from './Components/Logoped/ListaTretmana'; 
 import PrethodniPaketi from './Components/Roditelj/PrethodniPaketi';
 import ZakazivanjeTretmana from './Components/Roditelj/ZakazivanjeTretmana';
 import TrenutniPaket from './Components/Roditelj/TrenutniPaket';
+import PrethodniPaketiPacijenta from './Components/Logoped/PrethodniPaketiPacijenta';
 
 function App() {
 
@@ -77,8 +79,10 @@ function App() {
             <Route path='listaTretmanaPacijenta' element={<ListaTretmanaPacijenta />}/>
             <Route path='evidencijaTretmana' element={<EvidentirajTretman />}/>
             <Route path='kreirajZahtev' element={<KreirajZahtev/>}/>
+            <Route path='kreirajTretman' element={<KreirajTretman/>}/>
             <Route path='listaZahteva' element={<ListaZahteva />}/>
             <Route path='listaTretmana' element={<ListaTretmana />}/>
+            <Route path='prethodniPaketiPacijenta' element={<PrethodniPaketiPacijenta/>}/> 
         </Route>
 
         {/* PROFIL RODITELJA */}

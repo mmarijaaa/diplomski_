@@ -58,20 +58,21 @@ const TretmanPacijent = ({tretman}) => {
     }
 
     return (
-        <div className="tretman">
-            <div id='tret'>{tretman.naziv_tretmana} {tretman.redni_broj_tretmana} -- {datum} -- {tretman.vreme_tretmana}</div>
+        <div className="tretmanL">
+            <div className='tretman_info1L'>{tretman.naziv_tretmana}  -  {datum}  -  {tretman.vreme_tretmana}</div>
+            <div className='tretman_info2L'>
             {
               tretman.sadrzaj_tretmana == ' ' || tretman.sadrzaj_tretmana == ''
-              ? (<div className="tretman_sadrzaj">
-                  <textarea type="text" name="sadrzaj_tretmana" onInput={handleInput}/>
-                  <button className="dugme_sadrzaj" onClick={dodajSadrzajTretmanu}>DODAJ SADRŽAJ</button>
+              ? (<div className="tretman_sadrzajL">
+                  <textarea spellcheck="false" type="text" name="sadrzaj_tretmana" onInput={handleInput}/>
+                  <button className="dugme_sadrzajL" onClick={dodajSadrzajTretmanu}>DODAJ SADRŽAJ</button>
                 </div>)
-              : (<div className="tretman_sadrzaj">
-                <textarea type="text"  name="sadrzaj_tretmana" onInput={handleInput} defaultValue={tretman.sadrzaj_tretmana} />
-                <button className="dugme_sadrzaj" onClick={dodajSadrzajTretmanu}>IZMENI SADRŽAJ</button> 
+              : (<div className="tretman_sadrzajL">
+                <textarea spellcheck="false" type="text"  name="sadrzaj_tretmana" onInput={handleInput} defaultValue={tretman.sadrzaj_tretmana} />
+                <button className="dugme_sadrzajL" onClick={dodajSadrzajTretmanu}>IZMENI SADRŽAJ</button> 
                 </div>) 
             }
-            {/* <input type="text" name="sadrzaj_tretmana" onInput={handleInput}/> */} 
+            </div>
         </div>
     );
 }
