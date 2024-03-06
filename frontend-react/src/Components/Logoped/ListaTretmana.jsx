@@ -1,148 +1,122 @@
 import React from 'react'
-import { useState, useEffect } from 'react';import axios from 'axios'; 
-import {useNavigate} from 'react-router-dom';
+import { useState, useEffect } from 'react'; import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Pregled from './Pregled';
 import Tretman from './Tretman';
 import Swal from 'sweetalert2';
-import arrow from '../Slike/arrow_back.png'; 
+import arrow from '../Slike/arrow_back.png';
+import Loading from '../Loading';
 
 const ListaTretmana = () => {
 
-    const [pregledi, setPregledi] = useState();
-    const [tretmani, setTretmani] = useState();
-    const[modalP, setModalP] = useState(false);
-    const[modalT, setModalT] = useState(false);
+  //LOADING 
+  const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
 
-    var id_logopeda =  window.sessionStorage.getItem("user_id");
+  const [pregledi, setPregledi] = useState();
+  const [tretmani, setTretmani] = useState();
+  const [modalP, setModalP] = useState(false);
+  const [modalT, setModalT] = useState(false);
 
-    useEffect(() => {
-      if(pregledi == null) {
-        var config = {
-          method: 'get',
-          url: 'http://127.0.0.1:8000/api/listaPregleda', 
-          headers: { 
-            'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
-          },
-          data : pregledi
-        };
-        
-        axios.request(config)
+  var id_logopeda = window.sessionStorage.getItem("user_id");
+
+  useEffect(() => {
+    if (pregledi == null) {
+      var config = {
+        method: 'get',
+        url: 'http://127.0.0.1:8000/api/listaPregleda',
+        headers: {
+          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+        },
+        data: pregledi
+      };
+
+      axios.request(config)
         .then((response) => {
-            console.log(JSON.stringify(response.data)); 
+          console.log(JSON.stringify(response.data));
+          setPregledi(response.data.data);
+          setLoading(true);
+          if (response.data.success == true) {
             setPregledi(response.data.data);
-          if(response.data.success == true) {
-            setPregledi(response.data.data);
-            } else {
-                // Swal.fire({
-                //     title: 'Nemate zahteva!', 
-                // }); 
-            }
+          } else {
+            console.log("nema");
+          }
         })
         .catch((error) => {
           console.log(error);
         });
-      }
+    }
 
-      if(tretmani == null) {
+    if (tretmani == null) {
       var config = {
         method: 'get',
         maxBodyLength: Infinity,
         url: 'http://127.0.0.1:8000/api/listaTretmanaLogoped/' + id_logopeda,
-        headers: { 
-          'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+        headers: {
+          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
         },
-        data : tretmani
+        data: tretmani
       };
-      
+
       axios.request(config)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-        setTretmani(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }
-    }, 
-    []);
-
-
-    /*function preglediLista() {
-        setModalP(!modalP);
-        var config = {
-          method: 'get',
-          url: 'http://127.0.0.1:8000/api/listaPregleda', 
-          headers: { 
-            'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
-          },
-          data : pregledi
-        };
-        
-        axios.request(config)
         .then((response) => {
-            console.log(JSON.stringify(response.data)); 
-            setPregledi(response.data.data);
-          if(response.data.success == true) {
-            setPregledi(response.data.data);
-            } else {
-                // Swal.fire({
-                //     title: 'Nemate zahteva!', 
-                // }); 
-            }
+          console.log(JSON.stringify(response.data));
+          setTretmani(response.data.data);
+          setLoading2(true);
         })
         .catch((error) => {
           console.log(error);
-        });
-    }*/
+        }); 
+    }
+    
+  },
+    []);
 
-    /*function tretmaniLista() {
-        setModalT(!modalT);
-        var config = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: 'http://127.0.0.1:8000/api/listaTretmanaLogoped/' + id_logopeda,
-            headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
-            },
-            data : tretmani
-          };
-          
-          axios.request(config)
-          .then((response) => {
-            console.log(JSON.stringify(response.data));
-            setTretmani(response.data.data);
-          })
-          .catch((error) => {
-            console.log(error);
-        });
-    }*/
+  return (
+    <div className="lista">
 
-    return (
-        <div className="lista">
-          
-          <p id='lista_naslov'>LISTA PREGLEDA I TRETMANA</p>   
+      <p id='lista_naslov'>LISTA PREGLEDA I TRETMANA</p>
 
-        <div className="dugmadP">
-            {/* <button className='dugmeP' onClick={preglediLista}>PREGLEDI</button>
+      <div className="dugmadP">
+        {/* <button className='dugmeP' onClick={preglediLista}>PREGLEDI</button>
             <button className='dugmeP' onClick={tretmaniLista}>TRETMANI</button> */}
-        </div>
-         
-                { 
-                pregledi == null 
-                ? (<></>)
-                : (pregledi.map((pregled) => <Pregled pregled={pregled} key={pregled.id}/>))
-                }
+      </div>
 
-                { 
-                tretmani == null 
-                ? (<></>)
-                : (tretmani.map((tretman) => <Tretman tretman={tretman} key={tretman.id}/>))
-                }
-               
+            {
+               loading && loading2 ? 
+                ( pregledi == null && tretmani == null
+                  ? (<></>)
+                  :
+                  (<div> {pregledi.map((pregled) => <Pregled pregled={pregled} key={pregled.id} />)}
+                  {tretmani.map((tretman) => <Tretman tretman={tretman} key={tretman.id} />)}
+                  </div>) 
+                )
+               :
+                (<Loading/>) 
+            }
 
-                {/* {modalP && (
+      {/*
+        loading ? (
+        pregledi == null
+          ? (<></>)
+          : (pregledi.map((pregled) => <Pregled pregled={pregled} key={pregled.id} />))
+          ) :
+            (<Loading/>) 
+        */}
+
+      {/*
+        loading ? (
+        tretmani == null
+          ? (<></>)
+          : (tretmani.map((tretman) => <Tretman tretman={tretman} key={tretman.id} />))
+          ) :
+            (<Loading/>) 
+        */}
+
+
+      {/* {modalP && (
                 <div className='modalP'>
                 <div className='overlayP' onClick={preglediLista}></div>
                 <div className='contentP'>
@@ -158,7 +132,7 @@ const ListaTretmana = () => {
                 </div>
                 )} */}
 
-                {/* {modalT && (
+      {/* {modalT && (
                 <div className='modalT'>
                 <div className='overlayT' onClick={tretmaniLista}></div>
                 <div className='contentT'>
@@ -173,9 +147,9 @@ const ListaTretmana = () => {
                 </div>
                 </div>
                 )} */}
-          
-          </div>
-    )
+
+    </div>
+  )
 
 }
 

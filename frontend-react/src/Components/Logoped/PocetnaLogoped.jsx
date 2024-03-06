@@ -12,8 +12,14 @@ import write from '../Slike/write.png';
 import '../stil.css';
 import roditelj from '../Slike/roditelj.png';
 import logopedIcon from '../Slike/logoped.png';
+import Loading from '../Loading';
+import Loading2 from '../Loading2';
 
 const PocetnaLogoped = ({ }) => {
+
+  //LOADING
+  const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
 
   const [logoped, setLogoped] = useState();
   const [logopedIme, setLogopedIme] = useState();
@@ -76,7 +82,7 @@ const PocetnaLogoped = ({ }) => {
     window.sessionStorage.setItem("roditelj_id", null);
   }
 
-  
+
 
   return (
     <div className='log_profil'>

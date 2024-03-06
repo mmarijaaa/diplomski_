@@ -117,6 +117,50 @@ input:-webkit-autofill:focus {
     }
 }
 
+/*LOADING 2*/
+.lds-ring2 {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ring2 div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin: 8px;
+    border: 2px solid #003353;
+    border-radius: 10px;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #003353 transparent transparent transparent;
+}
+
+.lds-ring2 div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring2 div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring2 div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring2 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 
 /******************************************************/
 /*MENI*/
@@ -2746,7 +2790,7 @@ input:-webkit-autofill:focus {
 }
 
 .roditelj .rod_info .rod_ime {
-    background-color: #f9f9dc;
+    background-color: #f5f5df;
     padding: 10px;
     flex: 25%;
     text-align: center;
@@ -2765,7 +2809,7 @@ input:-webkit-autofill:focus {
 }
 
 .roditelj .rod_info .rod_email {
-    background-color: #f9f9dc;
+    background-color: #f5f5df;
     padding: 10px;
     flex: 25%;
     text-align: center;
@@ -2785,7 +2829,7 @@ input:-webkit-autofill:focus {
 
 .roditelj .rod_deca {
     flex: 20%;
-    background-color: #f9f9dc;
+    background-color: #f5f5df;
     padding: 10px;
     text-align: center;
     display: flex;
@@ -3175,7 +3219,7 @@ input:-webkit-autofill:focus {
 
 /*ZAHTEV*/
 .zahtevi {
-    width: 120%;
+    width: 110%;
 }
 
 .zahtev {
@@ -3207,18 +3251,25 @@ input:-webkit-autofill:focus {
 
 .zahtev_sadrzaj .zrod {
     flex: 25%;
-    padding: 0px 10px;
+    padding: 20px 10px 20px 10px;
+    background-color: #f5f5df;
 }
 
 .zahtev_sadrzaj .zpac {
     flex: 25%;
     padding: 15px 10px 15px 10px;
-    background-color: #f5f5df;
 }
 
 .zahtev_sadrzaj .zinfo {
     flex: 25%;
-    padding: 0px 10px;
+    padding: 20px 10px 20px 10px;
+    background-color: #f5f5df;
+}
+
+.zahtev .zahtev_dugme_obnova {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .zahtev .zahtev_dugme_obnova button {
@@ -3228,7 +3279,7 @@ input:-webkit-autofill:focus {
     font-family: 'Nunito Sans', sans-serif;
     font-size: 18px;
     border-radius: 10px;
-    margin: 10px;
+    margin: 10px 20px;
     padding: 5px;
 }
 
@@ -3242,13 +3293,17 @@ input:-webkit-autofill:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px 15px;
+    margin: 15px;
 }
 
 .zahtev_odobren input {
     height: 40px;
     width: 40px;
+}
 
+.cbtxt {
+    font-size: 12px;
+    padding-bottom: 3px;
 }
 
 .container {
@@ -3652,15 +3707,16 @@ input:-webkit-autofill:focus {
 
 .pakett .obnovi_paket button {
     color: #003353;
-    background-color: #fdfced;
+    background-color: #f5f5df;
     font-size: 18px;
     font-family: 'Nunito Sans', sans-serif;
     border-radius: 10px;
-    border: 2px solid #003353;
+    border: none;
     width: 70%;
     padding: 10px 20px;
     margin: 20px 0px 10px 0px;
     width: 200px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .pakett .obnovi_paket button:hover {
@@ -3817,6 +3873,12 @@ input:-webkit-autofill:focus {
 }
 
 /*ZAKAZIVANJE TRETMANA*/
+
+.tretman_opcije {
+    display: flex;
+    flex-direction: row;
+}
+
 .tretman_zakazi {
     margin-top: 30px;
 }
@@ -3864,9 +3926,13 @@ input:-webkit-autofill:focus {
     background-color: #003353;
 }
 
+.zauzeti_tretmani {
+    margin: 30px 0px 0px 20px;
+}
+
 .zauzeti_tretmani button {
-    font-size: 16px;
-    background-color: #fdfced;
+    font-size: 18px;
+    background-color: #f5f5df;
     border: none;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 10px;
@@ -3875,9 +3941,6 @@ input:-webkit-autofill:focus {
     color: #003C62;
     text-transform: uppercase;
     font-family: 'Nunito Sans', sans-serif;
-    margin: 30px 0px 10px 0px;
-    width: 200px;
-
 }
 
 .zauzeti_tretmani button:hover {
