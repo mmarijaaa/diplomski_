@@ -211,7 +211,10 @@ class TretmanController extends Controller
     //************************************************************************************* 
     //LISTA PREGLEDA PREMA LOGOPEDU
     public function preglediLogoped() {
-        $pregledi = Tretman::get()->where('naziv_tretmana','Pregled'); 
+        $timestamp = time();
+        $currentDate = gmdate('Y-m-d', $timestamp); 
+        $pregledi = Tretman::get()->where('naziv_tretmana','Pregled')
+                                    ->where('datum_tretmana','>',$currentDate); 
         if(is_null($pregledi)) {
             return response()->json("Pregleda nema");
         }

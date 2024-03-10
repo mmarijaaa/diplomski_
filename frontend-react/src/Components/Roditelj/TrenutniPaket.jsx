@@ -23,7 +23,7 @@ const TrenutniPaket = () => {
   const [paketDatOd, setPaketDatOd] = useState();
   const [paketDatDo, setPaketDatDo] = useState();
   const [paketID, setPaketID] = useState();
-  var id_dete = window.sessionStorage.getItem("iddete");
+  var id_dete = window.localStorage.getItem("iddete");
   var idp;
 
   //PROMENLJIVE ZA TRETMANE
@@ -45,7 +45,7 @@ const TrenutniPaket = () => {
       maxBodyLength: Infinity,
       url: 'http://127.0.0.1:8000/api/paketTrenutni/' + id_dete,
       headers: {
-        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
 
       },
       data: paketiPac
@@ -67,7 +67,7 @@ const TrenutniPaket = () => {
           method: 'get',
           url: 'http://127.0.0.1:8000/api/listaTretmanaOdradjenih/' + id_dete + "/" + response.data.data[0].id,
           headers: {
-            'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+            'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
           },
           data: tretmani3,
         };
@@ -90,7 +90,7 @@ const TrenutniPaket = () => {
           method: 'get',
           url: 'http://127.0.0.1:8000/api/listaTretmanaZakazanih/' + id_dete + "/" + response.data.data[0].id,
           headers: {
-            'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+            'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
           },
           data: tretmani4,
         };
@@ -163,8 +163,8 @@ const TrenutniPaket = () => {
   var zahtev_paket;
   var zahtev_poremecaj;
   var zahtev;
-  var id_log = window.sessionStorage.getItem("id_logopeda_pacijenta");
-  var id_rod = window.sessionStorage.getItem("roditelj_user_id");
+  var id_log = window.localStorage.getItem("id_logopeda_pacijenta");
+  var id_rod = window.localStorage.getItem("roditelj_user_id");
 
   // const[zahtevObnova, setZahtevObnova] = useState({
   //     info_pacijenta: "",
@@ -204,7 +204,7 @@ const TrenutniPaket = () => {
               method: 'post',
               url: 'http://127.0.0.1:8000/api/kreirajZahtevObnova/' + id_log + '/' + id_dete + '/' + id_rod + '/' + zahtev,
               headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
               },
               data: zahtevObnova,
             };
@@ -232,6 +232,8 @@ const TrenutniPaket = () => {
       }
     })
   }
+
+  
 
   return (
 
@@ -261,10 +263,12 @@ const TrenutniPaket = () => {
         <div className="paketi_tretmani_odradjeni">
           <div className='naslovi_tretmana'>ODRAĐENI TRETMANI:</div>
           {
-            loading ? (
+            loading2 ? (
               tretmani3 == null
                 ? (<></>)
                 : (tretmani3
+                  .slice()
+                  .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
                   .map((tretman) =>
                     <div className="ceo_tret">
                       <div className="tret_rbr">{rbr++}</div>
@@ -281,7 +285,9 @@ const TrenutniPaket = () => {
               tretmani4 == null
                 ? (<></>)
                 : (tretmani4
-                  .map((tretman) =>
+                  .slice()
+                  .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+                  .map((tretman) => 
                     <div className="ceo_tret">
                       <div className="tret_rbr">{rbr++}</div>
                       <TretmanDete tretman={tretman} key={tretman.id} />

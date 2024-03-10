@@ -26,7 +26,7 @@ class PacijentController extends Controller
             'ime'=>'required|string|max:100',
             'prezime'=>'required|string|max:100',
             'uzrast'=>'required|integer|min:3|max:15', 
-            'poremecaj'=>'required|string|max:100'
+            'poremecaj'=>'required|string' 
         ]); 
  
         if($validator->fails()) 

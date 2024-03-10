@@ -27,12 +27,12 @@ const ZakazivanjeTretmana = () => {
         id_paketa: "",
     });
 
-    var id_logopeda = window.sessionStorage.getItem("id_logopeda_pacijenta");
-    var id_dete = window.sessionStorage.getItem("iddete");
+    var id_logopeda = window.localStorage.getItem("id_logopeda_pacijenta");
+    var id_dete = window.localStorage.getItem("iddete");
     var redni_broj_tretmana;
-    var id_paketa = window.sessionStorage.getItem("id_paketa");
-    var id_pak_pac = window.sessionStorage.getItem("id_trenutnog_paketa");
-    var id_rod = window.sessionStorage.getItem("roditelj_user_id");
+    var id_paketa = window.localStorage.getItem("id_paketa_roditelj");
+    var id_pak_pac = window.localStorage.getItem("id_trenutnog_paketa_roditelj");
+    var id_rod = window.localStorage.getItem("roditelj_user_id");
 
     //USEEFFECT ZA ISPISIVANJE LISTE DATUMA ZAKAZANIH PAKETA 
     const [zakazaniTretmani, setZakazaniTretmani] = useState();
@@ -46,7 +46,7 @@ const ZakazivanjeTretmana = () => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmanaZak/' + id_dete + "/" + id_pak_pac,
             headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
             },
             data: zakazaniTretmani,
         };
@@ -69,7 +69,7 @@ const ZakazivanjeTretmana = () => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmanaLog/' + id_logopeda,
             headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
             },
             data: zakazaniTretmaniLogoped,
         };
@@ -85,12 +85,12 @@ const ZakazivanjeTretmana = () => {
                 console.log("Lista tretmana LOGOPEDA NIJE");
             });
 
-        //lista svih tretmana trenutnih paketa
+        //lista svih tretmana trenutnog paketa
         var config = {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTret/' + id_dete + "/" + id_pak_pac,
             headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
             },
             data: tretmaniSvi,
         };
@@ -231,10 +231,11 @@ const ZakazivanjeTretmana = () => {
 
                     //ako je odabran datum istog meseca manji od poslednje zakazanog
                     if (dan_number < pt_dan_number) {
-                        console.log("NE MOZE DATUM PRE POSLEDNJE ZAKAZANOG");
-                        Swal.fire({
-                            title: 'Odabrani datum nije moguće zakazati, jer je pre poslednje zakazanog tretmana!',
-                        })
+                        console.log("moze");
+                        //console.log("NE MOZE DATUM PRE POSLEDNJE ZAKAZANOG");
+                        // Swal.fire({
+                        //     title: 'Odabrani datum nije moguće zakazati, jer je pre poslednje zakazanog tretmana!',
+                        // })
                     }
                     else if (dan_number > pt_dan_number) {
                         console.log("MOZE TAJ DATUM");
@@ -250,22 +251,24 @@ const ZakazivanjeTretmana = () => {
                     console.log("MOZE TAJ DATUM");
                 }
                 else {
-                    console.log("NE MOZE DATUM PRE POSLEDNJE ZAKAZANOG");
-                    Swal.fire({
-                        title: 'Odabrani datum nije moguće zakazati, jer je pre poslednje zakazanog tretmana!',
-                    })
+                    console.log("moze");
+                    // console.log("NE MOZE DATUM PRE POSLEDNJE ZAKAZANOG");
+                    // Swal.fire({
+                    //     title: 'Odabrani datum nije moguće zakazati, jer je pre poslednje zakazanog tretmana!',
+                    // })
                 }
             }
             else if (pt_godina < godina) {
                 console.log("MOZE TAJ DATUM");
             }
             else if (pt_godina > godina) {
-                console.log("NE MOZE DATUM PRE POSLEDNJE ZAKAZANOG");
+                console.log("moze");
+                //console.log("NE MOZE DATUM PRE POSLEDNJE ZAKAZANOG");
             }
         }
 
         //izvlacenje datuma zavrsetka trenutnog paketa
-        const dat_do = window.sessionStorage.getItem("datum_do");
+        const dat_do = window.localStorage.getItem("datum_do");
         var dan_do = moment(dat_do).format('D');
         var mesec_do = moment(dat_do).format('M');
         var godina_do = moment(dat_do).format('YYYY');
@@ -277,7 +280,7 @@ const ZakazivanjeTretmana = () => {
         console.log("datum do -" + datum_do);
 
         if (godina == godina_do) {
-            if (mesec == mesec_do) { 
+            if (mesec == mesec_do) {
                 if (dan_number > dan_do) {
                     Swal.fire({
                         title: 'Odabrani datum je van paketa!',
@@ -301,7 +304,7 @@ const ZakazivanjeTretmana = () => {
     var zakazi;
     var zakaziV;
     var duzina_liste_svih_tret;
-    var ukupno_tretmana = window.sessionStorage.getItem("broj_tretmana");
+    var ukupno_tretmana = window.localStorage.getItem("broj_tretmana");
 
     function handleKreirajTretman() {
 
@@ -406,7 +409,7 @@ const ZakazivanjeTretmana = () => {
                                                 method: 'post',
                                                 url: 'http://127.0.0.1:8000/api/kreirajZahtevObnova/' + id_logopeda + '/' + id_dete + '/' + id_rod + '/' + zahtev,
                                                 headers: {
-                                                    'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+                                                    'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
                                                 },
                                                 data: zahtevObnova,
                                             };
@@ -448,7 +451,7 @@ const ZakazivanjeTretmana = () => {
         //         method: 'post',
         //         url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + 1 +  '/' + id_pak_pac ,
         //         headers: { 
-        //         'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+        //         'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
         //         },
         //         data: tretmanData,
         //     }
@@ -488,7 +491,7 @@ const ZakazivanjeTretmana = () => {
                         method: 'post',
                         url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + 1 + '/' + id_pak_pac,
                         headers: {
-                            'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+                            'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
                         },
                         data: tretmanData,
                     }
@@ -523,7 +526,7 @@ const ZakazivanjeTretmana = () => {
                         method: 'post',
                         url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + redni_broj_tretmana + '/' + id_pak_pac,
                         headers: {
-                            'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+                            'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
                         },
                         data: tretmanData,
                     }

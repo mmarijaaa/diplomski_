@@ -43,9 +43,11 @@ const Pregled = () => {
 
     var datum_odabran;
     var vreme_odabrano;
-    function handleInput(e) {
-        let newPregledData = pregledData;
-        newPregledData[e.target.name] = e.target.value;
+    var moze;
+
+    function handleDatumVreme(e) {
+        // let newPregledData = pregledData;
+        // newPregledData[e.target.name] = e.target.value;
 
         //uzimanje odabranih vrednosti za datum i vreme
         //dodavanje promenljivima radi dalje provere
@@ -121,9 +123,28 @@ const Pregled = () => {
             })
         }
         else {
-            setPregledData(newPregledData);  
+            //setPregledData(newPregledData); 
+            moze = true; 
+        }
+
+        
+    }
+
+    function handleInput(e) {
+        let newPregledData = pregledData;
+        newPregledData[e.target.name] = e.target.value;
+        if(moze == true) {
+            setPregledData(newPregledData);
         }
     }
+
+    function handlex2() {
+        handleDatumVreme();
+        if(moze == true) {
+            handleInput(); 
+        }
+    }
+
 
     function handleKreirajPregled(e) {
 
@@ -247,12 +268,12 @@ const Pregled = () => {
                     id="datum_pregleda"
                     className="polje"
                     placeholder="Izaberite datum..."
-                    onInput={handleInput}
+                    onInput={handlex2}
                     name="datum_tretmana"
                     />
                 </div>
                 <div className="pregled_vreme">
-                    <select name="vreme_tretmana" id="vreme_tretmana" onChange={handleInput}>
+                    <select name="vreme_tretmana" id="vreme_tretmana" onChange={handlex2}>
                         <option>Vreme</option>
                         <option value="12h">12h</option>
                         <option value="13h">13h</option>

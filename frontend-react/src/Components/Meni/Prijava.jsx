@@ -45,6 +45,8 @@ const Prijava = ({addToken, addToken2}) => {
            if(res.data.success === true) {
                window.sessionStorage.setItem("auth_token", res.data.access_token);
                window.sessionStorage.setItem("user_id", res.data.user_id);
+               window.localStorage.setItem("auth_token", res.data.access_token);
+               window.localStorage.setItem("user_id", res.data.user_id);
                addToken(res.data.access_token);
                navigate("/logoped"); 
            }
@@ -97,6 +99,8 @@ const Prijava = ({addToken, addToken2}) => {
             if(res2.data.success === true) {
                 window.sessionStorage.setItem("auth_token2", res2.data.access_token);
                 window.sessionStorage.setItem("roditelj_user_id", res2.data.roditelj_user_id);
+                window.localStorage.setItem("auth_token2", res2.data.access_token);
+                window.localStorage.setItem("roditelj_user_id", res2.data.roditelj_user_id); 
                 addToken2(res2.data.access_token);
                 navigate("/roditelj");
             }

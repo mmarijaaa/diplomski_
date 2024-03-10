@@ -12,7 +12,9 @@ const ListaPacijenata = () => {
 
   const [pacijents, setPacijents] = useState();
 
-  let id_logopeda = window.sessionStorage.getItem("user_id");
+  //let id_logopeda = window.sessionStorage.getItem("user_id");
+  let id_logopeda = window.localStorage.getItem("user_id"); 
+
 
   useEffect(() => {
     if (pacijents == null) {
@@ -21,7 +23,7 @@ const ListaPacijenata = () => {
         //url: 'http://127.0.0.1:8000/api/logopedListaPacijenata/' + id_logopeda,
         url: 'http://127.0.0.1:8000/api/svipac/' + id_logopeda,
         headers: {
-          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+          'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
         },
         data: pacijents,
       };

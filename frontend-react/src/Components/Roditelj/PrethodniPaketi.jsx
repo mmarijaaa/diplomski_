@@ -17,7 +17,7 @@ const PrethodniPaketi = () => {
 
     //TRENUTNI PAKET PACIJENTA SA SVIM INFORMACIJAMA
     const [paketiPac, setPaketiPac] = useState();
-    var id_dete = window.sessionStorage.getItem("iddete");
+    var id_dete = window.localStorage.getItem("iddete");
 
     //USEEFFECT FUNCKIJA ZA ISPISIVANJE ZAVRSENIH TRETMANA
     useEffect(() => {
@@ -27,7 +27,7 @@ const PrethodniPaketi = () => {
             maxBodyLength: Infinity,
             url: 'http://127.0.0.1:8000/api/paketiZavrseni/' + id_dete,
             headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
 
             },
             data: paketiPac
@@ -55,7 +55,7 @@ const PrethodniPaketi = () => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmanaOdradjenih/' + id_dete + "/" + id_pak_pac,
             headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
             },
             data: tretmaniPak,
         };
@@ -90,12 +90,15 @@ const PrethodniPaketi = () => {
                         {paketiPac == null
                             ? (<></>)
                             :
-                            (paketiPac.map(({ id, naziv_paketa, datum_od, datum_do, id_pacijenta, id_logopeda, created_at, updated_at }) =>
-                                <option value={id} >
+                            (paketiPac
+                                .slice()
+                                .sort((a, b) => new Date(a.datum_od) - new Date(b.datum_od))
+                                .map(({ id, naziv_paketa, datum_od, datum_do, id_pacijenta, id_logopeda, created_at, updated_at }) =>
+                                    <option value={id} >
 
-                                    {naziv_paketa} ___ {moment(datum_od).local().format('ll')} - {moment(datum_do).local().format('ll')}
+                                        {naziv_paketa} ___ {moment(datum_od).local().format('ll')} - {moment(datum_do).local().format('ll')}
 
-                                </option>))
+                                    </option>))
                         }
                     </select>
                 </div>
@@ -108,7 +111,10 @@ const PrethodniPaketi = () => {
                 {
                     tretmaniPak == null
                         ? (<></>)
-                        : (tretmaniPak.map((tretman) => <TretmanDete2 tretman={tretman} key={tretman.id} />))
+                        : (tretmaniPak
+                            .slice()
+                            .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+                            .map((tretman) => <TretmanDete2 tretman={tretman} key={tretman.id} />))
                 }
             </div>
         </div>

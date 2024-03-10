@@ -20,7 +20,7 @@ const ListaTretmana = () => {
   const [modalP, setModalP] = useState(false);
   const [modalT, setModalT] = useState(false);
 
-  var id_logopeda = window.sessionStorage.getItem("user_id");
+  var id_logopeda = window.localStorage.getItem("user_id");
 
   useEffect(() => {
     if (pregledi == null) {
@@ -28,7 +28,7 @@ const ListaTretmana = () => {
         method: 'get',
         url: 'http://127.0.0.1:8000/api/listaPregleda',
         headers: {
-          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+          'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
         },
         data: pregledi
       };
@@ -55,7 +55,7 @@ const ListaTretmana = () => {
         maxBodyLength: Infinity,
         url: 'http://127.0.0.1:8000/api/listaTretmanaLogoped/' + id_logopeda,
         headers: {
-          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+          'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
         },
         data: tretmani
       };
@@ -68,11 +68,12 @@ const ListaTretmana = () => {
         })
         .catch((error) => {
           console.log(error);
-        }); 
+        });
     }
-    
+
   },
     []);
+
 
   return (
     <div className="lista">
@@ -84,18 +85,32 @@ const ListaTretmana = () => {
             <button className='dugmeP' onClick={tretmaniLista}>TRETMANI</button> */}
       </div>
 
-            {
-               loading && loading2 ? 
-                ( pregledi == null && tretmani == null
-                  ? (<></>)
-                  :
-                  (<div> {pregledi.map((pregled) => <Pregled pregled={pregled} key={pregled.id} />)}
-                  {tretmani.map((tretman) => <Tretman tretman={tretman} key={tretman.id} />)}
-                  </div>) 
-                )
-               :
-                (<Loading/>) 
-            }
+      {
+        loading && loading2 ?
+          (pregledi == null && tretmani == null
+            ? (<></>)
+            :
+            // (<div>
+            //   {pregledi
+            //     .slice()
+            //     .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+            //     .map((pregled) => <Pregled pregled={pregled} key={pregled.id} />)}
+
+            //   {tretmani
+            //     .slice()
+            //     .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+            //     .map((tretman) => <Tretman tretman={tretman} key={tretman.id} />)}
+            // </div>)
+            (<div>
+              {pregledi.concat(tretmani)
+                .slice()
+                .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+                .map((tretman) => <Tretman tretman={tretman} key={tretman.id} />)}
+            </div>)
+          )
+          :
+          (<Loading />)
+      }
 
       {/*
         loading ? (

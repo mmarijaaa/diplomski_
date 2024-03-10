@@ -105,12 +105,15 @@ const PrethodniPaketiPacijenta = () => {
                         {paketiPac == null
                             ? (<></>)
                             :
-                            (paketiPac.map(({ id, naziv_paketa, datum_od, datum_do, id_pacijenta, id_logopeda, created_at, updated_at }) =>
-                                <option value={id} >
+                            (paketiPac
+                                .slice()
+                                .sort((a, b) => new Date(a.datum_od) - new Date(b.datum_od))
+                                .map(({ id, naziv_paketa, datum_od, datum_do, id_pacijenta, id_logopeda, created_at, updated_at }) =>
+                                    <option value={id} >
 
-                                    {naziv_paketa} ___ {moment(datum_od).local().format('ll')} - {moment(datum_do).local().format('ll')}
+                                        {naziv_paketa} ___ {moment(datum_od).local().format('ll')} - {moment(datum_do).local().format('ll')}
 
-                                </option>))
+                                    </option>))
                         }
                     </select>
                 </div>
@@ -123,9 +126,12 @@ const PrethodniPaketiPacijenta = () => {
             <div className="prethodni_paketi_tretmani">
                 {
                     // loading ? (
-                        tretmaniPak == null
-                            ? (<></>)
-                            : (tretmaniPak.map((tretman) => <TretmanPacijent2 tretman={tretman} key={tretman.id} />))
+                    tretmaniPak == null
+                        ? (<></>)
+                        : (tretmaniPak
+                            .slice()
+                            .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+                            .map((tretman) => <TretmanPacijent2 tretman={tretman} key={tretman.id} />))
 
                     // )
                     //     : (<Loading />)

@@ -42,7 +42,7 @@ const PocetnaRoditelj = () => {
       method: 'get',
       url: 'http://127.0.0.1:8000/api/zahtevNepregledan/' + id_roditelja,
       headers: {
-        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
       },
       data: zahtevNepreg
     };
@@ -64,7 +64,7 @@ const PocetnaRoditelj = () => {
                   method: 'put',
                   url: 'http://127.0.0.1:8000/api/zahtevPregledan/' + id_zahteva,
                   headers: {
-                    'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+                    'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
                   },
                   data: zahtevPreg
                 };
@@ -102,7 +102,7 @@ const PocetnaRoditelj = () => {
   const [logopedID, setLogopedID] = useState();
   const [logopedTel, setLogopedTel] = useState();
 
-  let id_roditelja = window.sessionStorage.getItem("roditelj_user_id");
+  let id_roditelja = window.localStorage.getItem("roditelj_user_id");
 
   //LISTA DECE RODITELJA
   useEffect(() => {
@@ -110,7 +110,7 @@ const PocetnaRoditelj = () => {
       method: 'get',
       url: 'http://127.0.0.1:8000/api/listaDece/' + id_roditelja,
       headers: {
-        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
       },
       data: deca,
     };
@@ -119,7 +119,7 @@ const PocetnaRoditelj = () => {
       .then((response) => {
         console.log(JSON.stringify(response.data));
         console.log("Lista dece prikazana");
-        window.sessionStorage.setItem("id_logopeda_pacijenta", response.data.deca[0].id_logopeda);
+        window.localStorage.setItem("id_logopeda_pacijenta", response.data.deca[0].id_logopeda);
         setDeca(response.data.deca);
         setLoading2(true);
 
@@ -127,17 +127,17 @@ const PocetnaRoditelj = () => {
           var config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: 'http://127.0.0.1:8000/api/paketTrenutni/' + window.sessionStorage.getItem("iddete"),
+            url: 'http://127.0.0.1:8000/api/paketTrenutni/' + window.localStorage.getItem("iddete"),
             headers: {
-              'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
 
             },
             data: paketTrenutni2
           };
           axios.request(config)
             .then((response) => {
-              window.sessionStorage.setItem("id_trenutnog_paketa", response.data.data[0].id);
-              window.sessionStorage.setItem("id_paketa", response.data.data[0].naziv_paketa.slice(6,8)); 
+              window.localStorage.setItem("id_trenutnog_paketa_roditelj", response.data.data[0].id);
+              window.localStorage.setItem("id_paketa_roditelj", response.data.data[0].naziv_paketa.slice(6,8)); 
             })
             .catch((error) => {
               console.log(error);
@@ -158,15 +158,15 @@ const PocetnaRoditelj = () => {
       method: 'post',
       url: 'http://127.0.0.1:8000/api/logoutRoditelja',
       headers: {
-        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
       }
     };
 
     axios.request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        window.sessionStorage.setItem("auth_token2", null);
-        window.sessionStorage.setItem("roditelj_user_id", null);
+        window.localStorage.setItem("auth_token2", null);
+        window.localStorage.setItem("roditelj_user_id", null);
         console.log("Uspesno ste se izlogovali");
       })
       .catch((error) => {
@@ -186,7 +186,7 @@ const PocetnaRoditelj = () => {
       method: 'get',
       url: 'http://127.0.0.1:8000/api/sviRoditelji/' + id_roditelja,
       headers: {
-        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
       },
       data: roditelj,
     };
@@ -209,7 +209,7 @@ const PocetnaRoditelj = () => {
         //       method: 'get',
         //       url: 'http://127.0.0.1:8000/api/logoped/' + id_logopeda, 
         //       headers: { 
-        //         'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token2"),
+        //         'Authorization': 'Bearer '+window.localStorage.getItem("auth_token2"),
         //       },
         //       data : logoped,
         //     };
@@ -250,7 +250,7 @@ const PocetnaRoditelj = () => {
       maxBodyLength: Infinity,
       url: 'http://127.0.0.1:8000/api/paketiPacijentaLogoped/' + iddete,
       headers: { 
-        'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+        'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
         
       },
       data : paketiPac
@@ -275,7 +275,7 @@ const PocetnaRoditelj = () => {
       maxBodyLength: Infinity,
       url: 'http://127.0.0.1:8000/api/paketiPacijentaLogoped/' + idj,
       headers: { 
-        'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+        'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
         
       },
       data : paketiPac
@@ -301,7 +301,7 @@ const PocetnaRoditelj = () => {
   /*function t2(e) { 
     setIzaberi("Izaberite");
     id_pak_pac = e.target.value;
-    iddete = window.sessionStorage.getItem("iddete");
+    iddete = window.localStorage.getItem("iddete");
     console.log(id_pak_pac); 
     console.log(iddete);
     
@@ -311,7 +311,7 @@ const PocetnaRoditelj = () => {
           method: 'get',
           url: 'http://127.0.0.1:8000/api/listaTretmanaOdradjenih/' + iddete + "/" + id_pak_pac,
           headers: { 
-            'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+            'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
           },
           data : tretmani3,
         };
@@ -334,7 +334,7 @@ const PocetnaRoditelj = () => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmanaZakazanih/' + iddete+ "/" + id_pak_pac,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
             },
             data : tretmani4,
           };
@@ -365,9 +365,9 @@ const PocetnaRoditelj = () => {
     var config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:8000/api/paketTrenutni/' + window.sessionStorage.getItem("iddete"),
+      url: 'http://127.0.0.1:8000/api/paketTrenutni/' + window.localStorage.getItem("iddete"),
       headers: {
-        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
 
       },
       data: paketTrenutni
@@ -375,10 +375,10 @@ const PocetnaRoditelj = () => {
 
     axios.request(config)
       .then((response) => {
-        window.sessionStorage.setItem("id_trenutnog_paketa", response.data.data[0].id);
-        window.sessionStorage.setItem("datum_do", response.data.data[0].datum_do);
+        window.localStorage.setItem("id_trenutnog_paketa_roditelj", response.data.data[0].id);
+        window.localStorage.setItem("datum_do", response.data.data[0].datum_do);
         br_tret = response.data.data[0].naziv_paketa.slice(10, 12).trim();
-        window.sessionStorage.setItem("broj_tretmana", br_tret);
+        window.localStorage.setItem("broj_tretmana", br_tret);
         console.log(response.data.data[0].id);
         console.log(br_tret);
       })
@@ -397,16 +397,16 @@ const PocetnaRoditelj = () => {
     var config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:8000/api/paketTrenutni/' + window.sessionStorage.getItem("iddete"),
+      url: 'http://127.0.0.1:8000/api/paketTrenutni/' + window.localStorage.getItem("iddete"),
       headers: {
-        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
 
       },
       data: paketTrenutni2
     };
     axios.request(config)
       .then((response) => {
-        window.sessionStorage.setItem("id_trenutnog_paketa", response.data.data[0].id);
+        window.localStorage.setItem("id_trenutnog_paketa_roditelj", response.data.data[0].id);
       })
       .catch((error) => {
         console.log(error);
@@ -509,17 +509,17 @@ const PocetnaRoditelj = () => {
                       {prezimej = prezime}
                       {jedno = true}
                       {idj = id}
-                    </div>
+                    </div> 
                     : <div></div>
                   }
 
                   {deca.length == 1
                     ? <div>
-                      {window.sessionStorage.setItem("broj_dece", "jedno")}
-                      {window.sessionStorage.setItem("iddete", id)}
+                      {window.localStorage.setItem("broj_dece", "jedno")}
+                      {window.localStorage.setItem("iddete", id)}
                     </div>
 
-                    : window.sessionStorage.setItem("broj_dece", "vise")
+                    : window.localStorage.setItem("broj_dece", "vise")
                   }
 
                   {/*SVAKO DETE JE DUGME ZA SEBE I VRSI FUNKCIJU SETOVANJA PODATAKA*/}
@@ -535,8 +535,8 @@ const PocetnaRoditelj = () => {
                         setDeteID(id);
                         iddete = id;
                         console.log(iddete);
-                        window.sessionStorage.setItem("iddete", iddete);
-                        window.sessionStorage.setItem("id_paketa", id_paketa);
+                        window.localStorage.setItem("iddete", iddete);
+                        window.localStorage.setItem("id_paketa_roditelj", id_paketa);
                         setIzaberi("Izaberite...");
                         odabir = "Izaberite";
                         setTretmani3([]);

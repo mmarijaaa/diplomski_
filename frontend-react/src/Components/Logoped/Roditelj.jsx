@@ -137,6 +137,23 @@ const Roditelj = ({ roditelj }) => {
     }
   }, []);
 
+
+  //KREIRANJE PACIJENTA - DETETA
+  //MODAL - IZMENA PACIJENTA 
+  const [modalDete, setModalDete] = useState(false);
+
+  if (modalDete) {
+    document.body.classList.add('active-modal')
+  } else {
+    document.body.classList.remove('active-modal')
+  }
+
+  //KREIRANJE PACIJENTA - DETETA
+  function toggleModalKreirajPacijenta() {
+    setModalDete(!modalDete);
+    console.log("kreiranje");
+  }
+
   return (
     <div className="roditelji">
 
@@ -151,16 +168,19 @@ const Roditelj = ({ roditelj }) => {
 
         <div className="rod_deca">
           {
-              loading2 ? (            
-                deca == null
-              ? (<></>)
-              : (deca.map((pacijent) => <PacijentRoditelj2 pacijent={pacijent} key={pacijent.id} />))
-              ) :
-              (<Loading2/>) 
+            loading2 ? (
+              deca == null
+                ? (<></>)
+                : (deca.map((pacijent) => <PacijentRoditelj2 pacijent={pacijent} key={pacijent.id} />))
+            ) :
+              (<Loading2 />)
           }
         </div>
 
         <div className='rod_dugmad'>
+          <button className='rod_dugme' onClick={toggleModalKreirajPacijenta}>
+            KREIRAJ DETE
+          </button>
           <button className='rod_dugme' onClick={toggleModalIzmena}>
             IZMENI
           </button>
@@ -229,6 +249,89 @@ const Roditelj = ({ roditelj }) => {
             <div className="dugmeklasa">
               <button className="izmenadugme" onClick={handleIzmenaRoditelja}>
                 IZMENI
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {modalDete && (
+        <div className='modalL'>
+          <div className='overlayL' onClick={toggleModalKreirajPacijenta}></div>
+          <div className='contentL'>
+
+            <input
+              type="text"
+              id="ime_pacijenta"
+              className="polje"
+              placeholder="Unesite ime pacijenta..."
+              onInput={handleInput}
+              name="ime"
+
+              autoComplete="off"
+            />
+
+            <input
+              type="text"
+              id="prezime_pacijenta"
+              className="polje"
+              placeholder="Unesite prezime pacijenta..."
+              onInput={handleInput}
+              name="prezime"
+
+              autoComplete="off"
+            />
+
+            <input
+              type="text"
+              id="uzrast_pacijenta"
+              className="polje"
+              placeholder="Unesite uzrast pacijenta..."
+              onInput={handleInput}
+              name="uzrast"
+
+              autoComplete="off"
+            />
+
+            <select name="poremecajj" onChange={handleInput} defaultValue={"placeholder"} multiple>
+              {/* <option value={"placeholder"}>Izaberi poremećaj</option> */}
+              <option value="Pervazivni razvojni poremecaji - autizam">Pervazivni razvojni poremecaji - autizam</option>
+              <option value="Afazija">Afazija</option>
+              <option value="Artikulacija">Artikulacija</option>
+              <option value="Disfazija">Disfazija</option>
+              <option value="Disgrafija">Disgrafija</option>
+              <option value="Egzekutivne funkcije">Egzekutivne funkcije</option>
+              <option value="Disleksija">Disleksija</option>
+              <option value="Fluentnost govora - mucanje">Fluentnost govora - mucanje</option>
+              <option value="Razvoj grafomotorickih sposobnosti">Razvoj grafomotorickih sposobnosti</option>
+              <option value="Agramatizam">Agramatizam</option>
+              <option value="Razvoj verbalne memorije">Razvoj verbalne memorije</option>
+              <option value="Savladavanje školskog gradiva">Savladavanje školskog gradva</option>
+            </select>
+
+            <input
+              type="text"
+              name="poremecaj"
+              id="poremecaj_pacijenta"
+              className="polje"
+              placeholder="Poremećaji pacijenta..."
+              onInput={handleInput}
+            />
+
+            <select name="id_paketa" id="paket" onChange={handleInput} defaultValue={"placeholder"}>
+              <option value={"placeholder"}>Izaberi paket</option>
+              <option value="1">Paket 1 - 4 tretmana</option>
+              <option value="2">Paket 2 - 8 tretmana</option>
+              <option value="3">Paket 3 - 12 tretmana</option>
+              <option value="4">Paket 4 - 18 tretmana</option>
+              <option value="5">Paket 5 - 24 tretmana</option>
+            </select>
+
+            {/* <h6>{porukaGreske}</h6> */}
+
+            <div className="dugmeklasa">
+              <button className="izmenadugme" onClick={handleIzmenaRoditelja}>
+                KREIRAJ PACIJENTA
               </button>
             </div>
           </div>

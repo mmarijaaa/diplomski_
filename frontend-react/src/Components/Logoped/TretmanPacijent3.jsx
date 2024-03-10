@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Swal from 'sweetalert2'
 
-const TretmanPacijent = ({tretman}) => {
+const TretmanPacijent3 = ({tretman}) => {
 
     let datum1 = tretman.datum_tretmana;
     let datum = moment(datum1).local().format('ll'); //srediti 
@@ -57,40 +57,6 @@ const TretmanPacijent = ({tretman}) => {
           });
     }
 
-    function otkazivanjeTretmana() {
-      Swal.fire({
-        title: "Da li sigurno želite da otkažete tretman?",
-        confirmButtonText: "DA",
-        showCancelButton: true,
-      }).then((result) => {
-        if (result.isConfirmed) {
-
-      var config = {
-        method: 'delete',
-        url: 'http://127.0.0.1:8000/api/brisanjeTretmana/' + tretman.id,
-        headers: { 
-          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),  
-        },
-        
-      };
-      
-      axios.request(config)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-        console.log("Tretman obrisan.");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-      Swal.fire("Tretman otkazan.")
-      .then(function(){
-        // navigate("/roditelj"); 
-      });
-    }
-    });
-    }
-
     return (
         <div className="tretmanL">
             <div className='tretman_info1L'>{tretman.naziv_tretmana}  -  {datum}  -  {tretman.vreme_tretmana}</div>
@@ -100,12 +66,10 @@ const TretmanPacijent = ({tretman}) => {
               ? (<div className="tretman_sadrzajL">
                   <textarea spellcheck="false" type="text" name="sadrzaj_tretmana" onInput={handleInput}/>
                   <button className="dugme_sadrzajL" onClick={dodajSadrzajTretmanu}>DODAJ SADRŽAJ</button>
-                  <button className="dugme_sadrzajL" onClick={otkazivanjeTretmana}>OTKAŽI TRETMAN</button>
                 </div>)
               : (<div className="tretman_sadrzajL">
                 <textarea spellcheck="false" type="text"  name="sadrzaj_tretmana" onInput={handleInput} defaultValue={tretman.sadrzaj_tretmana} />
                 <button className="dugme_sadrzajL" onClick={dodajSadrzajTretmanu}>IZMENI SADRŽAJ</button> 
-                <button className="dugme_sadrzajL" onClick={otkazivanjeTretmana}>OTKAŽI TRETMAN</button>
                 </div>) 
             }
             </div>
@@ -113,4 +77,4 @@ const TretmanPacijent = ({tretman}) => {
     );
 }
 
-export default TretmanPacijent;
+export default TretmanPacijent3;

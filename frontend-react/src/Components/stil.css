@@ -2096,7 +2096,7 @@ input:-webkit-autofill:focus {
     /* border: 2px solid #003353; */
     border: none;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    border-radius: 50px;
+    border-radius: 10px;
 }
 
 .kreiraj_forma input::placeholder {
@@ -2116,7 +2116,7 @@ input:-webkit-autofill:focus {
     /* border: 2px solid #003353; */
     border: none;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    border-radius: 50px;
+    border-radius: 10px;
 }
 
 .kreiraj_forma .vreme_tretmana2 {
@@ -2131,7 +2131,7 @@ input:-webkit-autofill:focus {
     /* border: 2px solid #003353; */
     border: none;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    border-radius: 50px;
+    border-radius: 10px;
 
 }
 
@@ -2213,6 +2213,10 @@ input:-webkit-autofill:focus {
 
 .kreiraj_forma input:focus {
     outline: none;
+}
+
+.kreiraj_forma #poremecaj_pacijenta {
+    width: 120%;
 }
 
 /******************************************************/
@@ -2820,7 +2824,7 @@ input:-webkit-autofill:focus {
 
 .roditelj .rod_info .rod_tel {
     padding: 10px;
-    flex: 20%;
+    flex: 15%;
     text-align: center;
     display: flex;
     align-items: center;
@@ -2839,7 +2843,7 @@ input:-webkit-autofill:focus {
 }
 
 .roditelj .rod_dugmad {
-    flex: 10%;
+    flex: 15%;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -2851,10 +2855,17 @@ input:-webkit-autofill:focus {
     background-color: #fdfced;
     border: none;
     border-radius: 50px;
+    cursor: pointer;
+    color: #003353;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-
+.roditelj .rod_dugmad .rod_dugme:hover {
+    color: #fdfced;
+    background-color: #003353;
+}
 
 
 .lista_header {
@@ -2903,7 +2914,7 @@ input:-webkit-autofill:focus {
 }
 
 .lista_header #rod_tel {
-    flex: 15%;
+    flex: 10%;
     /* border-radius: 10px;
     border: 2px solid #003353;
     padding: 5px 0px 5px 5px;
@@ -2921,7 +2932,7 @@ input:-webkit-autofill:focus {
 }
 
 .lista_header #rod_dugmad {
-    flex: 10%;
+    flex: 15%;
     padding-left: 10px;
 }
 
@@ -3871,6 +3882,26 @@ input:-webkit-autofill:focus {
     background-color: #f5f5df;
     cursor: pointer;
 }
+
+.ceo_tret_log {
+    display: flex;
+    flex-direction: row;
+}
+.ceo_tret_log .tret_rbr_log {
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    margin-right: 5px;
+    height: 50px;
+    color: #003353;
+    font-size: 20px;
+    font-family: 'Nunito Sans', sans-serif;
+    border: none;
+    border-radius: 10px;
+    background-color: #f5f5df;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
 
 /*ZAKAZIVANJE TRETMANA*/
 

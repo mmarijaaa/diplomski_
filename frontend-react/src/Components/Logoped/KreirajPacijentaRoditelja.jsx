@@ -10,6 +10,25 @@ const KreirajPacijentaRoditelja = ({}) => {
 
     const Swal = require('sweetalert2'); 
 
+    var [poremecaji, setPoremecaji] = useState();
+    var listaPoremecaja = "";
+    //ubaciti novo input bolje gde se ispisuje lista poremecaja
+    function handleInput3(e) {
+        var options = e.target.options;
+        var value = [];
+        poremecaji = ""; 
+        for (var i = 0, l = options.length; i < l; i++) {
+          if (options[i].selected) {
+            value.push(options[i].value);
+            listaPoremecaja = listaPoremecaja + options[i].value + ", ";
+          }
+        }
+        var listaPoremecaja1 = listaPoremecaja.slice(0,-1);
+        console.log(value);
+        setPoremecaji(listaPoremecaja1); 
+        console.log(poremecaji);
+    }
+
     const [pacijentData, setPacijentData] = useState({
         ime:"",
         prezime:"",
@@ -19,6 +38,7 @@ const KreirajPacijentaRoditelja = ({}) => {
         id_logopeda:"",
         id_paketa:""
     });
+
     const [roditelji, setRoditelji] = useState();
 
     let id_logopeda = window.sessionStorage.getItem("user_id");
@@ -49,6 +69,7 @@ const KreirajPacijentaRoditelja = ({}) => {
         let newPacijentData = pacijentData;
         newPacijentData[e.target.name] = e.target.value;
         setPacijentData(newPacijentData);
+        
         //setPaketPac plus handle input za odrednjena polja 
         //dve funckije za neka polja treba da se odrade
         //function dve() handleinput i handleinput2
@@ -74,14 +95,29 @@ const KreirajPacijentaRoditelja = ({}) => {
         console.log(e.target.options[e.target.selectedIndex].text);
     }
 
+    function handleSelect(e) {
+        handleInput3();
+        handleInput();
+    }
+
     let id_roditelja;
     const [polje, setPolje] = useState(); 
     const [porukaGreske, setPorukaGreske] = useState();
 
+    const today = new Date();
+    const mesec_danas = today.getMonth() + 1;
+    const mesec_danas1 = today.getMonth() + 2;
+    const godina_danas = today.getFullYear();
+    const dan_danas = today.getDate();
+    var datum_od = godina_danas + "-" + mesec_danas + "-" + dan_danas + " " + "00:00:00";
+    var datum_do = godina_danas + "-" + mesec_danas1 + "-" + dan_danas + " " + "00:00:00";
+
     const[paketPac, setPaketPac] = useState({
         naziv_paketa:"",
-        datum_od:"",
-        datum_do:"",
+        // datum_od:"",
+        // datum_do:"",
+        datum_od: datum_od,
+        datum_do: datum_do,
         id_pacijenta:"",
         id_logopeda:"",
     });
@@ -92,9 +128,11 @@ const KreirajPacijentaRoditelja = ({}) => {
         e.preventDefault();
 
         let id_paketa = document.getElementById("paket").value;
+
+        console.log(poremecaji);
         
         //KREIRANJE PACIJENTA
-        var config = {
+       var config = {
             method: 'post',
             url: 'http://127.0.0.1:8000/api/kreirajPacijenta/'+ id_roditelja + '/' + id_paketa,
             headers: { 
@@ -112,7 +150,7 @@ const KreirajPacijentaRoditelja = ({}) => {
                 id_pac = response.data[0].id;
                 //setPolje(''); 
                 Swal.fire({
-                    title: 'Uspesno sacuvan pacijent!',
+                    title: 'Uspesno sačuvan pacijent!', 
                     showConfirmButton: true,
                     //confirmButtonText: "Kreiraj paket!"
                 // }).then(function(){ 
@@ -158,30 +196,6 @@ const KreirajPacijentaRoditelja = ({}) => {
             console.log(error);
             //console.log("Pacijent NIJE USPESNO kreiran");
         });
-
-        //KREIRANJE PAKETA PACIJENTA 
-        // var config = {
-        //     method: 'post',
-        //     url: 'http://127.0.0.1:8000/api/kreirajNoviPaket/,'+ naziv_paketa + '/' + id_pac + '/' + id_roditelja,
-        //     headers: { 
-        //       'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"), 
-        //     },
-        //     data: paketPac,
-        // };
-
-        // axios(config)
-        // .then((response) => {
-        //     if(response.data.success === true) {
-        //         console.log(JSON.stringify(response.data));
-        //         console.log('kreiran je i paket pacijenta uspesno');
-        //     } else {
-        //     } 
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // });
-
-
     };
 
     
@@ -216,8 +230,7 @@ const KreirajPacijentaRoditelja = ({}) => {
 
     return (
         <div className="log_forma">
-            {/* <button onClick={nesto}>Nesto</button> */}
-            <form onSubmit={handleKreirajPacijenta}>
+            {/* <form onSubmit={handleKreirajPacijenta}> */}
 
             <div className="kreiraj_forma">
                 <p>KREIRANJE PACIJENTA</p> 
@@ -255,8 +268,8 @@ const KreirajPacijentaRoditelja = ({}) => {
                         autoComplete="off"
                     />
                    
-                    <select name="poremecaj" onChange={handleInput} defaultValue={"placeholder"}>
-                        <option value={"placeholder"}>Izaberi poremećaj</option>
+                    <select name="poremecajj" onChange={handleInput3} defaultValue={"placeholder"} multiple>
+                        {/* <option value={"placeholder"}>Izaberi poremećaj</option> */}
                         <option value="Pervazivni razvojni poremecaji - autizam">Pervazivni razvojni poremecaji - autizam</option>
                         <option value="Afazija">Afazija</option>
                         <option value="Artikulacija">Artikulacija</option>
@@ -270,6 +283,16 @@ const KreirajPacijentaRoditelja = ({}) => {
                         <option value="Razvoj verbalne memorije">Razvoj verbalne memorije</option>
                         <option value="Savladavanje školskog gradiva">Savladavanje školskog gradva</option>
                     </select>
+
+                    <input 
+                        type="text"
+                        name="poremecaj"  
+                        id="poremecaj_pacijenta"
+                        className="polje"
+                        placeholder="Poremećaji pacijenta..."
+                        onInput={handleInput}
+                        defaultValue={poremecaji}
+                    /> 
                    
                     <select name="id_paketa" id="paket" onChange={hanldex2} defaultValue={"placeholder"}>
                         <option value={"placeholder"}>Izaberi paket</option>
@@ -290,15 +313,16 @@ const KreirajPacijentaRoditelja = ({}) => {
                     <h6>{porukaGreske}</h6>
                     
                     <button
-                        type="submit"
+                        // type="submit"
                         className="dugme"
+                        onClick={handleKreirajPacijenta}
                     >
                     KREIRAJ PACIJENTA 
                     </button>
                     
             </div>
 
-            </form>
+            {/* </form> */}
 
         </div>
     );

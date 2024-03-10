@@ -26,7 +26,7 @@ const PocetnaLogoped = ({ }) => {
   const [logopedPrezime, setLogopedPrezime] = useState();
 
 
-  let id_logopeda = window.sessionStorage.getItem("user_id");
+  let id_logopeda = window.localStorage.getItem("user_id");
 
   useEffect(() => {
     if (logoped == null) {
@@ -35,7 +35,7 @@ const PocetnaLogoped = ({ }) => {
         // url: 'http://127.0.0.1:8000/api/logoped/' + id_logopeda,
         url: 'http://127.0.0.1:8000/api/sviLogopedi/' + id_logopeda,
         headers: {
-          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+          'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
         },
         data: logoped,
       };
@@ -59,7 +59,7 @@ const PocetnaLogoped = ({ }) => {
       method: 'post',
       url: 'http://127.0.0.1:8000/api/logout',
       headers: {
-        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
       }
     };
 
@@ -91,7 +91,7 @@ const PocetnaLogoped = ({ }) => {
 
         <div className="log_info">
           <img className="log_icon" src={logopedIcon} alt="" />
-          <p>Logoped {logopedIme} {logopedPrezime}</p>
+          <p>{logopedIme} {logopedPrezime}</p>
         </div>
 
         <div className='log_linkovi'>
@@ -119,20 +119,20 @@ const PocetnaLogoped = ({ }) => {
             <img className="log_icon" src={lista} alt="" />
             <Link to='/logoped/listaZahteva' className='log_link'>Lista zahteva</Link>
           </div>
-          <div className="log_link_red">
+          {/* <div className="log_link_red">
             <img className="log_icon" src={create} alt="" />
             <Link to='/logoped/kreirajZahtev' className='log_link'>Kreiraj zahtev</Link>
-          </div>
+          </div> */}
 
           <div className="log_link_red">
             <img className="log_icon" src={lista} alt="" />
             <Link to='/logoped/listaTretmana' className='log_link'>Lista pregleda i tretmana</Link>
           </div>
 
-          <div className="log_link_red">
+          {/* <div className="log_link_red">
             <img className="log_icon" src={create} alt="" />
             <Link to='/logoped/kreirajTretman' className='log_link'>Kreiraj tretman</Link>
-          </div>
+          </div> */}
         </div>
 
         <div className="log_odjava">
