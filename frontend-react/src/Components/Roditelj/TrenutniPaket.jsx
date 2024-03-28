@@ -163,7 +163,7 @@ const TrenutniPaket = () => {
   var zahtev_paket;
   var zahtev_poremecaj;
   var zahtev;
-  var id_log = window.localStorage.getItem("id_logopeda_pacijenta");
+  var id_log = window.localStorage.getItem("id_logopeda_pacijenta_roditelj");
   var id_rod = window.localStorage.getItem("roditelj_user_id");
 
   // const[zahtevObnova, setZahtevObnova] = useState({

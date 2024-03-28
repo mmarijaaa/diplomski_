@@ -47,7 +47,7 @@ const Roditelj = ({ roditelj }) => {
       method: 'put',
       url: 'http://127.0.0.1:8000/api/izmenaRoditelja/' + id_roditelja,
       headers: {
-        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
       },
       data: roditeljData
     };
@@ -56,9 +56,9 @@ const Roditelj = ({ roditelj }) => {
       .then((response) => {
         console.log(JSON.stringify(response.data));
         console.log("Roditelj uspesno izmenjen.");
-        setRoditeljData(response.data.roditelj);
+        //setRoditeljData(response.data.roditelj);
         Swal.fire({
-          title: 'Roditelj uspesno izmenjen!',
+          title: 'Roditelj uspešno ažuriran!',
         })
       })
       .catch((error) => {
@@ -84,7 +84,7 @@ const Roditelj = ({ roditelj }) => {
           method: 'delete',
           url: 'http://127.0.0.1:8000/api/brisanjeRoditelja/' + id_roditelja,
           headers: {
-            'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+            'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
           },
 
         };
@@ -118,7 +118,7 @@ const Roditelj = ({ roditelj }) => {
         method: 'get',
         url: 'http://127.0.0.1:8000/api/listaDece/' + id_roditelja2,
         headers: {
-          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+          'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
         },
         data: deca,
       };
@@ -153,6 +153,97 @@ const Roditelj = ({ roditelj }) => {
     setModalDete(!modalDete);
     console.log("kreiranje");
   }
+  const [porukaGreske, setPorukaGreske] = useState();
+  /*const[paketPac, setPaketPac] = useState({
+    naziv_paketa:"",
+    datum_od: datum_od,
+    datum_do: datum_do,
+    id_pacijenta:"",
+    id_logopeda:"",
+});*/
+  const [pacijentData, setPacijentData] = useState({
+    ime: "",
+    prezime: "",
+    uzrast: "",
+    poremecaj: "",
+    id_roditelja: "",
+    id_logopeda: "",
+    id_paketa: ""
+  });
+  function handleKreirajPacijenta(e) {
+
+    e.preventDefault();
+
+    let id_paketa = document.getElementById("paket").value;
+
+    console.log(id_paketa);
+
+    //KREIRANJE PACIJENTA
+    /*var config = {
+         method: 'post',
+         url: 'http://127.0.0.1:8000/api/kreirajPacijenta/'+ id_roditelja + '/' + id_paketa,
+         headers: { 
+           'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"), 
+         },
+         data: pacijentData,
+     };
+
+     axios(config)
+     .then((response) => {
+         if(response.data.success === true) {
+             console.log("Pacijent uspesno kreiran");
+             console.log(JSON.stringify(response.data));
+             window.localStorage.setItem('id_pac',response.data[0].id);
+             id_pac = response.data[0].id;
+             //setPolje(''); 
+             Swal.fire({
+                 title: 'Uspesno sačuvan pacijent!', 
+                 showConfirmButton: true,
+                 //confirmButtonText: "Kreiraj paket!"
+             // }).then(function(){ 
+
+             // window.location.reload();
+
+                  }).then((result) => {
+                     if (result.isConfirmed) {
+                
+                             console.log(id_pac);
+                             console.log(id_roditelja);
+                             console.log(naziv_paketa);
+                             var config = {
+                                 method: 'post',
+                                 url: 'http://127.0.0.1:8000/api/kreirajNoviPaket/'+ naziv_paketa + '/' + id_pac + '/' + id_logopeda,
+                                 headers: { 
+                                 'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"), 
+                                 },
+                                 data: paketPac,
+                             };
+         
+                             axios(config)
+                             .then((response) => {
+                                 console.log(JSON.stringify(response.data));
+                             })
+                             .catch((error) => {
+                                 console.log(error);
+                             });  
+                         }
+                 })
+                 //then(function(){
+                 //     window.location.reload();
+                 // });
+                 
+         
+     } else {
+             console.log("Pacijent NIJE USPESNO kreiran");
+             console.log(response.data.poruka);
+             setPorukaGreske(response.data.poruka);
+         }
+     })
+     .catch((error) => {
+         console.log(error);
+         //console.log("Pacijent NIJE USPESNO kreiran");
+     });*/
+  };
 
   return (
     <div className="roditelji">
@@ -178,9 +269,6 @@ const Roditelj = ({ roditelj }) => {
         </div>
 
         <div className='rod_dugmad'>
-          <button className='rod_dugme' onClick={toggleModalKreirajPacijenta}>
-            KREIRAJ DETE
-          </button>
           <button className='rod_dugme' onClick={toggleModalIzmena}>
             IZMENI
           </button>
@@ -330,7 +418,7 @@ const Roditelj = ({ roditelj }) => {
             {/* <h6>{porukaGreske}</h6> */}
 
             <div className="dugmeklasa">
-              <button className="izmenadugme" onClick={handleIzmenaRoditelja}>
+              <button className="izmenadugme" onClick={handleKreirajPacijenta}>
                 KREIRAJ PACIJENTA
               </button>
             </div>

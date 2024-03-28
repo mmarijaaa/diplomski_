@@ -13,7 +13,7 @@ class Tretman extends Model
         'datum_tretmana',
         'vreme_tretmana',
         'naziv_tretmana',
-        'redni_broj_tretmana',
+        // 'redni_broj_tretmana',
         'sadrzaj_tretmana',
         'id_pacijenta',
         'id_logopeda',

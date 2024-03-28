@@ -10,7 +10,7 @@ const KreirajTretman = () => {
     const [pacIdPaketa, setPacIdPaketa] = useState();
     const [pacIdPakPac, setPacIdPakPac] = useState();
 
-    var id_logopeda = window.sessionStorage.getItem("user_id");
+    var id_logopeda = window.localStorage.getItem("user_id");
     var id_pacijenta;
     var id_paket;
     var id_paket_pacijenta;
@@ -21,7 +21,7 @@ const KreirajTretman = () => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/svipac/' + id_logopeda,
             headers: { 
-              'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"),
+              'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"),
             },
             data : pacijenti,
           };
@@ -62,7 +62,7 @@ const KreirajTretman = () => {
             maxBodyLength: Infinity,
             url: 'http://127.0.0.1:8000/api/paketTrenutni/' + id_pacijenta,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token"),
               
             },
             data : paketTrenutni

@@ -34,7 +34,7 @@ const TretmanPacijent3 = ({tretman}) => {
             method: 'put',
             url: 'http://127.0.0.1:8000/api/dodajSadrzaj/' + id_tretmana,
             headers: { 
-              'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),  
+              'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),  
             },
             data : tretmanData
           };

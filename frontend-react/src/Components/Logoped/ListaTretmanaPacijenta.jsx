@@ -23,9 +23,9 @@ const ListaTretmanaPacijenta = () => {
   const [tretmani3, setTretmani3] = useState();
   const [tretmani4, setTretmani4] = useState();
 
-  let ime = window.sessionStorage.getItem("ime_pac");
-  let prezime = window.sessionStorage.getItem("prezime_pac");
-  let id_pacijenta = window.sessionStorage.getItem("id_pacijenta_logoped");
+  let ime = window.localStorage.getItem("ime_pac");
+  let prezime = window.localStorage.getItem("prezime_pac");
+  let id_pacijenta = window.localStorage.getItem("id_pacijenta_logoped");
   let id_paket_pacijenta;
   let id_paket;
 
@@ -41,7 +41,7 @@ const ListaTretmanaPacijenta = () => {
           method: 'get',
           url: 'http://127.0.0.1:8000/api/listaTretmanaOdradjenih/' + id_pacijenta + "/" + id_pak_pac,
           headers: { 
-            'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+            'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token"),
           },
           data : tretmani3,
         };
@@ -64,7 +64,7 @@ const ListaTretmanaPacijenta = () => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmanaZakazanih/' + id_pacijenta+ "/" + id_pak_pac,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token"),
             },
             data : tretmani4,
           };
@@ -92,7 +92,7 @@ const ListaTretmanaPacijenta = () => {
         maxBodyLength: Infinity,
         url: 'http://127.0.0.1:8000/api/paketiPacijentaLogoped/' + id_pacijenta,
         headers: {
-          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+          'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
 
         },
         data: paketiPac
@@ -124,7 +124,7 @@ const ListaTretmanaPacijenta = () => {
       maxBodyLength: Infinity,
       url: 'http://127.0.0.1:8000/api/paketTrenutni/' + id_pacijenta,
       headers: {
-        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
 
       },
       data: paketiPac
@@ -135,9 +135,9 @@ const ListaTretmanaPacijenta = () => {
         console.log(JSON.stringify(response.data));
         setPaketiPac(response.data.data);
         setPaketID(response.data.data[0].id);
-        window.sessionStorage.setItem("id_trenutnog_paketa", response.data.data[0].id);
+        window.localStorage.setItem("id_trenutnog_paketa", response.data.data[0].id);
         setPaketNaziv(response.data.data[0].naziv_paketa);
-        window.sessionStorage.setItem("id_paketa", response.data.data[0].naziv_paketa.slice(6, 8).trim());
+        window.localStorage.setItem("id_paketa", response.data.data[0].naziv_paketa.slice(6, 8).trim());
         setPaketDatOd(response.data.data[0].datum_od);
         setPaketDatDo(response.data.data[0].datum_do);
 
@@ -146,7 +146,7 @@ const ListaTretmanaPacijenta = () => {
           method: 'get',
           url: 'http://127.0.0.1:8000/api/listaTretmanaOdradjenih/' + id_pacijenta + "/" + response.data.data[0].id,
           headers: {
-            'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+            'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
           },
           data: tretmani3,
         };
@@ -169,7 +169,7 @@ const ListaTretmanaPacijenta = () => {
           method: 'get',
           url: 'http://127.0.0.1:8000/api/listaTretmanaZakazanih/' + id_pacijenta + "/" + response.data.data[0].id,
           headers: {
-            'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+            'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
           },
           data: tretmani4,
         };
@@ -219,7 +219,7 @@ const ListaTretmanaPacijenta = () => {
   const [zakaziTret, setZakaziTret] = useState();
   const [zakazaniTretmaniLogoped, setZakazaniTretmaniLogoped] = useState();
 
-  var id_logopeda = window.sessionStorage.getItem("user_id");
+  var id_logopeda = window.localStorage.getItem("user_id");
   var duzina_liste_zak_log;
   var datum_liste;
   var vreme_liste;
@@ -231,8 +231,8 @@ const ListaTretmanaPacijenta = () => {
   function kreirajTretman() {
 
     setZakaziTret(!zakaziTret);
-    id_paket_pacijenta = window.sessionStorage.getItem("id_trenutnog_paketa");
-    id_paket = window.sessionStorage.getItem("id_paketa");
+    id_paket_pacijenta = window.localStorage.getItem("id_trenutnog_paketa");
+    id_paket = window.localStorage.getItem("id_paketa");
     console.log("id paketa: " + id_paket);
     console.log("id paketa pacijenta: " + id_paket_pacijenta);
 
@@ -240,7 +240,7 @@ const ListaTretmanaPacijenta = () => {
       method: 'get',
       url: 'http://127.0.0.1:8000/api/listaTretmanaLog/' + id_logopeda,
       headers: {
-        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
       },
       data: zakazaniTretmaniLogoped,
     };
@@ -278,8 +278,8 @@ const ListaTretmanaPacijenta = () => {
     console.log("kreira se tretam");
     console.log("logoped: " + id_logopeda);
     console.log("pacijent: " + id_pacijenta);
-    console.log("paket: " + window.sessionStorage.getItem("id_paketa"));
-    console.log("paket pacijenta: " + window.sessionStorage.getItem("id_trenutnog_paketa"));
+    console.log("paket: " + window.localStorage.getItem("id_paketa"));
+    console.log("paket pacijenta: " + window.localStorage.getItem("id_trenutnog_paketa"));
 
     //PROVERA DA LI JE TRETMAN ZAUZET
 
@@ -325,9 +325,9 @@ const ListaTretmanaPacijenta = () => {
 
       var config = {
         method: 'post',
-        url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_pacijenta + '/' + window.sessionStorage.getItem("id_paketa") + '/' + 0 + '/' + window.sessionStorage.getItem("id_trenutnog_paketa"),
+        url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_pacijenta + '/' + window.localStorage.getItem("id_paketa") + '/' + window.localStorage.getItem("id_trenutnog_paketa"),
         headers: {
-          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+          'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
         },
         data: tretmanData,
       }

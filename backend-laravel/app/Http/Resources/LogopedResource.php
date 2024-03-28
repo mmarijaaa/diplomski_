@@ -16,8 +16,6 @@ class LogopedResource extends JsonResource
     public static $wrap='logoped';
     public function toArray(Request $request):array
     {
-        //return parent::toArray($request);
-
         return [
             'id' => $this->resource->id,
             'ime'=> $this->resource->ime,

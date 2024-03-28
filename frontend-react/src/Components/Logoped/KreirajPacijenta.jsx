@@ -30,7 +30,7 @@ const KreirajPacijenta = ({}) => {
     function handleKreirajPacijenta(e) {
         e.preventDefault();
 
-        let id_roditelja = window.sessionStorage.getItem("roditelj_id");
+        let id_roditelja = window.localStorage.getItem("roditelj_id");
         let id_paketa = document.getElementById("paket").value;
         // console.log(id_paketa);
         // console.log(id_roditelja);
@@ -39,7 +39,7 @@ const KreirajPacijenta = ({}) => {
             method: 'post',
             url: 'http://127.0.0.1:8000/api/kreirajPacijenta/'+ id_roditelja + '/' + id_paketa,
             headers: { 
-              'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"), 
+              'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"), 
             },
             data: pacijentData,
         };

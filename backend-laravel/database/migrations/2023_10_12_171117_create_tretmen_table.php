@@ -16,7 +16,6 @@ return new class extends Migration
             $table->dateTime('datum_tretmana');
             $table->string('vreme_tretmana');
             $table->string('naziv_tretmana')->default('Tretman'); 
-            $table->integer('redni_broj_tretmana');
             $table->string('sadrzaj_tretmana')->default(' ');
             $table->foreignId('id_logopeda'); 
             $table->foreignId('id_pacijenta');

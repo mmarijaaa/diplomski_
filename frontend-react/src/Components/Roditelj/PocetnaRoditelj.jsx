@@ -56,7 +56,7 @@ const PocetnaRoditelj = () => {
           id_zahteva = response.data[0][0].id;
           if (response.data[0][0].pregledan == 0) {
             Swal.fire({
-              title: "Zahtev vam je odobren",
+              title: "Zahtev za obnovu paketa za dete "+response.data[0][0].pacijent.ime+" "+response.data[0][0].pacijent.prezime+" je odobren!",
               confirmButtonText: 'PRIHVATITE ZAHTEV',
             }).then((result) => {
               if (result.isConfirmed) {
@@ -119,7 +119,7 @@ const PocetnaRoditelj = () => {
       .then((response) => {
         console.log(JSON.stringify(response.data));
         console.log("Lista dece prikazana");
-        window.localStorage.setItem("id_logopeda_pacijenta", response.data.deca[0].id_logopeda);
+        window.localStorage.setItem("id_logopeda_pacijenta_roditelj", response.data.deca[0].id_logopeda);
         setDeca(response.data.deca);
         setLoading2(true);
 
@@ -378,7 +378,7 @@ const PocetnaRoditelj = () => {
         window.localStorage.setItem("id_trenutnog_paketa_roditelj", response.data.data[0].id);
         window.localStorage.setItem("datum_do", response.data.data[0].datum_do);
         br_tret = response.data.data[0].naziv_paketa.slice(10, 12).trim();
-        window.localStorage.setItem("broj_tretmana", br_tret);
+        window.localStorage.setItem("broj_tretmana_roditelj", br_tret);
         console.log(response.data.data[0].id);
         console.log(br_tret);
       })

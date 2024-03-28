@@ -28,18 +28,7 @@ class RoditeljController extends Controller
         ]); 
 
         if($validator->fails()) 
-            // $ime = $request['ime'];
-            // $prezime = $request['prezime'];
-            // $korisnicko_ime = $request['korisnicko_ime'];
-            // $email = $request['email'];
-            // $password = $request['password'];
-            // $broj_telefona = $request['broj_telefona'];
-
-            // if($ime=='' && $prezime=='' && $korisnicko_ime=='' && $email=='' && $password=='' && $broj_telefona=='') {
-            //     return response()->json(['success'=>false, 'poruka'=>'Nisu sva polja popunjena!']);
-            // }
-           
-            return response()->json(['success'=>false, 'poruka'=>'Popunite sva polja!', $validator->errors()]);
+            return response()->json(['success'=>false, 'poruka'=>'Popunite ispravno sva polja!', $validator->errors()]);
 
         $user=Roditelj::create([
             'ime'=>$request->ime,
@@ -50,12 +39,9 @@ class RoditeljController extends Controller
             'broj_telefona'=>$request->broj_telefona,
             'id_logopeda'=>Auth::user()->id 
         ]);
-
         $user->save();
-
         $token=$user->createToken('auth_token')->plainTextToken;
         $roditelj_id = $user->id;
-
         return response()->json(['success'=>true, 'data'=>$user, 'access_token'=>$token, 'token_type'=>'Bearer', 'roditelj_id'=>$roditelj_id]);
     }
 
@@ -67,9 +53,6 @@ class RoditeljController extends Controller
             'korisnicko_ime'=>'required|string|max:100',
             'password'=>'required|string|min:6|max:20'
         ]);
-
-        // if($validator->fails())
-        //     return response()->json($validator->errors());
 
        if(!Auth::guard('roditelj')->attempt($request->only('korisnicko_ime', 'password'))) {
         if($request['korisnicko_ime']=='' && $request['password']=='') {
@@ -88,7 +71,8 @@ class RoditeljController extends Controller
                 return response()->json(['success'=>false, 'password'=>'Broj karaktera mora biti veći od 6']);
             } 
        
-            return response()->json(['success'=>false, 'korisnicko_ime'=>'Korisnciko ime ili lozinka nisu odgovarajuci', 'password'=>'Korisnciko ime ili lozinka nisu odgovarajuci']); 
+            return response()->json(['success'=>false, 'korisnicko_ime'=>'Korisnciko ime ili lozinka nisu odgovarajuci', 
+            'password'=>'Korisnciko ime ili lozinka nisu odgovarajuci']); 
        }
              
         
@@ -164,13 +148,11 @@ class RoditeljController extends Controller
         }
 
         $roditelj=Roditelj::find($id_roditelja); 
-
         $roditelj->ime = $request->ime;
         $roditelj->prezime = $request->prezime;
         $roditelj->korisnicko_ime = $request->korisnicko_ime;
         $roditelj->email = $request->email;
         $roditelj->broj_telefona = $request->broj_telefona; 
-
         $roditelj->save();
     
         return new RoditeljResource($roditelj);  

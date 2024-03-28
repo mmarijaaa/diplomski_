@@ -32,10 +32,10 @@ const LoginLogoped = ({addToken}) => {
        .then((res)=> {
            console.log(res.data);  
            if(res.data.success === true) {
-               window.sessionStorage.setItem("auth_token", res.data.access_token);
-               window.sessionStorage.setItem("user_id", res.data.user_id);
+               window.localStorage.setItem("auth_token", res.data.access_token);
+               window.localStorage.setItem("user_id", res.data.user_id);
                addToken(res.data.access_token);
-               navigate("/logoped"); 
+               navigate("/logoped");   
            }
            else {
                console.log("greska");
@@ -43,11 +43,6 @@ const LoginLogoped = ({addToken}) => {
                console.log(res.data.password);
                setGreskaKIme(res.data.korisnicko_ime);
                setGreskaPass(res.data.password);
-            
-               /*Swal.fire({
-                   icon: 'error',
-                   text: 'Niste uneli ispravne podatke!'
-                 })*/
            }
        })
        .catch((e)=> {
@@ -62,24 +57,20 @@ return (
 
         <form onSubmit={handleLogin}>
         <div className="login_formaL">
-            {/* <h1>LOGOPED</h1> */}
-            {/* <p>Korisnicko ime: </p> */}
 
             <input type="text"
             id="korisnicko_ime_logoped"
             className="polje"
-            placeholder="Unesite Vase korisnicko ime..."
+            placeholder="Unesite Vaše korisničko ime..."
             onInput={handleInput}
             name="korisnicko_ime"/>
 
             <h6>{greskaKIme}</h6>
 
-            {/* <p>Lozinka: </p> */}
-
             <input type="password"
             id="lozinka_logoped"
             className="polje"
-            placeholder="Unesite Vasu lozinku..."
+            placeholder="Unesite Vašu lozinku..."
             onInput={handleInput}
             name="password"/>
 

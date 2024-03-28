@@ -15,9 +15,9 @@ const PacijentRoditelj2 = ({pacijent}) => {
     var deteime;
     var deteprezime;
     function dete() {
-        window.sessionStorage.setItem("id_deteta",pacijent.id);
-        window.sessionStorage.setItem("ime_deteta",pacijent.ime);
-        window.sessionStorage.setItem("prezime_deteta",pacijent.prezime); 
+        window.localStorage.setItem("id_deteta",pacijent.id);
+        window.localStorage.setItem("ime_deteta_roditelj",pacijent.ime);
+        window.localStorage.setItem("prezime_deteta_roditelj",pacijent.prezime); 
         navigate('/roditelj/dete'); 
     }
    

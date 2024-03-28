@@ -27,7 +27,7 @@ const TretmanDete = ({tretman}) => {
             method: 'delete',
             url: 'http://127.0.0.1:8000/api/brisanjeTretmana/' + tretman.id,
             headers: { 
-              'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),  
+              'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),  
             },
             
           };

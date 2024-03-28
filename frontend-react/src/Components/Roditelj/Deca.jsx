@@ -13,7 +13,7 @@ const Deca = ({}) => {
 
     const [deca, setDeca] = useState();
 
-    let id_roditelja = window.sessionStorage.getItem("roditelj_user_id");
+    let id_roditelja = window.localStorage.getItem("roditelj_user_id");
 
     //LISTA DECE RODITELJA
     useEffect(() => {
@@ -22,7 +22,7 @@ const Deca = ({}) => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaDece/' + id_roditelja,
             headers: { 
-              'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer '+window.localStorage.getItem("auth_token2"),
             },
             data : deca,
           };

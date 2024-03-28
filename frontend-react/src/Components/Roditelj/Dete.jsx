@@ -12,15 +12,15 @@ const Dete = () => {
     const[deteIme, setDeteIme] = useState();
     const[detePrezime, setDetePrezime] = useState();
 
-    var i = window.sessionStorage.getItem("ime_deteta");
-    var p = window.sessionStorage.getItem("prezime_deteta"); 
+    var i = window.localStorage.getItem("ime_deteta_roditelj");
+    var p = window.localStorage.getItem("prezime_deteta_roditelj"); 
 
    /* useEffect(() => {
         var config = {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/pacijent/' + id_dete,
             headers: { 
-              'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer '+window.localStorage.getItem("auth_token2"),
             },
             data : dete,
           };

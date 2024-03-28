@@ -16,11 +16,10 @@ class PacijentResource extends JsonResource
      *
      * @return array<string, mixed>
      */
+    
     public static $wrap='pacijenti';
-
     public function toArray(Request $request):array
     {
-        //return parent::toArray($request);
         return [
             'id'=>$this->resource->id, 
             'ime' => $this->resource->ime,
@@ -28,12 +27,8 @@ class PacijentResource extends JsonResource
             'uzrast' => $this->resource->uzrast,
             'poremecaj' => $this->resource->poremecaj,
             'roditelj'=> new RoditeljResource($this->resource->roditelj),
-            // 'id_roditelja'=>new RoditeljResource($this->resource->id_roditelja),
             'logoped'=> new LogopedResource($this->resource->logoped),
-            //'id_logopeda'=>new LogopedResource($this->resource->id_logopeda),
             'paket'=> new PaketResource($this->resource->paket),
-            // 'id_paketa'=>new PaketResource($this->resource->id_paketa)
-            // 'id_paketi_pacijent' => new PaketiPacijentResource($this->resource->paket)  
         ];
     }
 }

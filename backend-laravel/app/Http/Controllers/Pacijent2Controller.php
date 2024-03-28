@@ -20,7 +20,6 @@ class Pacijent2Controller extends Controller
 {
     public function show($id) { 
         $pac = Pacijent::where('id_logopeda',$id)->get();
-        //$pac = Pacijent::find($id);
         return PacijentResource::collection($pac);   
     }
 }

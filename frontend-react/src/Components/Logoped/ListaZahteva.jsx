@@ -14,7 +14,7 @@ const ListaZahteva = () => {
   const [zahtevi, setZahtevi] = useState();
   const [zahtevID, setZahtevID] = useState();
   const [zahtevPacID, setZahtevPacID] = useState();
-  let id_logopeda = window.sessionStorage.getItem("user_id");
+  let id_logopeda = window.localStorage.getItem("user_id");
 
   useEffect(() => {
     if (zahtevi == null) {
@@ -22,7 +22,7 @@ const ListaZahteva = () => {
         method: 'get',
         url: 'http://127.0.0.1:8000/api/sviZahtevi/' + id_logopeda,
         headers: {
-          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+          'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
         },
         data: zahtevi
       };

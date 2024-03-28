@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 const EvidentirajTretman = ({}) => {
     
-    let id_logopeda = window.sessionStorage.getItem("user_id");
+    let id_logopeda = window.localStorage.getItem("user_id");
     let id_pacijenta;
     let id_paketa_pacijenta;
     let redni_broj_tretmana;
@@ -38,7 +38,7 @@ const EvidentirajTretman = ({}) => {
                 method: 'post',
                 url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_pacijenta + '/' + id_paketa_pacijenta + '/' + redni_broj_tretmana,
                 headers: { 
-                  'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+                  'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
                 },
                 data: tretmanData,
             }
@@ -71,7 +71,7 @@ const EvidentirajTretman = ({}) => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/logopedListaPacijenata/' + id_logopeda,
             headers: { 
-              'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"),
+              'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"),
             },
             data : pacijents,
           };
@@ -102,7 +102,7 @@ const EvidentirajTretman = ({}) => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/pacijent/' + id_pacijenta,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token"),
             },
             data : pacijent,
           };
@@ -131,7 +131,7 @@ const EvidentirajTretman = ({}) => {
             -kalendar
             -lista sati tretmana
             sadrzaj tretmana default prazan string
-            id logopeda session storage user id
+            id logopeda local storage user id
             id pacijenta pacijent.id
             id paketa pacijent.id_paketa
             klasicno kreiranje tretmana

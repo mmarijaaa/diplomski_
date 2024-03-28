@@ -26,7 +26,7 @@ const KreirajZahtev = ({}) => {
         setZahtevData(newZahtevData);
     }
 
-    var id_logopeda_kreira = window.sessionStorage.getItem("user_id"); 
+    var id_logopeda_kreira = window.localStorage.getItem("user_id"); 
     var id_logopeda_prima;
 
     function idRod(e) {
@@ -41,7 +41,7 @@ const KreirajZahtev = ({}) => {
             method: 'post',
             url: 'http://127.0.0.1:8000/api/kreirajZahtev/' + id_logopeda_kreira + '/' +  id_logopeda_prima + '/' + 0 + '/' + 0,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token"),
             },
             data : zahtevData
           };
@@ -80,7 +80,7 @@ const KreirajZahtev = ({}) => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/sviLogopedi',
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token"),
             },
             data : logopedi,
           };

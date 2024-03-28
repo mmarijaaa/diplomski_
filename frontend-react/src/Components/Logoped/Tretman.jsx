@@ -11,7 +11,7 @@ const Tretman = ({ tretman }) => {
 
     return (
 
-        <div className="cela_lista">
+        <div className="pregled_tretman">
 
             {tretman.naziv_tretmana == "Pregled"
                 ?

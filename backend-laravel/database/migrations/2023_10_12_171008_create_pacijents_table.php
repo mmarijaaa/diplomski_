@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId('id_roditelja');
             $table->foreignId('id_logopeda');
             $table->foreignId('id_paketa');
-            // $table->foreignId('id_trenutnog_paketa'); 
             $table->timestamps();
         });
     }

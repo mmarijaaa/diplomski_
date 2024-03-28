@@ -13,14 +13,14 @@ const ListaTretmanaZakazanih = () => {
     //LISTA TRETMANA
     useEffect(() => {
 
-        let id_pacijenta = window.sessionStorage.getItem("id_pacijenta");
+        let id_pacijenta = window.localStorage.getItem("id_pacijenta_roditelj");
 
         if(tretmani == null) {
         var config = {
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/listaTretmana/' + window.sessionStorage.getItem("id_pacijenta"),
+            url: 'http://127.0.0.1:8000/api/listaTretmana/' + window.localStorage.getItem("id_pacijenta_roditelj"),
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
             },
             data : tretmani,
           };

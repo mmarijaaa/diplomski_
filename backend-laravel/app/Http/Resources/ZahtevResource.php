@@ -16,8 +16,6 @@ class ZahtevResource extends JsonResource
     public static $wrap='zahtevi';
     public function toArray(Request $request): array
     {
-        //return parent::toArray($request);   
-
         return [
             'id' => $this->resource->id,
             'tip_zahteva' => $this->resource->tip_zahteva,

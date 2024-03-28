@@ -21,13 +21,13 @@ const ZakazivanjeTretmana = () => {
     const [tretmanData, setTretmanData] = useState({
         datum_tretmana: "",
         vreme_tretmana: "",
-        redni_broj_tretmana: "",
+        // redni_broj_tretmana: "",
         id_pacijenta: "",
         id_logopeda: "",
         id_paketa: "",
     });
 
-    var id_logopeda = window.localStorage.getItem("id_logopeda_pacijenta");
+    var id_logopeda = window.localStorage.getItem("id_logopeda_pacijenta_roditelj");
     var id_dete = window.localStorage.getItem("iddete");
     var redni_broj_tretmana;
     var id_paketa = window.localStorage.getItem("id_paketa_roditelj");
@@ -125,8 +125,8 @@ const ZakazivanjeTretmana = () => {
         if (e.target.name == 'vreme_tretmana') {
             vreme_odabrano = e.target.value;
         }
-        console.log(datum_odabran);
-        console.log(vreme_odabrano);
+        // console.log("ODABRAN DATUM TRETMANA: "+datum_odabran);
+        //console.log(vreme_odabrano);
 
         //izvlacenje dana, meseca i godine iz odabranog datuma
         var dan_naziv = moment(datum_odabran).format('dddd'); //dan u nedelji
@@ -135,11 +135,43 @@ const ZakazivanjeTretmana = () => {
         const godina = moment(datum_odabran).format('YYYY');
         const odabran_dan = moment(datum_odabran).format('L'); //12/04/2023 
 
-        console.log(dan_naziv);
-        console.log("dan-" + dan);
-        console.log("mesec-" + mesec);
-        console.log("godina-" + godina);
-        console.log("ceo datum-" + odabran_dan);
+        console.log("ODABRAN DATUM TRETMANA: " + odabran_dan);
+
+        // console.log(dan_naziv);
+        // console.log("dan-" + dan);
+        // console.log("mesec-" + mesec);
+        // console.log("godina-" + godina);
+        // console.log("ceo datum-" + odabran_dan);
+
+        //provera da li je odabran datum koji vec postoji u listi zakazanih
+        var duzina_liste_zak_pac = zakazaniTretmani.length;
+        var dan_odabran_num = Number(dan);
+        var datum_liste_pac;
+
+        if (duzina_liste_zak_pac != 0) {
+
+            for (let i = 0; i < duzina_liste_zak_pac; i++) {
+                datum_liste_pac = zakazaniTretmani[i].datum_tretmana;
+                const mesec_liste = moment(datum_liste_pac).format('M');
+                const godina_liste = moment(datum_liste_pac).format('YYYY');
+                const dan_liste = moment(datum_liste_pac).format('D');
+
+
+                if (dan_odabran_num == dan_liste &&
+                    mesec == mesec_liste &&
+                    godina == godina_liste) {
+                    Swal.fire({
+                        title: 'Tog dana vec imate zakazan tretman!',
+                    })
+                    break;
+                }
+                else {
+                    console.log("MOZE taj datum");
+                }
+            }
+        }
+
+        //console.log("duzina liste zakzanih tretmana pacijenta "+duzina_liste_zak_pac);
 
         //izvlacenje danasnjeg datuma
         const today = new Date();
@@ -148,16 +180,22 @@ const ZakazivanjeTretmana = () => {
         const dan_danas = today.getDate();
         const danasnji_dan = moment(today).format('L'); //12/04/2023 
 
-        console.log("dan-" + dan_danas);
-        console.log("mesec-" + mesec_danas);
-        console.log("godina-" + godina_danas);
-        console.log("ceo datum-" + danasnji_dan);
+        // console.log("dan-" + dan_danas);
+        // console.log("mesec-" + mesec_danas);
+        // console.log("godina-" + godina_danas);
+        console.log("DANASNJI DATUM: " + danasnji_dan);
+
+        if(danasnji_dan > odabran_dan) {
+            console.log("PROSLO PROSLO PROSLO");
+        } else {
+            console.log("MOZE MOZE MOZE");
+        }
 
         //prebacivanje dana u number ???
         let dan_number = Number(dan);
         let dan_danas_number = Number(dan_danas);
-        console.log(dan_number);
-        console.log(dan_danas_number);
+        //console.log(dan_number);
+        //console.log(dan_danas_number);
 
         //provera da li je odabran vikend
         if (dan_naziv == "Sunday" || dan_naziv == "Saturday") {
@@ -211,7 +249,7 @@ const ZakazivanjeTretmana = () => {
 
         //izvlacenje poslednje zakazanog datuma
 
-        duzina_liste_zakazanih = zakazaniTretmani.length;
+        /*duzina_liste_zakazanih = zakazaniTretmani.length;
         if (duzina_liste_zakazanih != 0) {
 
             datum_poslednjeg_tretmana = zakazaniTretmani[duzina_liste_zakazanih - 1].datum_tretmana;
@@ -265,7 +303,9 @@ const ZakazivanjeTretmana = () => {
                 console.log("moze");
                 //console.log("NE MOZE DATUM PRE POSLEDNJE ZAKAZANOG");
             }
-        }
+        }*/
+
+
 
         //izvlacenje datuma zavrsetka trenutnog paketa
         const dat_do = window.localStorage.getItem("datum_do");
@@ -274,10 +314,10 @@ const ZakazivanjeTretmana = () => {
         var godina_do = moment(dat_do).format('YYYY');
         const datum_do = moment(dat_do).format('L'); //12/04/2023
 
-        console.log("dan do-" + dan_do);
-        console.log("mesec do -" + mesec_do);
-        console.log("godina do-" + godina_do);
-        console.log("datum do -" + datum_do);
+        // console.log("dan do-" + dan_do);
+        // console.log("mesec do -" + mesec_do);
+        // console.log("godina do-" + godina_do);
+        // console.log("datum do -" + datum_do);
 
         if (godina == godina_do) {
             if (mesec == mesec_do) {
@@ -301,18 +341,42 @@ const ZakazivanjeTretmana = () => {
 
 
     //*******FUNKCIJA ZA KREIRANJE TRETMANA*******
+    var potroseno = true;
+    var moze_datum;
     var zakazi;
     var zakaziV;
     var duzina_liste_svih_tret;
-    var ukupno_tretmana = window.localStorage.getItem("broj_tretmana");
+    var ukupno_tretmana = window.localStorage.getItem("broj_tretmana_roditelj");
 
     function handleKreirajTretman() {
 
         //izvlacenje dana, meseca i godine iz odabranog datuma
+        var naziv_dana = moment(datum_odabran).format('dddd'); //dan u nedelji
+        var vikend;
         const dan = moment(datum_odabran).format('D');
         const mesec = moment(datum_odabran).format('M');
         const godina = moment(datum_odabran).format('YYYY');
         const odabran_dan = moment(datum_odabran).format('L'); //12/04/2023 
+        const today = new Date();
+        const danasnji_dan = moment(today).format('L'); //12/04/2023 
+
+
+        if (danasnji_dan > odabran_dan) {
+            console.log("PROSLO PROSLO PROSLO");
+            moze_datum = false;
+        } else  if (danasnji_dan < odabran_dan)  {
+            console.log("MOZE MOZE MOZE");
+            moze_datum = true;
+        } else {
+            console.log("DANAS NE MOZE");
+            moze_datum = false;
+        }
+
+        if (naziv_dana == "Saturday" || naziv_dana == "Sunday") {
+            vikend = false;
+        } else {
+            vikend = true;
+        }
 
         var duzina_liste_zak_log = zakazaniTretmaniLogoped.length;
         var datum_liste;
@@ -328,9 +392,9 @@ const ZakazivanjeTretmana = () => {
                 const godina_liste = moment(datum_liste).format('YYYY');
                 const dan_liste = moment(datum_liste).format('D');
 
-                console.log("duzina = " + duzina_liste_zak_log);
-                console.log("datum liste = " + datum_liste);
-                console.log("vreme liste = " + vreme_liste);
+                // console.log("duzina = " + duzina_liste_zak_log);
+                // console.log("datum liste = " + datum_liste);
+                // console.log("vreme liste = " + vreme_liste);
 
                 if (dan_num == dan_liste &&
                     mesec == mesec_liste &&
@@ -357,7 +421,7 @@ const ZakazivanjeTretmana = () => {
 
         //broj tretmana
         duzina_liste_svih_tret = tretmaniSvi.length;
-        console.log(duzina_liste_svih_tret);
+        //console.log(duzina_liste_svih_tret);
 
         if (duzina_liste_svih_tret != 0) {
             for (let i = 0; i <= duzina_liste_svih_tret; i++) {
@@ -369,6 +433,7 @@ const ZakazivanjeTretmana = () => {
                     }
 
                 } else {
+                    potroseno = false; 
                     console.log("Broj tretmana potrošen!!!");
                     Swal.fire({
                         title: 'Broj tretmana je potrošen!',
@@ -482,102 +547,119 @@ const ZakazivanjeTretmana = () => {
 
         //ako su ispunjeni uslovi onda moze da se zakaze
         //ako se ne poklapa izabrani datum sa vec postojecim 
-        if (zakaziV == true) {
-            if (zakazi == true) {
+        if(potroseno == true) {
+        if (moze_datum == true) {
+            if (vikend == true) {
+                if (zakaziV == true) {
+                    if (zakazi == true) {
 
-                if (duzina_liste_svih_tret == 0) {
-                    redni_broj_tretmana = 1;
-                    var config = {
-                        method: 'post',
-                        url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + 1 + '/' + id_pak_pac,
-                        headers: {
-                            'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
-                        },
-                        data: tretmanData,
-                    }
-                    axios.request(config)
-                        .then((response) => {
+                        if (duzina_liste_svih_tret == 0) {
+                            // redni_broj_tretmana = 1;
+                            var config = {
+                                method: 'post',
+                                // url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + 1 + '/' + id_pak_pac,
+                                url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + id_pak_pac,
 
-                            if (response.data.success == true) {
-                                console.log(JSON.stringify(response.data.success));
-                                console.log("Tretman kreiran!");
-                                Swal.fire({
-                                    title: 'Uspešno zakazan tretman!',
-                                }).then(function () {
-                                    navigate("/roditelj");
-                                });
-                            } else {
-                                Swal.fire({
-                                    title: 'Odaberite i datum i vreme!',
-                                })
+                                headers: {
+                                    'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
+                                },
+                                data: tretmanData,
                             }
+                            axios.request(config)
+                                .then((response) => {
+
+                                    if (response.data.success == true) {
+                                        console.log(JSON.stringify(response.data.success));
+                                        console.log("Tretman kreiran!");
+                                        Swal.fire({
+                                            title: 'Uspešno zakazan tretman!',
+                                        }).then(function () {
+                                            navigate("/roditelj");
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            title: 'Odaberite i datum i vreme!',
+                                        })
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                    console.log("Tretman NIJE kreiran.");
+                                    console.log("Broj tretmana potrosen!!!");
+                                });
+
+                        }
+
+                        else if (duzina_liste_svih_tret != 0) {
+
+                            var config = {
+                                method: 'post',
+                                // url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + redni_broj_tretmana + '/' + id_pak_pac,
+                                url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + id_pak_pac,
+
+                                headers: {
+                                    'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
+                                },
+                                data: tretmanData,
+                            }
+
+                            axios.request(config)
+                                .then((response) => {
+
+                                    if (response.data.success == true) {
+                                        console.log(JSON.stringify(response.data.success));
+                                        console.log("Tretman kreiran!");
+                                        Swal.fire({
+                                            title: 'Uspešno zakazan tretman!',
+                                        }).then(function () {
+                                            navigate("/roditelj");
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            title: 'Odaberite i datum i vreme!',
+                                        })
+                                    }
+                                })
+                                .catch((error) => {
+                                    // Swal.fire({
+                                    //     title: 'GRESKA!',
+                                    // })
+                                    console.log(error);
+                                    console.log("Tretman NIJE kreiran.");
+                                    console.log("Broj tretmana potrosen!!!");
+                                    // Swal.fire({
+                                    //     title: 'Broj tretmana je potrošen!',
+                                    //     text: 'Da li želite da započnete novi paket tretmana?',
+                                    //     showDenyButton: true,
+                                    //     confirmButtonText: 'DA',
+                                    //     denyButtonText: 'NE',
+                                    // })
+                                });
+                        }
+                    } else {
+                        Swal.fire({
+                            title: 'Tretman je zauzet!',
                         })
-                        .catch((error) => {
-                            console.log(error);
-                            console.log("Tretman NIJE kreiran.");
-                            console.log("Broj tretmana potrosen!!!");
-                        });
 
-                }
-
-                else if (duzina_liste_svih_tret != 0) {
-
-                    var config = {
-                        method: 'post',
-                        url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + redni_broj_tretmana + '/' + id_pak_pac,
-                        headers: {
-                            'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
-                        },
-                        data: tretmanData,
                     }
 
-                    axios.request(config)
-                        .then((response) => {
-
-                            if (response.data.success == true) {
-                                console.log(JSON.stringify(response.data.success));
-                                console.log("Tretman kreiran!");
-                                Swal.fire({
-                                    title: 'Uspešno zakazan tretman!',
-                                }).then(function () {
-                                    navigate("/roditelj");
-                                });
-                            } else {
-                                Swal.fire({
-                                    title: 'Odaberite i datum i vreme!',
-                                })
-                            }
-                        })
-                        .catch((error) => {
-                            // Swal.fire({
-                            //     title: 'GRESKA!',
-                            // })
-                            console.log(error);
-                            console.log("Tretman NIJE kreiran.");
-                            console.log("Broj tretmana potrosen!!!");
-                            // Swal.fire({
-                            //     title: 'Broj tretmana je potrošen!',
-                            //     text: 'Da li želite da započnete novi paket tretmana?',
-                            //     showDenyButton: true,
-                            //     confirmButtonText: 'DA',
-                            //     denyButtonText: 'NE',
-                            // })
-                        });
+                } else {
+                    Swal.fire({
+                        title: 'Odaberite vreme!',
+                    })
                 }
             } else {
                 Swal.fire({
-                    title: 'Tretman je zauzet!',
+                    title: 'Ne radimo vikendom!',
                 })
-
             }
-
         } else {
             Swal.fire({
-                title: 'Odaberite vreme!',
+                title: 'Datum je prošao!',
             })
         }
 
-
+        }
     }
 
     //ZAUZETI TRETMANI LOGOPEDA
@@ -644,7 +726,10 @@ const ZakazivanjeTretmana = () => {
                                         {
                                             zakazaniTretmaniLogoped == null
                                                 ? (<></>)
-                                                : (zakazaniTretmaniLogoped.map((tretman) => <TretmaniLogopeda tretman={tretman} key={tretman.id} />))
+                                                : (zakazaniTretmaniLogoped
+                                                    .slice()
+                                                    .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+                                                    .map((tretman) => <TretmaniLogopeda tretman={tretman} key={tretman.id} />))
                                         }
                                     </div>
                                 </div>

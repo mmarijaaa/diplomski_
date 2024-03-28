@@ -66,9 +66,9 @@ const PocetnaLogoped = ({ }) => {
     axios.request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        window.sessionStorage.setItem("auth_token", null);
-        window.sessionStorage.setItem("user_id", null);
-        window.sessionStorage.setItem("roditelj_id", null);
+        window.localStorage.setItem("auth_token", null);
+        window.localStorage.setItem("user_id", null);
+        window.localStorage.setItem("roditelj_id", null);
         console.log("Uspesno ste se izlogovali");
       })
       .catch((error) => {
@@ -79,7 +79,7 @@ const PocetnaLogoped = ({ }) => {
 
   //KADA SE KREIRA NOVI RODITELJ BRISE SE ID STAROG RODITELJA
   function noviIdRoditelja() {
-    window.sessionStorage.setItem("roditelj_id", null);
+    window.localStorage.setItem("roditelj_id", null);
   }
 
 

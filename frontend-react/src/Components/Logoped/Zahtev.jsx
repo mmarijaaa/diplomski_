@@ -20,7 +20,7 @@ const Zahtev = ({ zahtev }) => {
             method: 'put',
             url: 'http://127.0.0.1:8000/api/zahtevOdobren/' + zahtev.id,
             headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
             },
             data: zahtevOdob
         };
@@ -48,13 +48,14 @@ const Zahtev = ({ zahtev }) => {
     var id_pacijenta = zahtev.pacijent.id;
     var id_paketa;
     var naziv_paketa;
-    var id_logopeda = window.sessionStorage.getItem("user_id");
+    var id_logopeda = window.localStorage.getItem("user_id");
 
     //uzimanje id paketa iz select-a
     function handlePaket(e) {
         id_paketa = e.target.value;
-        naziv_paketa = e.target.options[e.target.selectedIndex].text
-        console.log(id_paketa);
+        naziv_paketa = e.target.options[e.target.selectedIndex].text;
+        //naziv_paketa = zahtev.info_pacijenta;
+        console.log(id_paketa); 
     }
 
     const today = new Date();
@@ -93,7 +94,7 @@ const Zahtev = ({ zahtev }) => {
             method: 'put',
             url: 'http://127.0.0.1:8000/api/izmenaPaketaPacijenta/' + id_pacijenta + "/" + id_paketa,
             headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
             },
             data: pacijentPak
         };
@@ -115,7 +116,7 @@ const Zahtev = ({ zahtev }) => {
             maxBodyLength: Infinity,
             url: 'http://127.0.0.1:8000/api/paketTrenutni/' + id_pacijenta,
             headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
 
             },
             data: pacPakID
@@ -131,7 +132,7 @@ const Zahtev = ({ zahtev }) => {
                     maxBodyLength: Infinity,
                     url: 'http://127.0.0.1:8000/api/izmeniTrenutniPaket/' + response.data.data[0].id,
                     headers: {
-                        'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+                        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
                     },
                     data: pakPacIzmena
                 };
@@ -157,7 +158,7 @@ const Zahtev = ({ zahtev }) => {
             // url: 'http://127.0.0.1:8000/api/kreirajNoviPaket/'+ naziv_paketa + '/' + id_pacijenta + '/' + id_logopeda + '/' + dat_od + '/' + dat_do,
             url: 'http://127.0.0.1:8000/api/kreirajNoviPaket/' + naziv_paketa + '/' + id_pacijenta + '/' + id_logopeda,
             headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
             },
             data: paketPacijentaNov,
         };
@@ -181,56 +182,60 @@ const Zahtev = ({ zahtev }) => {
     return (
         <div className="zahtev">
 
-            <div className="zahtev_odobren">
-                {/* <input type="checkbox" onChange={promeni}/> */}
-                <label class="container">
-                    {odob == 0 ?
-                        (<div className="cb">
-                            <div className="cbtxt">odobren</div>
-                            <input type="checkbox" onChange={promeni} />
-                            <svg viewBox="0 0 64 64" height="50px" width="50px">
-                                <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
-                            </svg>
-                        </div>)
-                        :
-                        (<div className="cb">
-                            <div className="cbtxt">odobren</div>
-                            <input type="checkbox" checked="checked" onChange={promeni} />
-                            <svg viewBox="0 0 64 64" height="50px" width="50px">
-                                <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
-                            </svg>
-                        </div>)
-                    }
-                </label>
-            </div>
-            <div className="zahtev_odobren">
-                {/* <input type="checkbox" onChange={promeni}/> */}
-                <label class="container">
-                    {preg == 0 ?
-                        (<div className="cb">
-                            <div className="cbtxt">pregledan</div>
-                            <input type="checkbox" />
-                            <svg viewBox="0 0 64 64" height="50px" width="50px">
-                                <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
-                            </svg>
-                        </div>)
-                        :
-                        (<div className="cb">
-                            <div className="cbtxt">pregledan</div>
-                            <input type="checkbox" checked="checked" />
-                            <svg viewBox="0 0 64 64" height="50px" width="50px">
-                                <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
-                            </svg>
-                        </div>)
-                    }
-                </label>
+            <div className="odob_preg">
+
+                <div className="zahtev_odobren">
+                    {/* <input type="checkbox" onChange={promeni}/> */}
+                    <label class="container">
+                        {odob == 0 ?
+                            (<div className="cb">
+                                <div className="cbtxt">odobren</div>
+                                <input type="checkbox" onChange={promeni} />
+                                <svg viewBox="0 0 64 64" height="50px" width="50px">
+                                    <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
+                                </svg>
+                            </div>)
+                            :
+                            (<div className="cb">
+                                <div className="cbtxt">odobren</div>
+                                <input type="checkbox" checked="checked" onChange={promeni} />
+                                <svg viewBox="0 0 64 64" height="50px" width="50px">
+                                    <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
+                                </svg>
+                            </div>)
+                        }
+                    </label>
+                </div>
+                <div className="zahtev_odobren">
+                    {/* <input type="checkbox" onChange={promeni}/> */}
+                    <label class="container">
+                        {preg == 0 ?
+                            (<div className="cb">
+                                <div className="cbtxt">pregledan</div>
+                                <input type="checkbox" />
+                                <svg viewBox="0 0 64 64" height="50px" width="50px">
+                                    <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
+                                </svg>
+                            </div>)
+                            :
+                            (<div className="cb">
+                                <div className="cbtxt">pregledan</div>
+                                <input type="checkbox" checked="checked" />
+                                <svg viewBox="0 0 64 64" height="50px" width="50px">
+                                    <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
+                                </svg>
+                            </div>)
+                        }
+                    </label>
+                </div>
+
             </div>
 
             <div className="zahtev_sadrzaj">
                 {/* <div className='ztip'>{zahtev.tip_zahteva}</div> */}
                 <div className='zrod'> <b>Roditelj:</b> {zahtev.roditelj.ime} {zahtev.roditelj.prezime}</div>
                 <div className='zpac'><b>Pacijent:</b> {zahtev.pacijent.ime} {zahtev.pacijent.prezime}</div>
-                <div className='zinfo'><b>Paket: </b>{zahtev.info_pacijenta} </div>
+                <div className='zinfo'><b>Novi paket: </b>{zahtev.info_pacijenta} </div>
             </div>
 
             <div className="zahtev_dugme_obnova" onClick={obnovaModal}>
@@ -258,6 +263,13 @@ const Zahtev = ({ zahtev }) => {
                                 <option value="4">Paket 4 - 18 tretmana</option>
                                 <option value="5">Paket 5 - 24 tretmana</option>
                             </select>
+                            {/* <input 
+                            type = 'text' 
+                            value = {zahtev.info_pacijenta}
+                            name="id_paketa" 
+                            id="paket" 
+                            onInput={handlePaket}
+                            /> */}
                         </div>
                         <div className="obnova_dugme">
                             <button onClick={obnovaPaketaPacijenta}>OBNOVI PAKET</button>

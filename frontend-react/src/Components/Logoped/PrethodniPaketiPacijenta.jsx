@@ -16,12 +16,12 @@ const PrethodniPaketiPacijenta = () => {
     const [loading, setLoading] = useState(false);
     const [loading2, setLoading2] = useState(false);
 
-    let ime = window.sessionStorage.getItem("ime_pac");
-    let prezime = window.sessionStorage.getItem("prezime_pac");
+    let ime = window.localStorage.getItem("ime_pac");
+    let prezime = window.localStorage.getItem("prezime_pac");
 
     //TRENUTNI PAKET PACIJENTA SA SVIM INFORMACIJAMA
     const [paketiPac, setPaketiPac] = useState();
-    var id_pacijenta_logoped = window.sessionStorage.getItem("id_pacijenta_logoped");
+    var id_pacijenta_logoped = window.localStorage.getItem("id_pacijenta_logoped");
 
     //USEEFFECT FUNCKIJA ZA ISPISIVANJE ZAVRSENIH TRETMANA
     useEffect(() => {
@@ -31,7 +31,7 @@ const PrethodniPaketiPacijenta = () => {
             maxBodyLength: Infinity,
             url: 'http://127.0.0.1:8000/api/paketiZavrseni/' + id_pacijenta_logoped,
             headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
 
             },
             data: paketiPac
@@ -59,7 +59,7 @@ const PrethodniPaketiPacijenta = () => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmanaOdradjenih/' + id_pacijenta_logoped + "/" + id_pak_pac,
             headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
             },
             data: tretmaniPak,
         };
@@ -83,7 +83,7 @@ const PrethodniPaketiPacijenta = () => {
 
             <div className='back'>
                 <Link to="/logoped/listaTretmanaPacijenta" ><img className="arrow_back" src={arrow} alt="" /></Link>
-                <div id="back_povratak"><b>Povratak na pacijenata</b></div>
+                <div id="back_povratak"><b>Povratak na pacijenta</b></div>
             </div>
 
             <div className="tretman_pac">
@@ -129,6 +129,10 @@ const PrethodniPaketiPacijenta = () => {
                     tretmaniPak == null
                         ? (<></>)
                         : (tretmaniPak
+                            // .slice()
+                            // .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+                            .slice(0)
+                            .reverse()
                             .slice()
                             .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
                             .map((tretman) => <TretmanPacijent2 tretman={tretman} key={tretman.id} />))

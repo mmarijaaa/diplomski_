@@ -38,7 +38,7 @@ const PacijentLogoped = ({pacijent}) => {
           method: 'put',
           url: 'http://127.0.0.1:8000/api/izmenaPacijenta/' + id_pacijenta,
           headers: { 
-            'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),  
+            'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),  
           },
           data : pacijentData 
         };
@@ -54,7 +54,7 @@ const PacijentLogoped = ({pacijent}) => {
           // setUzrastP(response.data.pacijent.uzrast);
           // setPoremecajP(response.data.pacijent.poremecaj);
           Swal.fire({
-            title: 'Pacijent uspesno izmenjen!', 
+            title: 'Pacijent uspešno ažuriran.' 
           })
         })
         .catch((error) => {
@@ -65,7 +65,7 @@ const PacijentLogoped = ({pacijent}) => {
 
       //BRISANJE PACIJENTA
       const [pacijents, setPacijents] = useState();
-      let id_logopeda = window.sessionStorage.getItem("user_id");
+      let id_logopeda = window.localStorage.getItem("user_id");
       
       function handleBrisanjePacijenta() {
 
@@ -83,7 +83,7 @@ const PacijentLogoped = ({pacijent}) => {
           method: 'delete',
           url: 'http://127.0.0.1:8000/api/brisanjePacijenta/' + id_pacijenta,
           headers: { 
-            'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),  
+            'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),  
           },
           
         };
@@ -144,7 +144,7 @@ const PacijentLogoped = ({pacijent}) => {
       //     method: 'get',
       //     url: 'http://127.0.0.1:8000/api/roditeljPacijenta/' + id_roditelja_pacijenta,
       //     headers: { 
-      //       'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"),
+      //       'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"),
       //     },
       //     data : roditelj,
       //   };
@@ -168,7 +168,7 @@ const PacijentLogoped = ({pacijent}) => {
         //   method: 'get',
         //   url: 'http://127.0.0.1:8000/api/paketPacijenta/' + id_paketa_pacijenta,
         //   headers: { 
-        //     'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token"),
+        //     'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"),
         //   },
         //   data : paket,
         // };
@@ -209,7 +209,7 @@ const PacijentLogoped = ({pacijent}) => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmanaOdradjenih/' + id_pacijenta,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token"),
             },
             data : tretmani3,
           };
@@ -232,7 +232,7 @@ const PacijentLogoped = ({pacijent}) => {
               method: 'get',
               url: 'http://127.0.0.1:8000/api/listaTretmanaZakazanih/' + id_pacijenta,
               headers: { 
-                'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+                'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token"),
               },
               data : tretmani4,
             };
@@ -270,7 +270,7 @@ const PacijentLogoped = ({pacijent}) => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmanaZakazanih/' + id_pacijenta,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token"),
             },
             data : tretmani4,
           };
@@ -307,7 +307,7 @@ const PacijentLogoped = ({pacijent}) => {
              method: 'get',
              url: 'http://127.0.0.1:8000/api/listaTretmanaDanasnjih/' + id_pacijenta,
              headers: { 
-               'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token"),
+               'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token"),
              },
              data : tretmani5,
            };
@@ -334,9 +334,9 @@ const PacijentLogoped = ({pacijent}) => {
      }
  
      function tretmaniPacijenta() {
-        window.sessionStorage.setItem("id_pacijenta_logoped", pacijent.id);
-        window.sessionStorage.setItem("ime_pac", pacijent.ime);
-        window.sessionStorage.setItem("prezime_pac", pacijent.prezime); 
+        window.localStorage.setItem("id_pacijenta_logoped", pacijent.id);
+        window.localStorage.setItem("ime_pac", pacijent.ime);
+        window.localStorage.setItem("prezime_pac", pacijent.prezime); 
         navigate('/logoped/listaTretmanaPacijenta');
      }
 
@@ -391,6 +391,8 @@ const PacijentLogoped = ({pacijent}) => {
                           name="ime" 
                           onInput={handleInput} 
                           defaultValue={pacijentData.ime} 
+                          autoComplete="off"
+                          spellcheck="false"
                            />
                     </div>
                     <div className="modalpolje">  
@@ -399,6 +401,8 @@ const PacijentLogoped = ({pacijent}) => {
                           name="prezime" 
                           onInput={handleInput} 
                           defaultValue={pacijentData.prezime}
+                          autoComplete="off"
+                          spellcheck="false"
                           />
                     </div>
                     <div className="modalpolje">
@@ -407,6 +411,8 @@ const PacijentLogoped = ({pacijent}) => {
                           name="uzrast" 
                           onInput={handleInput} 
                           defaultValue={pacijentData.uzrast}
+                          autoComplete="off"
+                          spellcheck="false"
                           /> 
                     </div>
                     

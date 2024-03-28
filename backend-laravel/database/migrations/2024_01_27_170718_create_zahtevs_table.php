@@ -22,7 +22,6 @@ return new class extends Migration
             $table->foreignId('id_roditelja'); 
             $table->string('info_pacijenta');
             $table->string('info_roditelja'); 
-            // $table->string('info_zahteva');
             $table->timestamps(); 
         });
     }

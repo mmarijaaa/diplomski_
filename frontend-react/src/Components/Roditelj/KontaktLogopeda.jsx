@@ -12,14 +12,14 @@ const KontaktLogopeda = () => {
     const[logopedIme,setLogopedIme] = useState();
     const[logopedPrezime,setLogopedPrezime] = useState();
 
-    let id_logopeda = window.sessionStorage.getItem("id_logopeda_pacijenta");
+    let id_logopeda = window.localStorage.getItem("id_logopeda_pacijenta_roditelj");
     useEffect(() => {
         if(logoped == null) { 
         var config = {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/logoped/' + id_logopeda,
             headers: { 
-              'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer '+window.localStorage.getItem("auth_token2"),
             },
             data : logoped,
           };

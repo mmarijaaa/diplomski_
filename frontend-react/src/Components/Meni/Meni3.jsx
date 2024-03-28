@@ -10,7 +10,7 @@ import ver2 from '../Slike/ver2.png';
 import ver3 from '../Slike/ver3.png';
 import { useState } from 'react';
 
-const Meni = () => {
+const Meni3 = () => {
 
     return (
 
@@ -35,15 +35,18 @@ const Meni = () => {
                         <Link to="/kontakt" className="link">KONTAKT</Link>
                     </div>
                     <div className="meni_linkovi2">
-                        <div>
-                            <Link to="/prijava" className="link_prijava">PRIJAVA</Link>
-                            <Link to="/pregled" className="link_prijava">ZAKAŽITE PREGLED</Link>
-                        </div>
+                        
+                            <Link to="/roditelj" className="link_prijava">PROFIL</Link>
+                       
+                        
                     </div>
                 </div>
+
+
             </div>
+
         </div>
     )
 }
 
-export default Meni;
+export default Meni3;

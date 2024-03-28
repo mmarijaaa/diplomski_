@@ -89,7 +89,20 @@ class ZahtevController extends Controller
     }
     
     public function show($id) { 
-        $zah = Zahtev::where('id_logopeda_prima',$id)->get();
+        $zah = Zahtev::where('id_logopeda_prima',$id)
+        ->where ([
+			['odobren',0],
+			['pregledan',0],
+        ])
+        ->orWhere([
+			['odobren',1],
+			['pregledan',0],
+        ])
+        ->orWhere([
+			['odobren',0],
+			['pregledan',1], 
+        ])
+        ->get();
         return ZahtevObnovaResource::collection($zah);    
     }
 

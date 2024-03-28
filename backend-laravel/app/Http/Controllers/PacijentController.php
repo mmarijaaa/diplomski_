@@ -30,7 +30,7 @@ class PacijentController extends Controller
         ]); 
  
         if($validator->fails()) 
-            return response()->json(['success'=> false, 'poruka'=>'Popunite sva polja!', $validator->errors()]);
+            return response()->json(['success'=> false, 'poruka'=>'Popunite ispravno sva polja!', $validator->errors()]);
 
         $pacijent = Pacijent::create([
             'ime'=>$request->ime,

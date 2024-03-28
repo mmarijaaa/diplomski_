@@ -34,7 +34,7 @@ const TretmanPacijent = ({tretman}) => {
             method: 'put',
             url: 'http://127.0.0.1:8000/api/dodajSadrzaj/' + id_tretmana,
             headers: { 
-              'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),  
+              'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),  
             },
             data : tretmanData
           };
@@ -45,7 +45,7 @@ const TretmanPacijent = ({tretman}) => {
             console.log("Tretmanu uspesno dodat sadrzaj.");
 
             Swal.fire({
-                    title: 'Uspesno dodat sadrzaj!',
+                    title: 'Uspesno dodat sadržaj!',
                     showConfirmButton: true,
                   }).then(function(){
                     window.location.reload();
@@ -69,7 +69,7 @@ const TretmanPacijent = ({tretman}) => {
         method: 'delete',
         url: 'http://127.0.0.1:8000/api/brisanjeTretmana/' + tretman.id,
         headers: { 
-          'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token"),  
+          'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),  
         },
         
       };
@@ -85,7 +85,7 @@ const TretmanPacijent = ({tretman}) => {
 
       Swal.fire("Tretman otkazan.")
       .then(function(){
-        // navigate("/roditelj"); 
+        window.location.reload(false); 
       });
     }
     });

@@ -31,8 +31,8 @@ const LoginRoditelj = ({addToken2}) => {
         .then((res2)=> {
             console.log(res2.data);  
             if(res2.data.success === true) {
-                window.sessionStorage.setItem("auth_token2", res2.data.access_token);
-                window.sessionStorage.setItem("roditelj_user_id", res2.data.roditelj_user_id);
+                window.localStorage.setItem("auth_token2", res2.data.access_token);
+                window.localStorage.setItem("roditelj_user_id", res2.data.roditelj_user_id);
                 addToken2(res2.data.access_token);
                 navigate("/roditelj");
             }

@@ -39,13 +39,12 @@ class TretmanController extends Controller
 
     //************************************************************************************* 
     //KREIRANJE TRETMANA - ZAKAZIVANJE TRETMANA
-    public function create(Request $request, $id_logopeda, $id_pacijenta, $id_paketa, $redni_broj_tretmana, $id_paketa_pacijenta) {
+    public function create(Request $request, $id_logopeda, $id_pacijenta, $id_paketa, $id_paketa_pacijenta) {
 
         $validator=Validator::make($request->all(), [
             'datum_tretmana' => 'required',
             'vreme_tretmana' => 'required|string',
             'naziv_tretmana' => 'string',
-            'redni_broj_tretmana' => '',
             'sadrzaj_tretmana' => 'string'
         ]); 
 
@@ -56,7 +55,6 @@ class TretmanController extends Controller
             'datum_tretmana' => $request->datum_tretmana,
             'vreme_tretmana' => $request->vreme_tretmana,
             'naziv_tretmana' => 'Tretman',
-            'redni_broj_tretmana' => $redni_broj_tretmana, 
             'sadrzaj_tretmana' => '',
             'id_pacijenta'=>$id_pacijenta,
             'id_logopeda'=>$id_logopeda,
@@ -64,7 +62,6 @@ class TretmanController extends Controller
             'id_paketa_pacijenta'=>$id_paketa_pacijenta
         ]); 
 
-        //return new TretmanResource($tretman);
         return response()->json(['success'=>true, new TretmanResource($tretman)]);
     }
 
@@ -76,7 +73,7 @@ class TretmanController extends Controller
             'datum_tretmana' => 'required',
             'vreme_tretmana' => 'required|string',
             'naziv_tretmana' => 'string',
-            'redni_broj_tretmana' => '',
+            // 'redni_broj_tretmana' => '',
             'sadrzaj_tretmana' => 'required|string'
         ]); 
 
@@ -87,7 +84,7 @@ class TretmanController extends Controller
             'datum_tretmana' => $request->datum_tretmana,
             'vreme_tretmana' => $request->vreme_tretmana,
             'naziv_tretmana' => 'Pregled',
-            'redni_broj_tretmana' => 0, 
+            // 'redni_broj_tretmana' => 0, 
             'sadrzaj_tretmana' => $request->sadrzaj_tretmana,
             'id_pacijenta'=>0,
             'id_logopeda'=>0,
@@ -96,7 +93,34 @@ class TretmanController extends Controller
         ]); 
 
         return response()->json(['success'=>true, new TretmanResource($tretman)]);
-        //return new TretmanResource($tretman); 
+    }
+
+    //************************************************************************************* 
+    //KREIRANJE PREGLEDA 2 
+    public function createPregled2(Request $request, $datum_tretmana, $vreme_tretmana, $sadrzaj_tretmana) {
+
+        $validator=Validator::make($request->all(), [
+            'datum_tretmana' => 'required',
+            'vreme_tretmana' => 'required|string',
+            'naziv_tretmana' => 'string',
+            'sadrzaj_tretmana' => 'required|string'
+        ]); 
+
+        if($validator->fails())
+        return response()->json(['success'=> false, $validator->errors()]);
+
+        $tretman = Tretman::create([
+            'datum_tretmana' => $datum_tretmana,
+            'vreme_tretmana' => $vreme_tretmana,
+            'naziv_tretmana' => 'Pregled',
+            'sadrzaj_tretmana' => $sadrzaj_tretmana,
+            'id_pacijenta'=>0,
+            'id_logopeda'=>0,
+            'id_paketa'=>0,
+            'id_paketa_pacijenta'=>0 
+        ]); 
+
+        return response()->json(['success'=>true, new TretmanResource($tretman)]);
     }
 
     //************************************************************************************* 
@@ -104,10 +128,6 @@ class TretmanController extends Controller
     public function update(Request $request, $id_tretmana) {
 
         $validator=Validator::make($request->all(), [
-            // 'datum_tretmana' => 'required',
-            // 'vreme_tretmana' => 'required|string',
-            // 'naziv_tretmana' => 'string',
-            // 'redni_broj_tretmana' => ''
             'sadrzaj_tretmana' => 'string'
         ]); 
 
@@ -138,7 +158,6 @@ class TretmanController extends Controller
         if(is_null($tretmani)) {
             return response()->json("Tretmana nema");
         }
-        //return new TretmanResource($tretmani);  
         return TretmanResource3::collection($tretmani);
     }
 
@@ -165,7 +184,6 @@ class TretmanController extends Controller
         if(is_null($tretmani)) {
             return response()->json("Tretmana nema");
         }
-        //return new TretmanResource($tretmani);  
         return TretmanResource3::collection($tretmani);   
     } 
 

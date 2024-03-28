@@ -10,6 +10,7 @@ use App\Http\Controllers\TretmanController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\PaketiPacijentController;
 use App\Http\Controllers\ZahtevController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,11 @@ Route::post('/login', [LogopedController::class, 'login']);
 //kreiranje pregleda
 Route::post('/kreiranjePregleda', [TretmanController::class, 'createPregled']); 
 
+//kreiranje pregleda
+Route::post('/kreiranjeNovogPregleda/{dat}/{vr}/{sadr}', [TretmanController::class, 'createPregled2']); 
+
 //lista svih zakazanih tretmana 
 Route::get('/listaSvihZakazanih', [TretmanController::class, 'listaSvihZakazanih']); 
-
 
 
 Route::group(['middleware'=> ['auth:sanctum']], function() {
@@ -58,6 +61,7 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
     Route::get('paci', [PacijentController::class, 'index']); 
     Route::resource('pacijent', PacijentController::class); 
     Route::resource('paclog', PacijentController::class);
+    
     Route::resource('svipac', Pacijent2Controller::class);
 
     Route::resource('pacijent', PacijentController::class); 
@@ -111,7 +115,8 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
     Route::delete('/brisanjeRoditelja/{id_roditelja}', [RoditeljController::class, 'delete']); 
 
     //kreiranje tretmana 
-    Route::post('/kreiranjeTretmanaL/{id_logopeda}/{id_pacijenta}/{id_paketa}/{redni_broj_tretmana}', [TretmanController::class, 'create']); 
+    // Route::post('/kreiranjeTretmanaL/{id_logopeda}/{id_pacijenta}/{id_paketa}/{redni_broj_tretmana}', [TretmanController::class, 'create']);
+    Route::post('/kreiranjeTretmanaL/{id_logopeda}/{id_pacijenta}/{id_paketa}', [TretmanController::class, 'create']);  
 
     //lista pregleda logopeda
     Route::get('/listaPregleda', [TretmanController::class, 'preglediLogoped']);
@@ -145,7 +150,8 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
     Route::put('/zahtevOdobren/{id_zahteva}', [ZahtevController::class, 'updateO']);  
 
     //kreiranje tretmana od strane logopeda
-    Route::post('/kreiranjeTretmana/{id_logopeda}/{id_pacijenta}/{id_paketa}/{redni_broj_tretmana}/{id_paketa_pacijenta}', [TretmanController::class, 'create']); 
+    // Route::post('/kreiranjeTretmana/{id_logopeda}/{id_pacijenta}/{id_paketa}/{redni_broj_tretmana}/{id_paketa_pacijenta}', [TretmanController::class, 'create']); 
+    Route::post('/kreiranjeTretmana/{id_logopeda}/{id_pacijenta}/{id_paketa}/{id_paketa_pacijenta}', [TretmanController::class, 'create']); 
 
     //brisanje tretmana pacijenta 
     Route::delete('/brisanjeTretmana/{id_tretmana}', [TretmanController::class, 'delete']); 
@@ -155,6 +161,9 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
 
     //paketi proba 
     Route::get('/pak', [PaketController::class, 'get2']); 
+
+    // //slanje maila roditelju
+    // Route::post('/posaljiMail/{pos}/{prim}/{rod}/{kime}/{loz}', [MailController::class, 'posaljiMejl']);
 });
 
 //************************************************************************************************************
@@ -171,7 +180,8 @@ Route::group(['middleware'=> ['auth:sanctum','abilities:roditelj']], function() 
     Route::resource('sviRoditelji', RoditeljController::class); 
 
     //kreiranje tretmana 
-    Route::post('/kreiranjeTretmana/{id_logopeda}/{id_pacijenta}/{id_paketa}/{redni_broj_tretmana}/{id_paketa_pacijenta}', [TretmanController::class, 'create']); 
+    // Route::post('/kreiranjeTretmana/{id_logopeda}/{id_pacijenta}/{id_paketa}/{redni_broj_tretmana}/{id_paketa_pacijenta}', [TretmanController::class, 'create']); 
+    Route::post('/kreiranjeTretmana/{id_logopeda}/{id_pacijenta}/{id_paketa}/{id_paketa_pacijenta}', [TretmanController::class, 'create']); 
 
     //lista svih tretmana odredjenog pacijenta
     Route::get('/listaTretmana/{id_pacijenta}', [TretmanController::class, 'lista']);

@@ -598,7 +598,7 @@ const Usluge = () => {
                             <div className="poremecaj_prvideo">
                                 <div className='por_icon2'><img className="por" src={verbalna_mem} alt="" /></div>
                                 <div className="poremecaj_naziv">
-                                    <div className='por_naziv'>Razvoj verbalne memorije</div>
+                                    <div className='por_naziv'>Razvoj auditivne (radne) memorije</div>
                                     <button className="poremecaj_icon" onClick={toggleModal11}>
                                         {icon11 ? 
                                         (<img className="poremecaj_iconica" src={up} alt=""/>) 
@@ -613,16 +613,20 @@ const Usluge = () => {
                                     <div className='modalP'>
                                     <div className='overlayP' onClick={toggleModal11}></div>
                                     <div className='contentP'>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna 
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                        ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                        Duis aute irure dolor in reprehenderit in voluptate velit 
-                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                        occaecat cupidatat non proident, sunt in culpa qui officia 
-                                        deserunt mollit anim id est laborum.Excepteur sint 
-                                        occaecat cupidatat non proident, sunt in culpa qui officia 
-                                        deserunt mollit anim id est laborum. 
+                                        Auditivna memorija (radna memorija) je vrsta senzorne 
+                                        memorije koja je zadužena za sve kratkoročne auditivne informacije koje primamo 
+                                        iz svog okruženja. 
+                                        Auditivna memorija je skladište velikog broja kratkotrajnih informacija. 
+                                        Deca sa malim opsegom auditivne memorije (nedovoljno razvijenom auditivnom memorijom) mogu imati neki od sledećih problema:
+                                        problem u rešavanju tekstualnih zadataka,  
+                                        problem u rešavanju zadataka koji imaju više delova,  
+                                        potrebno im je više vremena da obrade informacije koje su verbalno izložene, 
+                                        problem pri prepisivanju, 
+                                        problem pri pisanju diktata, 
+                                        problem u pamćenju lekcija, tekstova, pesmica, priča i sl.,
+                                        problem sa govorom i jezikom što se često ogleda u siromašnijem rečniku, teškoćama u učenju stranog jezika i sl.,
+                                        zbog frustracije usled neuspeha u rešavanju zadataka, a samim tim i lošijeg uspeha u školi, ova deca su šesto 
+                                        frustrirana što utiče na njihovo emotivno stanje kao i na vladanje u školi i vršnjačke odnose.
                                     </div>
                                     </div>
                                 )}
@@ -650,16 +654,9 @@ const Usluge = () => {
                                     <div className='modalP'>
                                     <div className='overlayP' onClick={toggleModal12}></div>
                                     <div className='contentP'>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna 
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                        ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                        Duis aute irure dolor in reprehenderit in voluptate velit 
-                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                        occaecat cupidatat non proident, sunt in culpa qui officia 
-                                        deserunt mollit anim id est laborum.Excepteur sint 
-                                        occaecat cupidatat non proident, sunt in culpa qui officia 
-                                        deserunt mollit anim id est laborum. 
+                                        U okviru naših tretmana, Vašem detetu pomažemo da uz korišćenje
+                                        različitih metoda i tehnika prevaziđe poteškoće koje ima u savladavanju
+                                        školskog gradiva. 
                                     </div>
                                     </div>
                                 )}

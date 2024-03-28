@@ -14,11 +14,8 @@ class PaketResource extends JsonResource
      */
 
     public static $wrap='paket';
-
     public function toArray(Request $request): array
     {
-        //return parent::toArray($request);
-
         return [
             'id'=> $this->resource->id,
             'naziv_paketa' => $this->resource->naziv_paketa,

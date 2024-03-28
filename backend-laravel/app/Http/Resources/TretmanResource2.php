@@ -14,15 +14,11 @@ class TretmanResource2 extends JsonResource
      */
 
     public static $wrap='tretmani';
-
     public function toArray(Request $request): array
     {
-        //return parent::toArray($request);
-
         return [
             'id'=>$this->resource->id,
             'naziv_tretmana' => $this->resource->naziv_tretmana,
-            'redni_broj_tretmana' => $this->resource->redni_broj_tretmana,
             'datum_tretmana' => $this->resource->datum_tretmana,  
             'vreme_tretmana' => $this->resource->vreme_tretmana,
             'sadrzaj_tretmana' => $this->resource->sadrzaj_tretmana,

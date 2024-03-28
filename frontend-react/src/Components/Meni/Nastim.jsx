@@ -1,15 +1,25 @@
 import React from 'react';
 import Meni from './Meni';
+import Meni2 from './Meni2';
+import Meni3 from './Meni3';
 import st1 from '../Slike/st1.jpg';  
 import st2 from '../Slike/st2.jpg';  
 import st3 from '../Slike/st3.jpeg';  
 import st4 from '../Slike/st4.jpg';  
-import st from '../Slike/st.jpg';  
 import log from '../Slike/Logg.jpg';  
 import Footer from './Footer';
 const Nastim = () => {
+
     return(
         <div>
+             {/* {
+                window.localStorage.getItem("auth_token") == null && 
+                window.localStorage.getItem("auth_token2") == null  
+                ?
+                <Meni/>
+                :
+                <Meni2/>
+            }  */}
             <Meni/>
             <div className="nastim">
 
@@ -84,7 +94,7 @@ const Nastim = () => {
                 <div className="logopedi"> 
                     <div className="logoped">
                         <img className="log" src={st1} alt="" />
-                        <h3>Aleksandra Milović</h3>
+                        <h3>Ana Pešić</h3>
                         <p>
                         Diplomirala 2019.godine na Fakultetu za specijalnu edukaciju i rehabilitaciju 
                         Univerziteta u Beogradu na odseku za logopediju i dobila zvanje Defektolog-Logoped.
@@ -96,7 +106,7 @@ const Nastim = () => {
                     </div>
                     <div className="logoped">
                         <img className="log" src={st2} alt="" />
-                        <h3>Hristina Stanišić</h3>
+                        <h3>Milica Jovanović</h3>
                         <p>
                         Diplomirala 2017. godine na Fakultetu za specijalnu edukaciju i rehabilitaciju 
                         Univerziteta u Beogradu na odseku za logopediju.

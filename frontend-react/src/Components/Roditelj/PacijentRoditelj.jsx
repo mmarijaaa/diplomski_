@@ -33,7 +33,7 @@ const PacijentRoditelj = ({pacijent}) => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmanaLogoped/' + id_logopeda,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
             },
             data : tretmani4,
           };
@@ -78,7 +78,7 @@ const PacijentRoditelj = ({pacijent}) => {
              method: 'get',
              url: 'http://127.0.0.1:8000/api/paketPacijenta/' + id_paketa_pacijenta,
              headers: { 
-               'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token2"),
+               'Authorization': 'Bearer '+window.localStorage.getItem("auth_token2"),
              },
              data : paket,
            };
@@ -99,7 +99,7 @@ const PacijentRoditelj = ({pacijent}) => {
               method: 'get',
               url: 'http://127.0.0.1:8000/api/listaTretmanaLogoped/' + id_logopeda,
               headers: { 
-                'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+                'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
               },
               data : tretmaniLogopeda,
             };
@@ -123,7 +123,7 @@ const PacijentRoditelj = ({pacijent}) => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmana/' + id_pacijenta_1,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
             },
             data : tretmaniPac, 
           };
@@ -182,7 +182,7 @@ const PacijentRoditelj = ({pacijent}) => {
              method: 'get',
              url: 'http://127.0.0.1:8000/api/paketPacijenta/' + id_paketa_pacijenta,
              headers: { 
-               'Authorization': 'Bearer '+window.sessionStorage.getItem("auth_token2"),
+               'Authorization': 'Bearer '+window.localStorage.getItem("auth_token2"),
              },
              data : paket,
            };
@@ -211,7 +211,7 @@ const PacijentRoditelj = ({pacijent}) => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmana/' + id_pacijenta,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
             },
             data : tretmaniSvi,
           };
@@ -541,7 +541,7 @@ const PacijentRoditelj = ({pacijent}) => {
                 //                         method: 'put',
                 //                         url: 'http://127.0.0.1:8000/api/izmenaPaketaPacijenta/' + id_pacijenta2 + '/' +id_paketa_pacijenta2,
                 //                         headers: { 
-                //                           'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),  
+                //                           'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),  
                 //                         },
                 //                         data : pacijentData
                 //                       };
@@ -563,7 +563,7 @@ const PacijentRoditelj = ({pacijent}) => {
                 //                       //   method: 'delete',
                 //                       //   url: 'http://127.0.0.1:8000/api/brisanjeTretmana/' + id_pacijenta2,
                 //                       //   headers: { 
-                //                       //     'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),  
+                //                       //     'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),  
                 //                       //   },
                 //                       // };
                                       
@@ -600,7 +600,7 @@ const PacijentRoditelj = ({pacijent}) => {
             method: 'post',
             url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_pacijenta + '/' + id_paketa + '/' + redni_broj_tretmana,
             headers: { 
-              'Authorization': 'Bearer ' + window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
             },
             data: tretmanData,
         }
@@ -628,9 +628,9 @@ const PacijentRoditelj = ({pacijent}) => {
 
     }
 
-    function sacuvajIdPacijenta() {
-        window.sessionStorage.setItem("id_pacijenta", pacijent.id);
-    }
+    // function sacuvajIdPacijenta() {
+    //     window.localStorage.setItem("id_pacijenta", pacijent.id);
+    // }
 
 
     //******************************************************************************************************************************** 
@@ -647,7 +647,7 @@ const PacijentRoditelj = ({pacijent}) => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmanaOdradjenih/' + id_pacijenta,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
             },
             data : tretmani,
           };
@@ -679,7 +679,7 @@ const PacijentRoditelj = ({pacijent}) => {
             method: 'get',
             url: 'http://127.0.0.1:8000/api/listaTretmanaZakazanih/' + id_pacijenta,
             headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
+              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
             },
             data : tretmani2,
           };

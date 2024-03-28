@@ -85,33 +85,35 @@ const ListaTretmana = () => {
             <button className='dugmeP' onClick={tretmaniLista}>TRETMANI</button> */}
       </div>
 
-      {
-        loading && loading2 ?
-          (pregledi == null && tretmani == null
-            ? (<></>)
+      <div className="lista_pregleda_tretmana">
+
+        {
+          loading && loading2 ?
+            (pregledi == null && tretmani == null
+              ? (<></>)
+              :
+              // (<div>
+              //   {pregledi
+              //     .slice()
+              //     .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+              //     .map((pregled) => <Pregled pregled={pregled} key={pregled.id} />)}
+
+              //   {tretmani
+              //     .slice()
+              //     .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+              //     .map((tretman) => <Tretman tretman={tretman} key={tretman.id} />)}
+              // </div>)
+              (<div className="lpt">
+                {pregledi.concat(tretmani)
+                  .slice()
+                  .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+                  .map((tretman) => <Tretman tretman={tretman} key={tretman.id} />)}
+              </div>)
+            )
             :
-            // (<div>
-            //   {pregledi
-            //     .slice()
-            //     .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
-            //     .map((pregled) => <Pregled pregled={pregled} key={pregled.id} />)}
-
-            //   {tretmani
-            //     .slice()
-            //     .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
-            //     .map((tretman) => <Tretman tretman={tretman} key={tretman.id} />)}
-            // </div>)
-            (<div>
-              {pregledi.concat(tretmani)
-                .slice()
-                .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
-                .map((tretman) => <Tretman tretman={tretman} key={tretman.id} />)}
-            </div>)
-          )
-          :
-          (<Loading />)
-      }
-
+            (<Loading />)
+        }
+      </div>
       {/*
         loading ? (
         pregledi == null

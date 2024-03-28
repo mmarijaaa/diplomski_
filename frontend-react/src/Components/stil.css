@@ -1609,6 +1609,7 @@ input:-webkit-autofill:focus {
     margin-top: -90px;
     height: 350px;
     width: 400px;
+    color: #003C62;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
@@ -1641,7 +1642,7 @@ input:-webkit-autofill:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
 
     animation: fadeInAnimation ease 1s;
     animation-iteration-count: 1;
@@ -1657,14 +1658,14 @@ input:-webkit-autofill:focus {
 }
 
 .pregled_forma {
-    width: 600px;
-    height: 550px;
+    width: 550px;
+    height: 520px;
     border-radius: 50px;
     display: flex;
     flex-direction: column;
-    /* justify-content: center;  */
     align-items: center;
     margin-top: -90px;
+    margin-bottom: 50px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
@@ -2219,6 +2220,26 @@ input:-webkit-autofill:focus {
     width: 120%;
 }
 
+#dugme_mail {
+    font-size: 18px;
+    font-family: 'Nunito Sans', sans-serif;
+    border: 2px solid #003C62;
+    background-color: #fdfced;
+    border-radius: 50px;
+    padding: 10px 20px 10px 20px;
+    margin-top: 20px;
+    width: 68%;
+    color: #003353;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+#dugme_mail:hover {
+    color: #fffedf;
+    background-color: #003C62;
+    cursor: pointer;
+}
+
 /******************************************************/
 /*LISTA PACIJENATA*/
 .lista {
@@ -2769,8 +2790,13 @@ input:-webkit-autofill:focus {
     background-color: #003C62;
     color: #fdfced;
 } */
+.lista_roditelja {
+    width: 130%;
+
+}
+
 .roditelji {
-    width: 150%;
+    width: 100%;
 }
 
 .roditelj {
@@ -3229,6 +3255,11 @@ input:-webkit-autofill:focus {
 
 
 /*ZAHTEV*/
+.odob_preg {
+    display: flex;
+    flex-direction: row;
+}
+
 .zahtevi {
     width: 110%;
 }
@@ -3462,10 +3493,16 @@ input:-webkit-autofill:focus {
 
 
 /*TRETMANI LISTA / PREGLEDI LISTA*/
+.lista_pregleda_tretmana {
+    display: flex;
+    flex-direction: column;
+    width: 150%;
+}
+
 .tpLista {
     display: flex;
     flex-direction: row;
-    width: 150%;
+    width: 100%;
     border: none;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -3589,9 +3626,9 @@ input:-webkit-autofill:focus {
     font-family: 'Nunito Sans', sans-serif;
     border-radius: 10px;
     border: 2px solid #003353;
-    width: 70%;
+    width: 450px;
     padding: 10px 20px;
-    margin: 20px 0px 10px 0px;
+    margin: 20px 0px 10px 15px;
 }
 
 .naslovi_tretmana {
@@ -3605,6 +3642,7 @@ input:-webkit-autofill:focus {
     display: flex;
     flex-direction: row;
     width: 100%;
+    width: 450px;
 }
 
 .tret_d .tretman_dugme_brisanje {
@@ -3635,7 +3673,8 @@ input:-webkit-autofill:focus {
 .tret_d2 {
     display: flex;
     flex-direction: row;
-    width: 75%;
+    /* width: 75%; */
+    width: 450px;
 }
 
 .tret_d2 .tretman_dugme_brisanje {
@@ -3698,7 +3737,7 @@ input:-webkit-autofill:focus {
 .paket_tretmani {
     display: flex;
     flex-direction: row;
-    width: 150%;
+    width: 110%;
 }
 
 .paket_tretmani .paketi_tretmani_odradjeni {
@@ -3829,6 +3868,7 @@ input:-webkit-autofill:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .tretmanL .tretman_info1L {
@@ -3887,6 +3927,7 @@ input:-webkit-autofill:focus {
     display: flex;
     flex-direction: row;
 }
+
 .ceo_tret_log .tret_rbr_log {
     display: flex;
     align-items: center;
@@ -4074,6 +4115,9 @@ input:-webkit-autofill:focus {
     border: 2px solid #003353;
 }
 
+
+
+
 /******************************************************/
 /*RESPONZIVNOST*/
 
@@ -4087,19 +4131,21 @@ input:-webkit-autofill:focus {
     height: 40px;
     display: none;
     cursor: pointer;
+    margin-right: 20px;
 }
 
 .ikonica_close {
     height: 30px;
     display: none;
     cursor: pointer;
+    margin-right: 20px;
 }
 
 #check {
     display: none;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1210px) {
     .meni .meni_ikonica {
         display: flex;
         align-items: center;
@@ -4281,18 +4327,12 @@ input:-webkit-autofill:focus {
         font-family: 'Nunito Sans', sans-serif;
     }
 
-    /* .usluge_paketi>* {
-        flex-direction: column;
-        width: 250px;
-    } */
     .usluge_paketi {
         width: 100%;
     }
 
     .usluge_paketi .paket1 {
         flex-direction: column;
-        /* width: 250px; */
-
     }
 
     .usluge_paketi .paket2 {
@@ -4507,8 +4547,6 @@ input:-webkit-autofill:focus {
 
     .kontaktt .kontakt_delovi .kontakt .kontakt_icon1 {
         margin-right: 15px;
-        /* width: 100%;
-        height: 100%; */
     }
 
     .kontaktt .kontakt_delovi .kontakt .kontakt_icon2 {
@@ -4626,9 +4664,6 @@ input:-webkit-autofill:focus {
         justify-content: center;
     }
 
-    /* .pocetna1 .poc1_deo1 .poc1_slika #poc1{
-        
-    } */
     .pocetna1 .poc1_deo2 {
         width: 100%;
     }
@@ -4652,7 +4687,6 @@ input:-webkit-autofill:focus {
     }
 
     .pocetna5 .alat .alatka .alat_slika {
-        /* width: 350px; */
         width: 70%;
     }
 }
@@ -4719,6 +4753,9 @@ input:-webkit-autofill:focus {
 }
 
 @media(max-width:1100px) {
+    /* .pocetna7 .pitanja .pitanje .pitanje_tekst .pit  {
+        font-size: 18px;
+    } */
     .pocetna4 {
         flex-direction: column-reverse;
         margin-left: 20px;
@@ -4730,7 +4767,7 @@ input:-webkit-autofill:focus {
     }
 
     .pocetna4 .tekst2 p {
-        font-size: 16px;
+        font-size: 18px;
         padding: 0px 10px;
         margin-left: 0px;
         margin-right: 0px;
@@ -4747,16 +4784,24 @@ input:-webkit-autofill:focus {
     }
 
     #pocetna2 .tekst2 p {
-        font-size: 16px;
+        font-size: 18px;
         margin: 0px 50px 30px 50px;
         padding: 0px 10px;
         margin-left: 0px;
         margin-right: 0px;
     }
+
+    .pocetna11 .pocetna11_tekst p {
+        font-size: 18px;
+        padding: 0px 15px;
+    }
 }
 
 /*POCETNA3*/
 @media(max-width:1300px) and (min-width:1000px) {
+    /* .pocetna7 .pitanja .pitanje .pitanje_tekst .pit  {
+        font-size: 18px;
+    } */
     .pocetna3 .deo1 .deo11 .slika {
         margin: 10px;
         width: 150px;
@@ -4771,10 +4816,14 @@ input:-webkit-autofill:focus {
 
     .pocetna3 .deo2 p {
         font-size: 20px;
+        padding: 0px 15px;
     }
 }
 
 @media(max-width:1000px) and (min-width: 700px) {
+    .pocetna7 .pitanja .pitanje .pitanje_tekst .pit  {
+        font-size: 18px;
+    }
     .pocetna3 {
         flex-direction: column;
     }
@@ -4801,10 +4850,14 @@ input:-webkit-autofill:focus {
 
     .pocetna3 .deo2 p {
         font-size: 20px;
+        padding: 0px 15px;
     }
 }
 
 @media(max-width:700px) and (min-width:500px) {
+    .pocetna7 .pitanja .pitanje .pitanje_tekst .pit  {
+        font-size: 18px;
+    }
     .pocetna3 {
         flex-direction: column;
     }
@@ -4839,6 +4892,9 @@ input:-webkit-autofill:focus {
 }
 
 @media(max-width:500px) {
+    .pocetna7 .pitanja .pitanje .pitanje_tekst .pit  {
+        font-size: 18px;
+    }
     .pocetna3 {
         flex-direction: column;
     }
@@ -4847,10 +4903,6 @@ input:-webkit-autofill:focus {
         flex-direction: column;
     }
 
-    /* .pocetna3 .deo1 .deo11 {
-        margin-top: 10px;
-        flex-direction: column;
-    } */
     .pocetna3 .deo1 .deo11 .slika {
         margin: 5px;
         width: 100px;
@@ -4865,6 +4917,7 @@ input:-webkit-autofill:focus {
 
     .pocetna3 .deo2 p {
         font-size: 18px;
+        padding: 0px 15px;
     }
 
     .pocetna3 .deo1 .deo11 .deo222 .icon {
@@ -4919,7 +4972,7 @@ input:-webkit-autofill:focus {
 
     .log_profil .log_outlet {
         margin-left: 0px;
-        margin-top: 500px;
+        margin-top: 650px;
         width: 100%;
     }
 
@@ -4946,12 +4999,14 @@ input:-webkit-autofill:focus {
     }
 
     .pacijenti {
-        width: 95%;
+        width: 90%;
+        margin: 15px;
     }
 
     .pretraga {
-        width: 95%;
+        width: 90%;
         text-align: center;
+        margin: 0px 15px;
     }
 
     .pacijenti .pacijent {
@@ -4991,7 +5046,7 @@ input:-webkit-autofill:focus {
     }
 }
 
-@media(max-width:450px) {
+@media(max-width:450px) and (min-width: 380px) {
     .log_profil {
         flex-direction: column;
     }
@@ -5009,7 +5064,7 @@ input:-webkit-autofill:focus {
 
     .log_profil .log_outlet {
         margin-left: 0px;
-        margin-top: 500px;
+        margin-top: 650px;
         width: 100%;
     }
 
@@ -5036,17 +5091,124 @@ input:-webkit-autofill:focus {
     }
 
     .pacijenti {
-        width: 95%;
+        width: 90%;
+        margin: 15px;
     }
 
     .pretraga {
-        width: 95%;
+        width: 90%;
         text-align: center;
+        margin: 15px;
     }
 
     .pacijenti .pacijent {
         width: 100%;
         flex-direction: column;
+        margin-right: 15px;
+    }
+
+    .pacijenti .pacijent .pacijent_info {
+        flex-direction: column;
+        flex: 50%;
+        align-items: center;
+    }
+
+    .pacijenti .pacijent .pacijent_dugmad {
+        flex: 50%;
+        flex-direction: column;
+        width: 60%;
+    }
+
+    .modal .content3 {
+        width: 220px;
+    }
+
+    .modal .content1 {
+        width: 220px;
+    }
+
+    #lista_naslov {
+        text-align: center;
+    }
+
+    .lista_tretmana_pacijenta {
+        width: 100%;
+    }
+
+    .tretmani_svi {
+        flex-direction: column;
+        margin-left: 20px;
+    }
+
+    .tretmani_svi .tretmani_zak {
+        margin-left: 0px;
+        margin-right: 30px;
+    }
+
+    .kreiraj_forma {
+        padding-right: 30px;
+    }
+}
+
+@media(max-width: 380px) {
+    .log_profil {
+        flex-direction: column;
+    }
+
+    .log_profil .log_logoped {
+        position: relative;
+        /* width: 420px; */
+        width: 100%;
+        align-items: center;
+    }
+
+    .log_profil .log_logoped .log_linkovi {
+        align-items: center;
+    }
+
+    .log_profil .log_outlet {
+        margin-left: 0px;
+        margin-top: 650px;
+        width: 100%;
+    }
+
+    .roditelj_deca {
+        /* width: 420px; */
+        width: 90%;
+    }
+
+    .roditelj_deca .pacijent_roditelj {
+        width: 100%;
+        padding: 10px 15px;
+    }
+
+    .tretman_dete {
+        width: 80%;
+    }
+
+    .modalii {
+        flex-direction: column-reverse;
+    }
+
+    .pacijent_roditelj .dete_dugmad {
+        flex-direction: column;
+    }
+
+    .pacijenti {
+        width: 80%;
+        margin: 15px;
+    }
+
+    .pretraga {
+        width: 80%;
+        text-align: center;
+        margin: 15px;
+    }
+
+    .pacijenti .pacijent {
+        width: 100%;
+        flex-direction: column;
+        margin-right: 15px;
     }
 
     .pacijenti .pacijent .pacijent_info {
@@ -5100,9 +5262,15 @@ input:-webkit-autofill:focus {
 
     .pacijenti .pacijent .pacijent_info {
         flex-direction: column;
-        flex: 35%
+        flex: 35%;
+       
     }
-
+    .pacijenti .pacijent .pacijent_info .pac1{
+        background-color: #fdfced;
+    }
+    .pacijenti .pacijent .pacijent_info .pac3{
+        background-color: #fdfced;
+    }
     .pacijenti .pacijent .pacijent_dugmad {
         flex: 65%;
     }
@@ -5119,9 +5287,15 @@ input:-webkit-autofill:focus {
 
     .pacijenti .pacijent .pacijent_info {
         flex-direction: column;
-        flex: 50%
+        flex: 50%;
+        
     }
-
+    .pacijenti .pacijent .pacijent_info .pac1{
+        background-color: #fdfced;
+    }
+    .pacijenti .pacijent .pacijent_info .pac3{
+        background-color: #fdfced;
+    }
     .pacijenti .pacijent .pacijent_dugmad {
         flex: 50%;
         flex-direction: column;
@@ -5139,9 +5313,46 @@ input:-webkit-autofill:focus {
 
     .pacijenti .pacijent .pacijent_info {
         flex-direction: column;
-        flex: 50%
+        flex: 50%;
+    }
+    .pacijenti .pacijent .pacijent_info .pac1{
+        background-color: #fdfced;
+    }
+    .pacijenti .pacijent .pacijent_info .pac3{
+        background-color: #fdfced;
+    }
+    .pacijenti .pacijent .pacijent_dugmad {
+        flex: 50%;
+        flex-direction: column;
     }
 
+    .lista_tretmana_pacijenta {
+        width: 100%;
+    }
+
+    .tretmani_svi {
+        flex-direction: column;
+    }
+
+    .tretmani_svi .tretmani_zak {
+        margin-left: 0px;
+    }
+}
+@media(max-width: 750px) {
+    .pacijenti .pacijent {
+        width: 100%;
+    }
+
+    .pacijenti .pacijent .pacijent_info {
+        flex-direction: column;
+        flex: 50%
+    }
+    .pacijenti .pacijent .pacijent_info .pac1{
+        background-color: #fdfced;
+    }
+    .pacijenti .pacijent .pacijent_info .pac3{
+        background-color: #fdfced;
+    }
     .pacijenti .pacijent .pacijent_dugmad {
         flex: 50%;
         flex-direction: column;
@@ -5161,7 +5372,7 @@ input:-webkit-autofill:focus {
 }
 
 /*LISTA RODITELJA*/
-@media(max-width: 1240px) and (min-width: 950px) {
+/* @media(max-width: 1240px) and (min-width: 950px) {
     .rod_info {
         flex-direction: column;
         flex: 35%;
@@ -5229,4 +5440,616 @@ input:-webkit-autofill:focus {
     .lista_header {
         width: 450px;
     }
+} */
+
+@media(max-width: 1600px) and (min-width: 1360px) {
+    .lista_roditelja {
+        width: 120%;
+    }
 }
+
+@media(max-width: 1360px) and (min-width: 1200px) {
+    .lista_roditelja {
+        width: 100%;
+    }
+}
+
+@media(max-width: 1200px) and (min-width: 990px) {
+    .lista_roditelja {
+        width: 130%;
+    }
+
+    .roditelj .rod_info {
+        flex-direction: column;
+        flex: 50%;
+    }
+
+    .roditelj .rod_deca {
+        flex: 25%;
+    }
+
+    .roditelj .rod_dugmad {
+        flex: 25%;
+    }
+
+    .roditelj .rod_info .rod_ime {
+        background-color: #fdfced;
+    }
+
+    .roditelj .rod_info .rod_email {
+        background-color: #fdfced;
+    }
+}
+
+@media(max-width: 990px) and (min-width: 860px) {
+    .lista_roditelja {
+        width: 100%;
+    }
+
+    .roditelj .rod_info {
+        flex-direction: column;
+        flex: 50%;
+    }
+
+    .roditelj .rod_deca {
+        flex: 25%;
+    }
+
+    .roditelj .rod_dugmad {
+        flex: 25%;
+    }
+
+    .roditelj .rod_dugmad .rod_dugme {
+        padding: 10px;
+    }
+
+    .roditelj .rod_info .rod_ime {
+        background-color: #fdfced;
+    }
+
+    .roditelj .rod_info .rod_email {
+        background-color: #fdfced;
+    }
+}
+
+@media(max-width: 860px) and (min-width: 750px) {
+    .lista_roditelja {
+        width: 90%;
+    }
+
+    .roditelj .rod_info {
+        flex-direction: column;
+        flex: 50%;
+    }
+
+    .roditelj .rod_deca {
+        flex: 25%;
+    }
+
+    .roditelj .rod_dugmad {
+        flex: 25%;
+    }
+
+    .roditelj .rod_dugmad .rod_dugme {
+        padding: 10px;
+    }
+
+    .roditelj .rod_info .rod_ime {
+        background-color: #fdfced;
+    }
+
+    .roditelj .rod_info .rod_email {
+        background-color: #fdfced;
+    }
+}
+
+@media(max-width: 750px) {
+    .lista_roditelja {
+        width: 100%;
+    }
+
+    .pretraga {
+        margin: 0px 0px 20px 15px;
+    }
+    .pretraga input {
+        margin-left: 0px;
+    }
+
+    .roditelji {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .roditelj {
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .roditelj .rod_info {
+        flex-direction: column;
+        flex: 30%;
+    }
+
+    .roditelj .rod_info .rod_ime {
+        padding: 0px;
+    }
+
+    .roditelj .rod_info .rod_kime {
+        padding: 0px;
+    }
+
+    .roditelj .rod_info .rod_email {
+        padding: 0px;
+    }
+
+    .roditelj .rod_info .rod_tel {
+        padding: 0px;
+    }
+
+    .roditelj .rod_deca {
+        flex: 40%;
+    }
+
+    .roditelj .rod_dugmad {
+        flex: 30%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .roditelj .rod_dugmad .rod_dugme {
+        padding: 10px;
+        width: 60%;
+    }
+
+    .roditelj .rod_info .rod_ime {
+        background-color: #fdfced;
+    }
+
+    .roditelj .rod_info .rod_email {
+        background-color: #fdfced;
+    }
+}
+
+/*LISTA ZAHTEVA*/
+@media(max-width: 1600px) and (min-width: 1020px) {
+    .zahtevi {
+        width: 100%;
+    }
+
+    .zahtev {
+        width: 80%;
+    }
+}
+
+@media(max-width: 1020px) and (min-width: 750px) {
+    .odob_preg {
+        flex-direction: column;
+        flex: 20%;
+    }
+
+    .zahtevi {
+        width: 100%;
+    }
+
+    .zahtev {
+        width: 95%;
+    }
+
+    .zahtev .zahtev_sadrzaj {
+        flex-direction: column;
+        flex: 50%;
+    }
+
+    .zahtev .zahtev_dugme_obnova {
+        flex: 30%;
+    }
+}
+
+@media(max-width: 750px) {
+    .odob_preg {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex: 20%;
+    }
+
+    .zahtevi {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .zahtev {
+        width: 80%;
+        flex-direction: column;
+    }
+
+    .zahtev .zahtev_sadrzaj {
+        flex-direction: column;
+        flex: 50%;
+        padding-bottom: 15px;
+    }
+
+    .zahtev .zahtev_sadrzaj .zrod {
+        background-color: #fdfced;
+        padding: 2px 0px;
+    }
+
+    .zahtev .zahtev_sadrzaj .zpac {
+        padding: 2px 0px;
+    }
+
+    .zahtev .zahtev_sadrzaj .zinfo {
+        background-color: #fdfced;
+        padding: 2px 0px;
+    }
+
+    .zahtev .zahtev_dugme_obnova {
+        flex: 30%;
+    }
+}
+
+
+/*POCETNA RODITELJ*/
+@media(max-width: 960px) and (min-width: 500px) {
+    .deca_links {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dete_sve .dete_informacije {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dete_sve .dete_informacije .dete_ime_prezime {
+        width: 70%;
+    }
+}
+
+@media(max-width: 500px) {
+    .deca_links {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dete_sve .dete_informacije {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dete_sve .dete_informacije .dete_ime_prezime {
+        width: 60%;
+    }
+
+    .dete_dugmici {
+        flex-direction: column;
+    }
+
+    .dete_dugmici button {
+        margin-bottom: 10px;
+    }
+}
+
+/*PRETHODNI PAKETI KOD RODITELJA*/
+@media(max-width: 1500px) and (min-width: 960px) {
+    .prethodni_paketi .paket_tretmani {
+        flex-direction: column;
+        width: 100%;
+
+    }
+}
+
+@media(max-width: 960px) and (min-width: 750px) {
+    .prethodni_paketi .prethodni_paketi_lista {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .prethodni_paketi .prethodni_paketi_tretmani {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+    }
+
+    .prethodni_paketi .paket_tretmani {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+@media(max-width: 750px) and (min-width: 550px) {
+    .prethodni_paketi .prethodni_paketi_lista {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 30px;
+    }
+
+    .prethodni_paketi .prethodni_paketi_tretmani {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 30px;
+    }
+
+    .prethodni_paketi {
+        padding-left: 30px;
+    }
+
+    .prethodni_paketi .paket_tretmani {
+        flex-direction: column;
+        width: 100%;
+    }
+    .tret_d {
+        width: 85%;
+    }
+}
+
+@media(max-width: 550px) and (min-width: 400px) {
+    .prethodni_paketi .prethodni_paketi_lista {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 30px;
+    }
+
+    .prethodni_paketi .prethodni_paketi_tretmani {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 30px;
+    }
+
+    .prethodni_paketi {
+        padding-left: 30px;
+    }
+
+    .prethodni_paketi .paket_tretmani {
+        flex-direction: column;
+        width: 100%;
+    }
+    .tret_d2 .tretman_d .tretman_info {
+        flex-direction: column;
+    }
+    .tret_d {
+        flex-direction: column;
+    }
+    .tret_d .tretman_d{
+        width: 85%;
+    }
+    .tret_d .tretman_d .tretman_info {
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 400px) {
+    .prethodni_paketi .prethodni_paketi_lista {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 30px;
+    }
+
+    .prethodni_paketi .prethodni_paketi_tretmani {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 30px;
+    }
+
+    .prethodni_paketi {
+        padding-left: 30px;
+    }
+
+    .prethodni_paketi .paket_tretmani {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .tret_d2 .tretman_d .tretman_info {
+        flex-direction: column;
+    }
+    .tret_d {
+        flex-direction: column;
+    }
+    .tret_d .tretman_d{
+        width: 85%;
+    }
+    .tret_d .tretman_d .tretman_info {
+        flex-direction: column;
+    }
+}
+
+/*TRETMAN ZAKAZI*/
+@media(max-width: 950px) and (min-width: 450px) {
+    .tretman_zakazi {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tretman_zakazi input,
+    select,
+    button {
+        margin-bottom: 10px;
+    }
+
+    .tretman_zakazi select {
+        margin-bottom: 10px;
+        margin-right: 0px;
+    }
+
+    .tretman_zakazi input {
+        margin-bottom: 10px;
+        margin-right: 0px;
+    }
+
+    .naslovi_dugmica {
+        text-align: center;
+        margin-right: 30px;
+    }
+
+    .tretman_opcije {
+        flex-direction: column;
+        margin-right: 30px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .zauzeti_tretmani {
+        margin-left: 0px;
+    }
+
+    .zauzeti_tretmani button {
+        margin-right: 0px;
+    }
+}
+
+@media(max-width: 450px) {
+    .tretman_zakazi {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tretman_zakazi input,
+    select,
+    button {
+        margin: 0px 20px 10px 0px;
+    }
+
+    .tretman_zakazi select {
+        margin-bottom: 10px;
+        margin-right: 0px;
+    }
+
+    .tretman_zakazi input {
+        margin-bottom: 10px;
+        margin-right: 0px;
+    }
+
+    .tretman_zakazi button {
+        margin-bottom: 10px;
+        margin-right: 0px;
+    }
+
+    .tretman_opcije {
+        flex-direction: column;
+        margin-right: 30px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .naslovi_dugmica {
+        text-align: center;
+        margin-right: 30px;
+    }
+
+    .zauzeti_tretmani {
+        margin-left: 0px;
+    }
+
+    .zauzeti_tretmani button {
+        margin-right: 0px;
+    }
+}
+
+/*LISTA PREGLEDA I TRETMANA*/
+@media(max-width: 1260px) and (min-width: 950px) {
+    .lista_pregleda_tretmana {
+        width: 100%;
+    }
+    .lista_pregleda_tretmana .pregled_tretman {
+        width: 100%;
+    }
+}
+
+@media(max-width: 950px) and (min-width: 750px) {
+    .lista_pregleda_tretmana {
+        width: 100%;
+    }
+    .lista_pregleda_tretmana .pregled_tretman {
+        width: 90%;
+    }
+    .lista_pregleda_tretmana .tpLista {
+        flex-direction: column;
+    }
+    
+}
+
+@media(max-width: 750px) {
+    .lista_pregleda_tretmana {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .lista_pregleda_tretmana .lpt {
+        width: 80%;
+    }
+    .lista_pregleda_tretmana .pregled_tretman {
+        width: 100%;
+    }
+    .lista_pregleda_tretmana .tpLista {
+        flex-direction: column;
+    }
+    
+}
+
+@media(max-width: 1200px)  and (min-width: 750px){
+    .paket_tretmaniL {
+        flex-direction: column;
+        width: 90%;
+    }
+    .ceo_tret_log {
+        width: 140%;
+    }
+}
+@media(max-width: 750px) { 
+    .ceo_tret_log {
+        width: 100%;
+    }
+    .back {
+        margin-left: 20px;
+    }
+    .tretman_pac {
+        margin-left: 20px;
+    }
+    .tretman_dugme_logoped {
+        margin-left: 20px;
+    }
+    .trenutni_paket_logoped {
+        margin-left: 20px;
+    }
+    .paket_tretmaniL {
+        flex-direction: column;
+        width: 90%;
+        margin-left: 20px;
+    }
+
+    .prethodni_paketi_listaL {
+        width: 70%;
+        margin-left: 20px;
+    }
+    .prethodni_paketi_tretmani {
+        margin-left: 20px;
+    }
+}
+
