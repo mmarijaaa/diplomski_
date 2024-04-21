@@ -10,13 +10,9 @@ import Swal from 'sweetalert2'
 const TretmanPacijent3 = ({tretman}) => {
 
     let datum1 = tretman.datum_tretmana;
-    let datum = moment(datum1).local().format('ll'); //srediti 
+    let datum = moment(datum1).local().format('ll'); 
 
     const [tretmanData, setTretmanData] = useState({
-        // datum_tretmana: tretman.datum_tretmana,
-        // vreme_tretmana: tretman.vreme_tretmana,
-        // naziv_tretmana: tretman.naziv_tretmana,
-        // redni_broj_tretmana: tretman.redni_broj_tretmana,
         sadrzaj_tretmana: tretman.sadrzaj_tretmana
     });
 

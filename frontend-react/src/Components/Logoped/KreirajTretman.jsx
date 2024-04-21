@@ -39,12 +39,9 @@ const KreirajTretman = () => {
     }, []); 
 
     function handleInput() {
-
     }
 
     function handleKreirajTretman() {
-
-
     }
 
     function dve(e) {

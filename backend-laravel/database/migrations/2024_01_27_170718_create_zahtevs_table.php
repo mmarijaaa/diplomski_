@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('tip_zahteva');
             $table->integer('odobren')->default(0);
             $table->integer('pregledan')->default(0);
-            $table->foreignId('id_logopeda_kreira');  
-            $table->foreignId('id_logopeda_prima'); 
+            $table->foreignId('id_logopeda');  
             $table->foreignId('id_pacijenta'); 
             $table->foreignId('id_roditelja'); 
             $table->string('info_pacijenta');

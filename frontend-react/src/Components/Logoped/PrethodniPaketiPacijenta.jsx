@@ -125,20 +125,18 @@ const PrethodniPaketiPacijenta = () => {
 
             <div className="prethodni_paketi_tretmani">
                 {
-                    // loading ? (
+                   
                     tretmaniPak == null
                         ? (<></>)
                         : (tretmaniPak
-                            // .slice()
-                            // .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
+                            
                             .slice(0)
                             .reverse()
                             .slice()
                             .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
                             .map((tretman) => <TretmanPacijent2 tretman={tretman} key={tretman.id} />))
 
-                    // )
-                    //     : (<Loading />)
+                   
                 }
             </div>
         </div>

@@ -32,8 +32,6 @@ const KreirajPacijenta = ({}) => {
 
         let id_roditelja = window.localStorage.getItem("roditelj_id");
         let id_paketa = document.getElementById("paket").value;
-        // console.log(id_paketa);
-        // console.log(id_roditelja);
 
         var config = {
             method: 'post',
@@ -49,7 +47,6 @@ const KreirajPacijenta = ({}) => {
             if(response.data.success === true) {
                 console.log("Pacijent uspesno kreiran");
                 console.log(JSON.stringify(response.data));
-                //setPolje(''); 
                 Swal.fire({
                     title: 'Uspesno sacuvan pacijent!',
                     showConfirmButton: true,
@@ -64,9 +61,6 @@ const KreirajPacijenta = ({}) => {
         })
         .catch((error) => {
             console.log(error);
-            // console.log("Pacijent NIJE USPESNO kreiran");
-            // console.log(error.data.poruka);
-            // setPorukaGreske(error.data.poruka);
         });
 
     };
@@ -107,17 +101,7 @@ const KreirajPacijenta = ({}) => {
                         onInput={handleInput}
                         name="uzrast"
                         value={polje} 
-                    />
-                    
-                    {/* <input 
-                        type="text"
-                        id="poremecaj_pacijenta"
-                        className="polje"
-                        placeholder="Unesite poremecaj pacijenta..."
-                        onInput={handleInput}
-                        name="poremecaj2"
-                    /> */}
-                  
+                    />              
 
                     <select name="poremecaj" onChange={handleInput}>
                         <option value="Pervazivni razvojni poremecaji">Pervazivni razvojni poremecaji - autizam</option>

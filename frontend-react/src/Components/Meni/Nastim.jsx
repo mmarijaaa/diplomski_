@@ -12,14 +12,7 @@ const Nastim = () => {
 
     return(
         <div>
-             {/* {
-                window.localStorage.getItem("auth_token") == null && 
-                window.localStorage.getItem("auth_token2") == null  
-                ?
-                <Meni/>
-                :
-                <Meni2/>
-            }  */}
+            
             <Meni/>
             <div className="nastim">
 

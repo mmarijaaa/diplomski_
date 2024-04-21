@@ -45,8 +45,6 @@ const Prijava = ({addToken, addToken2}) => {
            if(res.data.success === true) {
                window.localStorage.setItem("auth_token", res.data.access_token);
                window.localStorage.setItem("user_id", res.data.user_id);
-               window.localStorage.setItem("auth_token", res.data.access_token);
-               window.localStorage.setItem("user_id", res.data.user_id);
                addToken(res.data.access_token);
                navigate("/logoped"); 
            }
@@ -56,17 +54,10 @@ const Prijava = ({addToken, addToken2}) => {
                console.log(res.data.password);
                setGreskaKIme(res.data.korisnicko_ime);
                setGreskaPass(res.data.password);
-            
-               /*Swal.fire({
-                   icon: 'error',
-                   text: 'Niste uneli ispravne podatke!'
-                 })*/
            }
        })
        .catch((e)=> {
-           
            console.log(e.response.error);
-         
        });
    }
 

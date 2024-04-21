@@ -13,9 +13,6 @@ import grafmot_spos from '../Slike/grafmot_spos.png';
 import skola from '../Slike/skola.png'; 
 import verbalna_mem from '../Slike/verbalna_mem.png'; 
 import agramatizam from '../Slike/agr.png'; 
-// import fist from '../Slike/fist.png';  
-// import fist2 from '../Slike/fist (1).png';  
-// import fist3 from '../Slike/fist (2).png'; 
 import down from '../Slike/down.png';
 import up from '../Slike/up.png';
 import { useState } from 'react';
@@ -192,50 +189,30 @@ const Usluge = () => {
 
                 <div className="usluge_paketi">
                         <div className="paket3">
-                            {/* <div className="paket_slike">
-                                <img className="pslika" src={fist3} alt="" />
-                            </div> */}
                             <div className='paket_naziv'>PAKET  1</div>
                             <div className='paket_tretman'>4 tretmana</div>
                             <div className='paket_cena'>6.000 RSD</div>
                         </div>
                         <div className="paket3">
-                            {/* <div className="paket_slike">
-                                <img className="pslika" src={fist3} alt="" />
-                            </div> */}
                             <div className='paket_naziv'>PAKET  2</div>
                             <div className='paket_tretman'>8 tretmana</div>
                             <div className='paket_cena'>12.000 RSD</div>
                         </div>
                         <div className="paket3">
-                            {/* <div className="paket_slike">
-                                <img className="pslika" src={fist3} alt="" />   
-                            </div> */}
                             <div className='paket_naziv'>PAKET  3</div>
                             <div className='paket_tretman'>12 tretmana</div>
                             <div className='paket_cena'>18.000 RSD</div>
                         </div>
                         <div className="paket3">
-                            {/* <div className="paket_slike">
-                                <img className="pslika" src={fist3} alt="" />
-                            </div> */}
                             <div className='paket_naziv'>PAKET  4</div>
                             <div className='paket_tretman'>18 tretmana</div>
                             <div className='paket_cena'>27.000 RSD</div> 
                         </div>
                         <div className="paket3">
-                            {/* <div className="paket_slike">
-                                <img className="pslika" src={fist3} alt="" />
-                            </div> */}
                             <div className='paket_naziv'>PAKET  5</div>
                             <div className='paket_tretman'>24 tretmana</div>
                             <div className='paket_cena'>36.000 RSD</div>
                         </div>
-                        {/* <div className="paket3">
-                            <div className='paket_naziv'>PAKET 6</div>
-                            <div className='paket_tretman'>24 tretmana</div>
-                            <div className='paket_cena'>36.000 dinara</div>
-                        </div> */}
                 </div>
 
         

@@ -1,5 +1,6 @@
 import React from 'react'
-import { useState, useEffect } from 'react';import axios from 'axios'; 
+import { useState, useEffect } from 'react';
+import axios from 'axios'; 
 import {useNavigate} from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -47,12 +48,6 @@ const PacijentLogoped = ({pacijent}) => {
         .then((response) => {
           console.log(JSON.stringify(response.data[1]));
           console.log("Pacijent uspesno izmenjen."); 
-          // console.log(response.data[1].ime); 
-          // setPacijentData(response.data.pacijent);
-          // setImeP(response.data[1].ime);
-          // setPrezimeP(response.data[1].prezime);
-          // setUzrastP(response.data.pacijent.uzrast);
-          // setPoremecajP(response.data.pacijent.poremecaj);
           Swal.fire({
             title: 'Pacijent uspešno ažuriran.' 
           })
@@ -103,9 +98,6 @@ const PacijentLogoped = ({pacijent}) => {
         });
 
           }  
-          // else {
-          // Swal.fire("Pacijent NIJE obrisan");
-          // }
         });
       }
 
@@ -138,52 +130,6 @@ const PacijentLogoped = ({pacijent}) => {
 
       let id_roditelja_pacijenta = pacijent.id_roditelja;
       let id_paketa_pacijenta = pacijent.id_paketa;
-
-      //roditelj
-      // var config = {
-      //     method: 'get',
-      //     url: 'http://127.0.0.1:8000/api/roditeljPacijenta/' + id_roditelja_pacijenta,
-      //     headers: { 
-      //       'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"),
-      //     },
-      //     data : roditelj,
-      //   };
-      //   axios(config)
-      //   .then((response) => {
-      //     console.log(JSON.stringify(response.data));
-      //     console.log("PROBLEM???"); 
-      //     console.log(response.data.roditelj);
-      //     setIme(response.data.roditelj[0].ime);
-      //     setPrezime(response.data.roditelj[0].prezime);
-      //     console.log("Roditelj JESTE prikazan"); 
-      //     setRoditelj(response.data.roditelj);  
-      //   })
-      //   .catch((error) => {
-      //       console.log(error);
-      //       console.log("Roditelj NIJE prikazan");
-      //   }); 
-
-        //paket
-        // var config = {
-        //   method: 'get',
-        //   url: 'http://127.0.0.1:8000/api/paketPacijenta/' + id_paketa_pacijenta,
-        //   headers: { 
-        //     'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"),
-        //   },
-        //   data : paket,
-        // };
-        // axios(config)
-        // .then((response) => {
-        //   console.log(JSON.stringify(response.data)); 
-        //   setNazivPaketa(response.data.paket[0].naziv_paketa);
-        //   setBrojTretmanaPaketa(response.data.paket[0].broj_tretmana);
-        //   console.log("Paket JESTE prikazan"); 
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        //     console.log("Paket NIJE prikazan");
-        // }); 
-
 
         setModal2(!modal2);
       }
@@ -337,7 +283,9 @@ const PacijentLogoped = ({pacijent}) => {
         window.localStorage.setItem("id_pacijenta_logoped", pacijent.id);
         window.localStorage.setItem("ime_pac", pacijent.ime);
         window.localStorage.setItem("prezime_pac", pacijent.prezime); 
+
         navigate('/logoped/listaTretmanaPacijenta');
+
      }
 
       return (

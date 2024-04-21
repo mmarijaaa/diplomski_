@@ -1,10 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import '../stil.css'; 
-import instagram from '../Slike/instagram.png'; 
-import facebook from '../Slike/facebook.png'; 
-import ear from '../Slike/ear.png';
-import logof from '../Slike/lg1F.png';
 import logo from '../Slike/logof.png';
 
 const Footer = () => {
@@ -32,7 +28,7 @@ const Footer = () => {
            
         </div>
             <div className="copyright">
-                Copyrights © 2023 Marija®. All Rights Reserved.
+                Copyrights © 2024 Marija®. All Rights Reserved.
             </div>
         </div>
     )

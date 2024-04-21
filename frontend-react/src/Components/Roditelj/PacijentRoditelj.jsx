@@ -274,13 +274,6 @@ const PacijentRoditelj = ({pacijent}) => {
         const month = today.getMonth()+1;
         const year = today.getFullYear();
         const date = today.getDate();
-        //const currentDate = year + "-" + month + "-" + date;
-        // let currentDate;
-        // if(date<10) {
-        //   currentDate = year + "-" + month + "-" + "0" + date;
-        // } else {
-        //   currentDate = year + "-" + month + "-" + date;
-        // }
 
         const currentDate = moment(today).format('L'); //12/04/2023 
         datum_novi = moment(datum).format('L');     
@@ -342,22 +335,6 @@ const PacijentRoditelj = ({pacijent}) => {
             title: 'Datum je prošao!', 
           })
         }
-
-
-        //ne zakazuju se datumi koji su vec prosli
-        // } else if(datum_novi < currentDate){ 
-        //   console.log("Datum je vec prosao!");
-        //   Swal.fire({
-        //     title: 'Datum je vec prosao!',
-        //   })  
-
-        //ako roditelj zeli da zakaze danas tretman to nije moguce
-        // } else if(datum_novi == currentDate) {
-        //   console.log("Danas nije moguce zakazati tretman!");
-        //   Swal.fire({
-        //     title: 'Danas nije moguce zakazati tretman!',
-        //   })
-        // } 
 
         //ukoliko su svi uslovi ispunjeni moguce je zakazati tretman
         else {
@@ -479,21 +456,6 @@ const PacijentRoditelj = ({pacijent}) => {
             }
         }
 
-      //PROVERA DA DATUM TRETMANA NE BUDE PRE POSLEDNJE ZAKAZANOG
-      //proci kroz listu zakazanih tretmana 
-      //izabrati poslednji clan liste lista[duzina_niza]
-      //uporediti datume ako je odabrani datu pre tog poslednjeg clana liste 
-      //na dugme kada se zakazuje tretman ispisati listu zakazanih
-      //napraviti novi const za zakazane const[tretZ, setTretZ] = useState();
-      // let duzina_zakazanih = tretmaniZak.length;
-      // let poslednji_tretman_datum = tretmaniZak[duzina_zakazanih].datum_tretmana; 
-      // let pt_dan = moment(poslednji_tretman_datum).format('D');
-      // let pt_mesec = moment(poslednji_tretman_datum).format('M'); 
-      // let pt_godina = moment(poslednji_tretman_datum).format('YYYY'); 
-
-      
-      
-
         //STAVITI DA IDE DO BROJA TRETMANA 
         for(let i=0; i<=duzina; i++) {
             //if(duzina < 8) {  
@@ -510,81 +472,7 @@ const PacijentRoditelj = ({pacijent}) => {
                   title: 'Broj tretmana je potrošen!',
                   text: 'Kontaktirajte Vašeg logopeda kako biste započeli novi paket tretmana!',
                 })
-                // Swal.fire({
-                //     title: 'Broj tretmana protosen!',
-                //     text: 'Da li zelite da nastavite sa tretmanima?',
-                //     showDenyButton: true,
-                //     confirmButtonText: 'DA',
-                //     denyButtonText: 'NE',
-                //   }).then((result) => {
-                //     if (result.isConfirmed) {
-                //       Swal.fire({
-                //         title: 'Odaberite paket',
-                //         input: 'select',
-                //         inputOptions: {
-                //         '1': 'Paket1',
-                //         '2': 'Paket2',
-                //         '3': 'Paket3',
-                //         '4': 'Paket4',
-                //         '5': 'Paket5',
-                //         },
-                //         confirmButtonText: 'Odaberite',
-                //         }).then((result) => {
-                //             if (result.isConfirmed) {
-                //                 Swal.fire({
-                //                     title: `Nov paket odabran! ${result.value}`,  
-                //                   }).then(function(){
-                //                     id_paketa_pacijenta2 = result.value; 
-                                    
-                //                     //IZMENA PAKETA DETETA - pocetak  novog paketa 
-                //                     var config = {
-                //                         method: 'put',
-                //                         url: 'http://127.0.0.1:8000/api/izmenaPaketaPacijenta/' + id_pacijenta2 + '/' +id_paketa_pacijenta2,
-                //                         headers: { 
-                //                           'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),  
-                //                         },
-                //                         data : pacijentData
-                //                       };
-                              
-                //                       axios.request(config)
-                //                       .then((response) => {
-                //                         console.log(JSON.stringify(response.data));
-                //                         console.log("Paket pacijenta uspesno izmenjen.");
-                //                         setPacijentData(response.data.pacijent);
-                //                       })
-                //                       .catch((error) => {
-                //                         console.log(error);
-                //                         console.log("Paket pacijenta NIJE uspesno izmenjen."); 
-                //                       }); 
-
-                //                       //KOD ZA BRISANJE TRETMANA KOJI PRIPADAJU TOM PACIJENTU
-
-                //                       // var config = {
-                //                       //   method: 'delete',
-                //                       //   url: 'http://127.0.0.1:8000/api/brisanjeTretmana/' + id_pacijenta2,
-                //                       //   headers: { 
-                //                       //     'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),  
-                //                       //   },
-                //                       // };
-                                      
-                //                       // axios.request(config)
-                //                       // .then((response) => {
-                //                       //   console.log(JSON.stringify(response.data));
-                //                       //   console.log("Tretmani obrisani."); 
-                //                       // })
-                //                       // .catch((error) => {
-                //                       //   console.log(error);
-                //                       // });
-
-                //                     window.location.reload(); 
-                //                 });
-                //               }
-                //             })
-
-                //     } else if (result.isDenied) {
-                //       Swal.fire('Hvala na ukazanom poverenju!')
-                //     }
-                //   })
+                
             }
         }
         console.log(redni_broj_tretmana);
@@ -799,7 +687,7 @@ const PacijentRoditelj = ({pacijent}) => {
                 </div>
                 </div>
                 )}
-
+ 
             </div>
             <div className="modali2">
                 {modal4 && (
@@ -807,11 +695,6 @@ const PacijentRoditelj = ({pacijent}) => {
                 <div className='overlayR' onClick={toggleModal4}></div>
                 <div className='contentR'>
                     <p className='dete_naslov'>ZAUZETI TERMINI: </p>
-                
-                {/*NA DUGME ODRADITI LISTA TRETMANA LOGOPEDA
-                KREIRATI NOVI JSX FAJL ZA DATUM I VREME TRETMANA
-                UBACITI MAPIRANJE TIH TRETMANA
-                */}
                 <div className="tretmani_header">
                   <p id='datum_kolona'>DATUM</p>
                   <p id='vreme_kolona'>VREME</p>

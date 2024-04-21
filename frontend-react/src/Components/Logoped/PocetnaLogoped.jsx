@@ -111,30 +111,15 @@ const PocetnaLogoped = ({ }) => {
             <img className="log_icon" src={create} alt="" />
             <Link to='/logoped/kreirajRoditelja' onClick={noviIdRoditelja} className='log_link'>Kreiraj roditelja</Link>
           </div>
-          {/* <div className="log_link_red">
-                <img className="log_icon" src={write} alt="" />
-                <Link to='/logoped/evidencijaTretmana' className='log_link'>Evidentiraj tretman</Link>
-              </div> */}
           <div className="log_link_red">
             <img className="log_icon" src={lista} alt="" />
             <Link to='/logoped/listaZahteva' className='log_link'>Lista zahteva</Link>
           </div>
-          {/* <div className="log_link_red">
-            <img className="log_icon" src={create} alt="" />
-            <Link to='/logoped/kreirajZahtev' className='log_link'>Kreiraj zahtev</Link>
-          </div> */}
-
           <div className="log_link_red">
             <img className="log_icon" src={lista} alt="" />
             <Link to='/logoped/listaTretmana' className='log_link'>Lista pregleda i tretmana</Link>
           </div>
-
-          {/* <div className="log_link_red">
-            <img className="log_icon" src={create} alt="" />
-            <Link to='/logoped/kreirajTretman' className='log_link'>Kreiraj tretman</Link>
-          </div> */}
         </div>
-
         <div className="log_odjava">
           <div className="log_link_red">
             <img className="log_icon" src={logout} alt="" />

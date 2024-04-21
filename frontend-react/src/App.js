@@ -55,8 +55,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
-        {/* DELOVI MENIJA */}
         <Route path='/' element={<Pocetna/>}></Route>
         <Route path='/nastim' element={<Nastim/>}></Route>
         <Route path='/usluge' element={<Usluge />}></Route>
@@ -69,7 +67,6 @@ function App() {
         <Route path='/pregled' element={<Pregled />}></Route>
 
         {/* PROFIL LOGOPEDA */}
-        {/* <Route path='/prijavaLogopeda' element={<LoginLogoped addToken={addToken}/>}></Route> */}
         <Route path='/logoped' element={<PocetnaLogoped/>}>
             <Route path='kreirajRoditelja' element={<KreirajRoditelja/>}/>
             <Route path='kreirajPacijenta' element={<KreirajPacijenta/>}/>
@@ -86,7 +83,6 @@ function App() {
         </Route>
 
         {/* PROFIL RODITELJA */}
-        {/* <Route path='/prijavaRoditelja' element={<LoginRoditelj addToken2={addToken2}/>}></Route> */}
         <Route path='/roditelj' element={<PocetnaRoditelj/>}>
           <Route path='prethodniPaketi' element={<PrethodniPaketi/>}/> 
           <Route path='trenutniPaket' element={<TrenutniPaket/>}/> 

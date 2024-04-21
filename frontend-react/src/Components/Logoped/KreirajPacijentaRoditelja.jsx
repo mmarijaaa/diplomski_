@@ -12,7 +12,6 @@ const KreirajPacijentaRoditelja = ({}) => {
 
     var [poremecaji, setPoremecaji] = useState();
     var listaPoremecaja = "";
-    //ubaciti novo input bolje gde se ispisuje lista poremecaja
 
     function handleInput3(e) {
         var options = e.target.options;
@@ -70,10 +69,6 @@ const KreirajPacijentaRoditelja = ({}) => {
         let newPacijentData = pacijentData;
         newPacijentData[e.target.name] = e.target.value;
         setPacijentData(newPacijentData);
-        
-        //setPaketPac plus handle input za odrednjena polja 
-        //dve funckije za neka polja treba da se odrade
-        //function dve() handleinput i handleinput2
     }
 
     function handleInput2(e) {
@@ -115,8 +110,6 @@ const KreirajPacijentaRoditelja = ({}) => {
 
     const[paketPac, setPaketPac] = useState({
         naziv_paketa:"",
-        // datum_od:"",
-        // datum_do:"",
         datum_od: datum_od,
         datum_do: datum_do,
         id_pacijenta:"",
@@ -149,15 +142,9 @@ const KreirajPacijentaRoditelja = ({}) => {
                 console.log(JSON.stringify(response.data));
                 window.localStorage.setItem('id_pac',response.data[0].id);
                 id_pac = response.data[0].id;
-                //setPolje(''); 
                 Swal.fire({
                     title: 'Uspesno sačuvan pacijent!', 
-                    showConfirmButton: true,
-                    //confirmButtonText: "Kreiraj paket!"
-                // }).then(function(){ 
-
-                // window.location.reload();
-
+                    showConfirmButton: true
                      }).then((result) => {
                         if (result.isConfirmed) {
                    
@@ -176,17 +163,20 @@ const KreirajPacijentaRoditelja = ({}) => {
                                 axios(config)
                                 .then((response) => {
                                     console.log(JSON.stringify(response.data));
+
+                                    Swal.fire({
+                                        title: 'Kreiran paket pacijenta!', 
+                                        showConfirmButton: true,
+                                    }).then((result) => {
+                                        window.location.reload(false);
+                                    }
+                                    )
                                 })
                                 .catch((error) => {
                                     console.log(error);
                                 });  
                             }
                     })
-                    //then(function(){
-                    //     window.location.reload();
-                    // });
-                    
-            
         } else {
                 console.log("Pacijent NIJE USPESNO kreiran");
                 console.log(response.data.poruka);
@@ -195,39 +185,8 @@ const KreirajPacijentaRoditelja = ({}) => {
         })
         .catch((error) => {
             console.log(error);
-            //console.log("Pacijent NIJE USPESNO kreiran");
         });
     };
-
-    
-    // function nesto() {
-    //     console.log("lista roditelja: ");
-    //     var config = {
-    //           method: 'get',
-    //           url: 'http://127.0.0.1:8000/api/listaRoditelja',
-    //           headers: { 
-    //             'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"),
-    //           },
-    //           data : roditelji,
-    //         };
-    //         axios(config)
-    //         .then((response) => {
-    //           console.log(JSON.stringify(response.data)); 
-    //           console.log(response.data.roditelj);
-    //           //console.log(response.data.roditelj[0].ime);
-    //           // setIme(response.data.roditelj[0].ime);
-    //           // console.log(response.data.roditelj[0].prezime);
-    //           // setPrezime(response.data.roditelj[0].prezime);
-    //           console.log("Roditelj JESTE prikazan"); 
-    //           setRoditelji(response.data.roditelj);  
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //             console.log("Roditelj NIJE prikazan");
-    //         }); 
-    // }
-    
-   
 
     return (
         <div className="log_forma">

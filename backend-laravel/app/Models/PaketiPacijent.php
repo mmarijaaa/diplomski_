@@ -27,4 +27,9 @@ class PaketiPacijent extends Model
     public function logoped(){
         return $this->belongsTo(User::class, 'id_logopeda'); 
     }
+
+    //u okviru jednig paketa postoji vise tretmana
+    public function tretman() {
+        return $this->hasMany(Tretman::class);
+    }
 }

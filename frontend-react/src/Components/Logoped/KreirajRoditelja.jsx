@@ -1,19 +1,19 @@
 import React from 'react';
 import axios from "axios";
 import { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
-const KreirajRoditelja = ({}) => {
+const KreirajRoditelja = ({ }) => {
 
     const [roditeljData, setRoditeljData] = useState({
-        ime:"",
-        prezime:"",
-        korisnicko_ime:"",
-        email:"",
-        password:"",
-        broj_telefona:"",
-        id_logopeda:""
+        ime: "",
+        prezime: "",
+        korisnicko_ime: "",
+        email: "",
+        password: "",
+        broj_telefona: "",
+        id_logopeda: ""
     });
 
     //setovanje polja na prazno kada se kreira roditelj 
@@ -30,12 +30,12 @@ const KreirajRoditelja = ({}) => {
         newRoditeljData[e.target.name] = e.target.value;
         setRoditeljData(newRoditeljData);
 
-        if(e.target.name == 'korisnicko_ime') {
+        if (e.target.name == 'korisnicko_ime') {
             roditelj_kor_ime = e.target.value;
-        } 
-        if(e.target.name == 'password') {
+        }
+        if (e.target.name == 'password') {
             roditelj_lozinka = e.target.value;
-        } 
+        }
     }
 
     const [porukaGreske, setPorukaGreske] = useState();
@@ -45,61 +45,55 @@ const KreirajRoditelja = ({}) => {
         var config = {
             method: 'post',
             url: 'http://127.0.0.1:8000/api/kreirajRoditelja',
-            headers: { 
-                'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"),
+            headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token"),
             },
             data: roditeljData,
         };
         axios(config)
-          .then((response) => {
-            console.log(JSON.stringify(response.data));
-            if(response.data.success == true) {
-                console.log("Roditelj uspesno kreiran!");
-                window.localStorage.setItem("roditelj_id", response.data.roditelj_id);
-                // navigate('/logoped/kreirajPacijenta');
-                Swal.fire({
-                    title: 'Uspešno sačuvan roditelj!',
-                    showConfirmButton: true,
-                  }).then(function(){
-                    window.location.reload();
+            .then((response) => {
+                console.log(JSON.stringify(response.data));
+                if (response.data.success == true) {
+                    console.log("Roditelj uspesno kreiran!");
+                    window.localStorage.setItem("roditelj_id", response.data.roditelj_id);
+                    Swal.fire({
+                        title: 'Uspešno sačuvan roditelj!',
+                        showConfirmButton: true,
+                    }).then(function () {
+                        window.location.reload();
                     });
-            }
-            else {
-                console.log("Roditelj NIJE uspesno kreiran!");
-                console.log(response.data.poruka);
-                setPorukaGreske(response.data.poruka);
-            }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+                }
+                else {
+                    console.log("Roditelj NIJE uspesno kreiran!");
+                    console.log(response.data.poruka);
+                    setPorukaGreske(response.data.poruka);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
 
         //kopiranje u clipboard info roditelja za mail
-        tekst = "Poštovani, \n" + "\n" + 
-        "U nastavku se nalaze podaci za logovanje na Vaš profil: \n" + "\n" + 
-        "Korisničko ime: " + roditelj_kor_ime + "\n" + 
-        "Lozinka: " + roditelj_lozinka + "\n" + "\n" + 
-        "Hvala Vam na poverenju." + "\n" +
-        "Srdačan pozdrav, " + "\n" +
-        "Kovačev Logopedski Centar"
+        tekst = "Poštovani, \n" + "\n" +
+            "U nastavku se nalaze podaci za logovanje na Vaš profil: \n" + "\n" +
+            "Korisničko ime: " + roditelj_kor_ime + "\n" +
+            "Lozinka: " + roditelj_lozinka + "\n" + "\n" +
+            "Hvala Vam na poverenju." + "\n" +
+            "Srdačan pozdrav, " + "\n" +
+            "Kovačev Logopedski Centar"
         navigator.clipboard.writeText(tekst);
-        
+
     }
-
-
-//******** ISNTRUKCIJE ZA KORISCENJE APLIKACJE ZA RODITELJE
-//******** SVE INSTRUKCIJE POSLATE PUTEM MEJLA KAD SE POSALJU I KOR IME I SIFRA NALOGA
-
 
     return (
         <div className="log_forma">
 
             <form onSubmit={handleKreirajRoditelja}>
 
-            <div className="kreiraj_forma">
-                <p>KREIRANJE RODITELJA</p> 
-                    <input 
+                <div className="kreiraj_forma">
+                    <p>KREIRANJE RODITELJA</p>
+                    <input
                         type="text"
                         id="ime_roditelja"
                         className="polje"
@@ -109,8 +103,8 @@ const KreirajRoditelja = ({}) => {
                         value={polje}
                         autoComplete="off"
                     />
-                    
-                    <input 
+
+                    <input
                         type="text"
                         id="prezime_roditelja"
                         className="polje"
@@ -120,7 +114,7 @@ const KreirajRoditelja = ({}) => {
                         value={polje}
                         autoComplete="off"
                     />
-                    <input 
+                    <input
                         type="text"
                         id="korisnicko_ime_roditelja"
                         className="polje"
@@ -130,7 +124,7 @@ const KreirajRoditelja = ({}) => {
                         value={polje}
                         autoComplete="off"
                     />
-                    <input 
+                    <input
                         type="email"
                         id="email_roditelja"
                         className="polje"
@@ -140,7 +134,7 @@ const KreirajRoditelja = ({}) => {
                         value={polje}
                         autoComplete="off"
                     />
-                    <input 
+                    <input
                         type="text"
                         id="password_roditelja"
                         className="polje"
@@ -150,7 +144,7 @@ const KreirajRoditelja = ({}) => {
                         value={polje}
                         autoComplete="off"
                     />
-                    <input 
+                    <input
                         type="text"
                         id="broj_telefona_roditelja"
                         className="polje"
@@ -165,12 +159,12 @@ const KreirajRoditelja = ({}) => {
                         type="submit"
                         className="dugme"
                     >
-                    KREIRAJ RODITELJA
+                        KREIRAJ RODITELJA
                     </button>
                     <a id="dugme_mail" href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new"
-                    target="_blank">
-                    POŠALJI MAIL</a>
-            </div>
+                        target="_blank">
+                        POŠALJI MAIL</a>
+                </div>
 
             </form>
 

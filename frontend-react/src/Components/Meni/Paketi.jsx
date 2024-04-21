@@ -1,8 +1,5 @@
 import React from 'react';
 import Meni from './Meni';
-import fist from '../Slike/fist.png';  
-import fist2 from '../Slike/fist (1).png';  
-import fist3 from '../Slike/fist (2).png'; 
 import Footer from './Footer'; 
 
 const Paketi = () => {

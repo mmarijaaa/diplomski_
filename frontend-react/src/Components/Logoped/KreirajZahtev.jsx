@@ -48,7 +48,6 @@ const KreirajZahtev = ({}) => {
           
           axios.request(config)
           .then((response) => {
-            //console.log(JSON.stringify(response.data));
             if(response.data.success == true && id_logopeda_prima != id_logopeda_kreira) {
                     setZahtevData(response.data);
                     Swal.fire({
@@ -110,15 +109,6 @@ const KreirajZahtev = ({}) => {
                 <p>KREIRANJE ZAHTEVA<br></br>
                 ZA NOVOG PACIJENTA</p> 
 
-                        {/* <input 
-                            type="text"
-                            id="tip_zahteva"
-                            className="polje1"
-                            // onInput={handleInput}
-                            name="tip_zahteva"
-                            value="Zahtev za novog pacijenta"
-                            spellcheck="false"
-                        /> */}
                     <textarea 
                         type="text"
                         id="info_pacijenta"

@@ -226,7 +226,6 @@ class DatabaseSeeder extends Seeder
         $terapija1 = new Tretman;
         $terapija1->datum_tretmana = '2024-03-06';
         $terapija1->vreme_tretmana = '14h';
-        // $terapija1->redni_broj_tretmana = 1;
         $terapija1->sadrzaj_tretmana = 'kratak opis prvog tretmana';
         $terapija1->id_logopeda = 2;
         $terapija1->id_pacijenta = 2;
@@ -237,7 +236,6 @@ class DatabaseSeeder extends Seeder
         $terapija2 = new Tretman;
         $terapija2->datum_tretmana = '2024-03-07';
         $terapija2->vreme_tretmana = '15h';
-        // $terapija2->redni_broj_tretmana = 2;
         $terapija2->sadrzaj_tretmana = 'radjeno je to i to';
         $terapija2->id_logopeda = 2;
         $terapija2->id_pacijenta = 2;
@@ -248,7 +246,6 @@ class DatabaseSeeder extends Seeder
         $terapija3 = new Tretman;
         $terapija3->datum_tretmana = '2024-03-16';
         $terapija3->vreme_tretmana = '14h';
-        // $terapija3->redni_broj_tretmana = 3;
         $terapija3->id_logopeda = 2;
         $terapija3->id_pacijenta = 2;
         $terapija3->id_paketa = 2;
@@ -260,7 +257,6 @@ class DatabaseSeeder extends Seeder
         $terapija4 = new Tretman;
         $terapija4->datum_tretmana = '2024-03-12';
         $terapija4->vreme_tretmana = '17h';
-        // $terapija4->redni_broj_tretmana = 1;
         $terapija4->sadrzaj_tretmana = 'sledeci put treba da se uradi to i to';
         $terapija4->id_logopeda = 2;
         $terapija4->id_pacijenta = 1;
@@ -271,7 +267,6 @@ class DatabaseSeeder extends Seeder
         $terapija5 = new Tretman;
         $terapija5->datum_tretmana = '2024-03-15';
         $terapija5->vreme_tretmana = '18h';
-        // $terapija5->redni_broj_tretmana = 2;
         $terapija5->id_logopeda = 2;
         $terapija5->id_pacijenta = 1;
         $terapija5->id_paketa = 3;
@@ -283,7 +278,6 @@ class DatabaseSeeder extends Seeder
         $terapija6 = new Tretman;
         $terapija6->datum_tretmana = '2023-11-25';
         $terapija6->vreme_tretmana = '14h';
-        // $terapija6->redni_broj_tretmana = 1;
         $terapija6->sadrzaj_tretmana = 'kratak opis prvog tretmana';
         $terapija6->id_logopeda = 2;
         $terapija6->id_pacijenta = 2;
@@ -294,7 +288,6 @@ class DatabaseSeeder extends Seeder
         $terapija7 = new Tretman;
         $terapija7->datum_tretmana = '2023-11-30';
         $terapija7->vreme_tretmana = '15h';
-        // $terapija7->redni_broj_tretmana = 2;
         $terapija7->sadrzaj_tretmana = 'radjeno je to i to';
         $terapija7->id_logopeda = 2;
         $terapija7->id_pacijenta = 2;
@@ -305,7 +298,6 @@ class DatabaseSeeder extends Seeder
         $terapija8 = new Tretman;
         $terapija8->datum_tretmana = '2023-12-10';
         $terapija8->vreme_tretmana = '14h';
-        // $terapija8->redni_broj_tretmana = 3;
         $terapija8->id_logopeda = 2;
         $terapija8->id_pacijenta = 2;
         $terapija8->id_paketa = 1;
@@ -315,7 +307,6 @@ class DatabaseSeeder extends Seeder
         $terapija9 = new Tretman;
         $terapija9->datum_tretmana = '2023-12-18';
         $terapija9->vreme_tretmana = '14h';
-        // $terapija9->redni_broj_tretmana = 4;
         $terapija9->id_logopeda = 2;
         $terapija9->id_pacijenta = 2;
         $terapija9->id_paketa = 1;
@@ -327,7 +318,6 @@ class DatabaseSeeder extends Seeder
         $terapija10 = new Tretman;
         $terapija10->datum_tretmana = '2023-12-28';
         $terapija10->vreme_tretmana = '14h';
-        // $terapija10->redni_broj_tretmana = 1;
         $terapija10->sadrzaj_tretmana = 'kratak opis prvog tretmana';
         $terapija10->id_logopeda = 2;
         $terapija10->id_pacijenta = 2;
@@ -338,7 +328,6 @@ class DatabaseSeeder extends Seeder
         $terapija11 = new Tretman;
         $terapija11->datum_tretmana = '2024-01-05';
         $terapija11->vreme_tretmana = '15h';
-        // $terapija11->redni_broj_tretmana = 2;
         $terapija11->sadrzaj_tretmana = 'radjeno je to i to';
         $terapija11->id_logopeda = 2;
         $terapija11->id_pacijenta = 2;
@@ -349,7 +338,6 @@ class DatabaseSeeder extends Seeder
         $terapija12 = new Tretman;
         $terapija12->datum_tretmana = '2023-01-10';
         $terapija12->vreme_tretmana = '14h';
-        // $terapija12->redni_broj_tretmana = 1;
         $terapija12->sadrzaj_tretmana = 'domaci zadatak za sledeci tretman';
         $terapija12->id_logopeda = 2;
         $terapija12->id_pacijenta = 2;
@@ -360,7 +348,6 @@ class DatabaseSeeder extends Seeder
         $terapija13 = new Tretman;
         $terapija13->datum_tretmana = '2024-01-17';
         $terapija13->vreme_tretmana = '15h';
-        // $terapija13->redni_broj_tretmana = 2;
         $terapija13->sadrzaj_tretmana = 'radjena je artikulacija';
         $terapija13->id_logopeda = 2;
         $terapija13->id_pacijenta = 2;
@@ -373,7 +360,6 @@ class DatabaseSeeder extends Seeder
         $terapija14 = new Tretman;
         $terapija14->datum_tretmana = '2023-12-28';
         $terapija14->vreme_tretmana = '19h';
-        // $terapija10->redni_broj_tretmana = 1;
         $terapija14->sadrzaj_tretmana = 'kratak opis prvog tretmana, atrikulacija';
         $terapija14->id_logopeda = 2;
         $terapija14->id_pacijenta = 3;
@@ -384,7 +370,6 @@ class DatabaseSeeder extends Seeder
         $terapija15 = new Tretman;
         $terapija15->datum_tretmana = '2024-01-05';
         $terapija15->vreme_tretmana = '20h';
-        // $terapija11->redni_broj_tretmana = 2;
         $terapija15->sadrzaj_tretmana = 'radjeno je svasta nesto';
         $terapija15->id_logopeda = 2;
         $terapija15->id_pacijenta = 3;

@@ -20,9 +20,6 @@ font-style: normal;
 }*/
 body {
     background-color: #fdfced;
-    /*fffedf*/
-    /*fdfced*/
-    /*fcfcf2*/
     min-height: 100%;
     position: relative;
     margin: 0;
@@ -162,48 +159,6 @@ input:-webkit-autofill:focus {
 }
 
 
-/******************************************************/
-/*MENI*/
-/* .meni_res {
-    display: none;
-    
-}
-.ceomeni {
-    display: flex;
-    flex-direction: row;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-top: 30px;
-    margin-left: 45px;
-    margin-right: 45px;
-    border: 2px solid #003C62;
-    border-radius: 50px; 
-}
-.ceomeni .meni1 {
-    flex: 40%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-.ceomeni .meni2 {
-    flex: 20%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-.ceomeni .meni3 {
-    flex: 40%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around; 
-}
-.ceomeni .link {
-    text-decoration: none;
-    font-size: 18px;
-    font-family: 'Kanit', sans-serif;
-    color: #003C62;
-} */
-
 .ceomeni {
     display: flex;
     justify-content: center;
@@ -236,7 +191,6 @@ input:-webkit-autofill:focus {
     border-radius: 50px;
     padding: 10px 20px 10px 20px;
     margin: 0px 0px 0px 10px;
-    /*width: 120px;*/
     text-decoration: none;
     font-size: 20px;
     font-family: 'Kanit', sans-serif;
@@ -250,25 +204,6 @@ input:-webkit-autofill:focus {
     background-color: #003C62;
     color: #fdfced;
 }
-
-/* .meni .meni_telefon {
-    flex: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.meni .meni_telefon #tel {
-    border: 2px solid #003C62;
-    border-radius: 50px;
-    padding: 10px 0px 10px 0px;
-    width: 220px;
-    text-decoration: none;
-    font-size: 18px;
-    font-family: 'Kanit', sans-serif;
-    color: #003C62; 
-    cursor: pointer;
-    text-align: center;
-} */
 
 .meni .meni_linkovi {
     flex: 60%;
@@ -291,7 +226,6 @@ input:-webkit-autofill:focus {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    /* padding: 15px 0px 15px 0px; */
 }
 
 .meni .meni_linkovi1 .link {
@@ -334,7 +268,6 @@ input:-webkit-autofill:focus {
     /*200px pos fixed*/
     margin-bottom: 150px;
 
-    /*animation: fadeInAnimation ease 2s; */
     animation: fadeInAnimation ease 2s;
     animation-iteration-count: 1;
     animation-fill-mode: backwards;
@@ -346,14 +279,6 @@ input:-webkit-autofill:focus {
     flex-direction: column;
 }
 
-/* .pocetna1 .poc1_deo1 .poc1_pozadina{ 
-    background-color: #f5dae1;
-    height: 450px;
-    width: 700px;
-    /* margin-left: 100px; 
-    border-radius: 50px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-} */
 .pocetna1 .poc1_deo1 .poc1_slika {
     display: flex;
     justify-content: flex-end;
@@ -362,10 +287,8 @@ input:-webkit-autofill:focus {
 .pocetna1 .poc1_deo1 .poc1_slika #poc1 {
     padding: 20px;
     background-color: #f5dae1;
-    /* height: 450px; */
     width: 75%;
     height: auto;
-    /* margin-top: -430px; */
     border-radius: 50px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
@@ -425,35 +348,6 @@ input:-webkit-autofill:focus {
     }
 }
 
-/* .pocetna1 .slika1 {
-    border-radius: 400px; 
-    margin: 20px;
-    max-width: 400px;
-    height: 570px; 
-    text-align: center;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-}
-.pocetna1 .tekst1 {
-    border-radius: 400px; 
-    margin: 20px;
-    max-width: 400px;  
-    height: 570px;  
-    text-align: center;
-    background-color: #d2e7d6;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.pocetna1 .tekst1 p{
-    color: #003C62;
-    font-size: 35px;
-    margin: 0px 20px 0px 20px;
-    font-family: 'Kanit', sans-serif;
-    font-style: bold;
-} */
-
 .pocetna11 {
     margin: 150px 0px;
 }
@@ -462,8 +356,6 @@ input:-webkit-autofill:focus {
     color: #003C62;
     font-size: 35px;
     font-family: 'Poiret One', sans-serif;
-    /*font-family: "Chakra Petch", sans-serif;*/
-    /*font-weight: 300;*/
     text-align: center;
     border-bottom: 5px solid #f5dae1;
     width: 310px;
@@ -508,51 +400,18 @@ input:-webkit-autofill:focus {
     color: #fdfced;
 }
 
-/* .strelica {
-    height: 50px;
-    width: 30px;
-    border: 2px solid #003C62; 
-    position: absolute;
-    left: 49.3%;
-   
-    border-radius: 50px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-.strelica::before,
-.strelica::after {
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    border: 2px solid #003C62;
-    height: 10px;
-    width: 10px;
-    transform: translate(-50%, -100%) rotate(45deg); 
-    border-top: transparent;
-    border-left: transparent;
-    animation: scroll-down 1.5s ease-in-out infinite;
-}
-.strelica::after {
-    top: 30%;
-    animation-delay: .3s;
-} */
-
 .h33 {
     display: flex;
     justify-content: center;
-    /* width: 100%; */
 }
 
 .h23 {
     display: flex;
     justify-content: center;
-    /* width: 100%; */
 }
 
 #pocetna2 {
     background-color: #e2f1f7;
-    /*ffe7ef    fff1f5*/
     display: flex;
     flex-direction: row;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -904,10 +763,6 @@ input:-webkit-autofill:focus {
         top: 90%;
     }
 }
-
-/******************************************************/
-/*PAKETI*/
-
 
 /******************************************************/
 /*NAS TIM*/
@@ -1843,91 +1698,6 @@ input:-webkit-autofill:focus {
     height: 80px;
 }
 
-/* .footer .deo12 {
-    flex: 60%;
-    display: flex;
-    flex-direction: row;
-}
-.footer .deo12 .deo1 {
-    flex: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 30px;
-}
-.footer .deo1 img{
-    height: 40px;
-    width: 40px;
-}
-.footer .deo1 .social{
-    display: flex;
-    flex-direction: row;
-}
-.footer .deo1 .social img{
-    height: 40px;
-    margin: 0px 10px 0px 10px;
-}
-.footer .deo2 {
-    flex: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  
-}
-.footer .deo2 .linkF{
-    text-decoration: none;
-    color: #003353;
-    font-size: 16px;
-    font-family: 'Kanit', sans-serif;
-    margin-top: 5px;
-}
-.footer .deo3 {
-    flex: 40%;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: end;
-    padding-right: 20px;
-}
-.footer .deo3 #email{
-    width: 420px;
-    font-size: 15px;
-    background-color: #d2e7d6;
-    font-family: 'Kanit', sans-serif;
-    border: 2px solid #003C62;
-    border-radius: 50px;
-    padding-left: 20px;
-    color: #003C62;
-}
-.footer .deo3 #poruka{
-    width: 420px;
-    font-size: 15px;
-    background-color: #d2e7d6;
-    font-family: 'Kanit', sans-serif;
-    border: 2px solid #003C62; 
-    border-radius: 20px;
-    margin-top: 10px;
-    padding-left: 20px;
-    color: #003C62;
-}
-.footer .deo3 #dugme{
-    width: 150px;
-    font-size: 14px;
-    background-color: #d2e7d6;
-    font-family: 'Kanit', sans-serif;
-    border: 2px solid #003C62;
-    border-radius: 50px;
-    padding: 5px 0px 5px 0px; 
-    margin-top: 10px;
-    color: #003C62;
-}
-
-.footer .deo3 #dugme:hover {
-    background-color: #003C62;
-    color: #d2e7d6;
-    cursor: pointer;
-} */
-
 /******************************************************/
 /*PROFIL LOGOPEDA*/
 .log_profil {
@@ -2189,14 +1959,11 @@ input:-webkit-autofill:focus {
     font-size: 17px;
     color: #003353;
     font-family: 'Nunito Sans', sans-serif;
-    /* width: 250px; */
     width: 80%;
     padding: 10px 20px 10px 20px;
     margin: 10px 0px 10px 0px;
-    /* border: 2px solid #003353; */
     border: none;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    /* border-radius: 50px; */
 }
 
 .kreiraj_forma textarea {
@@ -2268,122 +2035,6 @@ input:-webkit-autofill:focus {
     font-size: 35px;
 }
 
-/* .pacijent {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    margin: 0px 0px 30px 0px;
-    padding: 10px 20px 20px 20px;
-    width: 1400px;
-}
-.pacijent .detalji .polje_ip p{ 
-    color: #003C62;
-    font-size: 20px;
-    font-family: 'Nunito Sans', sans-serif; 
-}
-.pacijent .detalji .detalji_modal_dugme {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-}
-.pacijent .detalji .detalji_dugmici {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.pacijent .detalji .detalji_dugmici .dugme {
-    width: 300px;
-    height: 40px;
-    font-size: 15px;
-    font-family: 'Nunito Sans', sans-serif;
-    border: none;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    background-color: #fffedf;
-    border-radius: 50px;
-    padding: 10px 0px 10px 0px;
-    color: #003353;
-    cursor: pointer;
-   
-}
-.pacijent .detalji .detalji_dugmici #dugme_obrisi {
-    width: 100px;
-    height: 40px;
-    font-size: 15px;
-    font-family: 'Nunito Sans', sans-serif;
-    
-    border: none;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    background-color: #fffedf;
-    border-radius: 50px;
-    padding: 10px 0px 10px 0px;
-    color: #003353;
-    cursor: pointer;
-}
-.pacijent .detalji .detalji_dugmici .dugme:hover {
-    color: #fffedf;
-    background-color: #003C62;
-    cursor: pointer;
-}
-.pacijent .detalji .detalji_dugmici #dugme_obrisi:hover {
-    color: #fffedf;
-    background-color: #003C62;
-    cursor: pointer;
-}
-
- .modal {
-    width: 300px;
-    margin: 10px 0px 0px 0px; 
-    padding: 10px 0px 10px 0px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
- .modal .polje p {
-    color: #003C62;
-    font-size: 17px;
-    font-family: 'Nunito Sans', sans-serif; 
-}
-.detalji_modal_dugme .modal input {
-    color: #003C62;
-    font-size: 17px;
-    font-family: 'Nunito Sans', sans-serif;
-    
-    border: none;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    background-color: #fffedf;
-    border-radius: 50px;
-    padding: 5px 0px 5px 10px;
-    margin: 0px 0px 15px 0px;
-    width: 220px;
-}
-.detalji_modal_dugme .modal select {
-    color: #003C62;
-    font-size: 17px;
-    font-family: 'Nunito Sans', sans-serif;
-   
-    border: none;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    background-color: #fffedf;
-    border-radius: 50px;
-    padding: 5px 0px 5px 10px;
-    width: 230px;
-}
-.detalji_modal_dugme .modal .dugme_izmena {
-    width: 100px;
-    font-size: 15px;
-    font-family: 'Nunito Sans', sans-serif;
-    border: 2px solid #003C62;
-    background-color: #fffedf;
-    border-radius: 50px;
-    padding: 10px 0px 10px 0px;
-    margin-top: 20px;
-    color: #003353;
-    cursor: pointer;
-}
-.detalji_modal_dugme .modal .dugme_izmena:hover {
-    color: #fffedf;
-    background-color: #003353;
-} */
-
 .pacijent {
     display: flex;
     flex-direction: row;
@@ -2444,7 +2095,6 @@ input:-webkit-autofill:focus {
 .pacijent .pacijent_dugmad .dugme {
     font-size: 16px;
     background-color: #fdfced;
-    /* border: 2px solid #003C62; */
     border: none;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 50px;
@@ -2470,7 +2120,6 @@ input:-webkit-autofill:focus {
     font-size: 18px;
     margin-right: 10px;
     font-weight: bold;
-    /*border-bottom: 1px solid #003C62;*/
 }
 
 .pac_det .polje .pp {
@@ -2678,118 +2327,6 @@ input:-webkit-autofill:focus {
     color: #fdfced;
 }
 
-/* .tretman {
-    border: none;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    padding: 3px 15px 15px 15px;
-    margin: 0px 0px 10px 0px;
-}
-.tretman p {
-    color: #003353;
-    font-size: 16px;
-    font-family: 'Nunito Sans', sans-serif;
-}
-.tretman .tretman_sadrzaj textarea{
-    height: 50px;
-    width: 265px; 
-    font-size: 14px;
-    font-family: 'Nunito Sans', sans-serif;
-    color: #003353;
-    background-color: #fffedf;
-    border: none;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-}
-.tretman .dugme_sadrzaj {
-    width: 150px;
-    font-size: 15px;
-    font-family: 'Nunito Sans', sans-serif;
-    border: 2px solid #003C62;
-    background-color: #fffedf;
-    border-radius: 50px;
-    padding: 10px 0px 10px 0px;
-    margin-top: 20px;
-    color: #003353;
-    cursor: pointer;
-}
-.tretman .dugme_sadrzaj:hover {
-    color: #fffedf;
-    background-color: #003353; 
-} */
-
-/******************************************************/
-/*LISTA RODITELJA*/
-/* .rod_info {
-    display: flex;
-    flex-direction: row;
-    flex: 80%;
-}
-.rod_deca {
-    flex: 20%;
-}
-.rod_dugmad {
-    flex: 5%;
-}
-.lista_roditelja {
-    width: 100%;
-}
-.roditelji {
-    width: 150%;
-}
-.tabela_roditelja {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    margin: 0px 0px 20px 0px;
-    padding: 10px;
-    font-size: 18px;
-    font-family: 'Nunito Sans', sans-serif;
-    color: #003353;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-}
-#rod_ime {
-    flex: 17%;
-    background-color: #f5f5df;
-    height: 100%;
-}
-#rod_kime {
-    flex: 13%;
-    padding: 0px 10px 0px 0px;
-}
-.tabela_roditelja #rod_email {
-    flex: 25%;
-    padding: 0px 10px 0px 0px;
-}
-.tabela_roditelja #rod_tel {
-    flex: 15%;
-    padding: 0px 10px 0px 0px;
-}
-.tabela_roditelja #rod_deca {
-    flex: 20%;
-    padding: 0px 10px 0px 0px;
-}
-.tabela_roditelja #rod_dugmad {
-    flex: 10%;
-    display: flex;
-    flex-direction: column;
-    padding: 0px 10px 0px 10px;
-}
-.tabela_roditelja #rod_dugmad .rod_dugme {
-    font-size: 16px;
-    background-color: #fdfced;
-    border: none;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    border-radius: 50px;
-    margin: 5px 0px 5px 0px;
-    padding: 7px 0px;
-    cursor: pointer;
-    color: #003C62;
-}
-.tabela_roditelja #rod_dugmad .rod_dugme:hover {
-    background-color: #003C62;
-    color: #fdfced;
-} */
 .lista_roditelja {
     width: 130%;
 
@@ -2850,7 +2387,7 @@ input:-webkit-autofill:focus {
 
 .roditelj .rod_info .rod_tel {
     padding: 10px;
-    flex: 15%;
+    flex: 17%;
     text-align: center;
     display: flex;
     align-items: center;
@@ -2869,7 +2406,7 @@ input:-webkit-autofill:focus {
 }
 
 .roditelj .rod_dugmad {
-    flex: 15%;
+    flex: 13%;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -3220,12 +2757,6 @@ input:-webkit-autofill:focus {
     font-family: 'Nunito Sans', sans-serif;
 }
 
-/* .kontakt_logopeda #kont_naslov {
-    color: #003C62;
-    font-family: 'Kanit', sans-serif;
-    font-size: 35px;
-    margin-bottom: 50px;
-} */
 .kontakt_logopeda .kont_info {
     color: #003C62;
     margin-bottom: 15px;

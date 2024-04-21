@@ -54,7 +54,6 @@ const Zahtev = ({ zahtev }) => {
     function handlePaket(e) {
         id_paketa = e.target.value;
         naziv_paketa = e.target.options[e.target.selectedIndex].text;
-        //naziv_paketa = zahtev.info_pacijenta;
         console.log(id_paketa); 
     }
 
@@ -185,7 +184,6 @@ const Zahtev = ({ zahtev }) => {
             <div className="odob_preg">
 
                 <div className="zahtev_odobren">
-                    {/* <input type="checkbox" onChange={promeni}/> */}
                     <label class="container">
                         {odob == 0 ?
                             (<div className="cb">
@@ -263,13 +261,7 @@ const Zahtev = ({ zahtev }) => {
                                 <option value="4">Paket 4 - 18 tretmana</option>
                                 <option value="5">Paket 5 - 24 tretmana</option>
                             </select>
-                            {/* <input 
-                            type = 'text' 
-                            value = {zahtev.info_pacijenta}
-                            name="id_paketa" 
-                            id="paket" 
-                            onInput={handlePaket}
-                            /> */}
+                            
                         </div>
                         <div className="obnova_dugme">
                             <button onClick={obnovaPaketaPacijenta}>OBNOVI PAKET</button>

@@ -37,11 +37,9 @@ const Roditelj = ({ roditelj }) => {
 
   function toggleModalIzmena() {
     setModal(!modal);
-    console.log("izmena");
   }
 
   function handleIzmenaRoditelja() {
-    //console.log("izmena 2");
     let id_roditelja = roditelj.id;
     var config = {
       method: 'put',
@@ -56,7 +54,6 @@ const Roditelj = ({ roditelj }) => {
       .then((response) => {
         console.log(JSON.stringify(response.data));
         console.log("Roditelj uspesno izmenjen.");
-        //setRoditeljData(response.data.roditelj);
         Swal.fire({
           title: 'Roditelj uspešno ažuriran!',
         })
@@ -68,7 +65,6 @@ const Roditelj = ({ roditelj }) => {
   }
 
   function handleBrisanjeRoditelja() {
-    //console.log("brisanje");
 
     Swal.fire({
       title: "Da li sigurno želite da obrišete roditelja?",
@@ -154,13 +150,7 @@ const Roditelj = ({ roditelj }) => {
     console.log("kreiranje");
   }
   const [porukaGreske, setPorukaGreske] = useState();
-  /*const[paketPac, setPaketPac] = useState({
-    naziv_paketa:"",
-    datum_od: datum_od,
-    datum_do: datum_do,
-    id_pacijenta:"",
-    id_logopeda:"",
-});*/
+ 
   const [pacijentData, setPacijentData] = useState({
     ime: "",
     prezime: "",
@@ -170,6 +160,7 @@ const Roditelj = ({ roditelj }) => {
     id_logopeda: "",
     id_paketa: ""
   });
+  
   function handleKreirajPacijenta(e) {
 
     e.preventDefault();
@@ -178,71 +169,7 @@ const Roditelj = ({ roditelj }) => {
 
     console.log(id_paketa);
 
-    //KREIRANJE PACIJENTA
-    /*var config = {
-         method: 'post',
-         url: 'http://127.0.0.1:8000/api/kreirajPacijenta/'+ id_roditelja + '/' + id_paketa,
-         headers: { 
-           'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"), 
-         },
-         data: pacijentData,
-     };
-
-     axios(config)
-     .then((response) => {
-         if(response.data.success === true) {
-             console.log("Pacijent uspesno kreiran");
-             console.log(JSON.stringify(response.data));
-             window.localStorage.setItem('id_pac',response.data[0].id);
-             id_pac = response.data[0].id;
-             //setPolje(''); 
-             Swal.fire({
-                 title: 'Uspesno sačuvan pacijent!', 
-                 showConfirmButton: true,
-                 //confirmButtonText: "Kreiraj paket!"
-             // }).then(function(){ 
-
-             // window.location.reload();
-
-                  }).then((result) => {
-                     if (result.isConfirmed) {
-                
-                             console.log(id_pac);
-                             console.log(id_roditelja);
-                             console.log(naziv_paketa);
-                             var config = {
-                                 method: 'post',
-                                 url: 'http://127.0.0.1:8000/api/kreirajNoviPaket/'+ naziv_paketa + '/' + id_pac + '/' + id_logopeda,
-                                 headers: { 
-                                 'Authorization': 'Bearer '+window.localStorage.getItem("auth_token"), 
-                                 },
-                                 data: paketPac,
-                             };
-         
-                             axios(config)
-                             .then((response) => {
-                                 console.log(JSON.stringify(response.data));
-                             })
-                             .catch((error) => {
-                                 console.log(error);
-                             });  
-                         }
-                 })
-                 //then(function(){
-                 //     window.location.reload();
-                 // });
-                 
-         
-     } else {
-             console.log("Pacijent NIJE USPESNO kreiran");
-             console.log(response.data.poruka);
-             setPorukaGreske(response.data.poruka);
-         }
-     })
-     .catch((error) => {
-         console.log(error);
-         //console.log("Pacijent NIJE USPESNO kreiran");
-     });*/
+    
   };
 
   return (

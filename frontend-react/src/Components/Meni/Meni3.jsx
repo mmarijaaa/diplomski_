@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 import '../stil.css';
 import meni from '../Slike/menu.png';
 import close from '../Slike/close.png';
-import logo from '../Slike/lg1.png';
 import ver1 from '../Slike/ver1.png';
-import ver2 from '../Slike/ver2.png';
-import ver3 from '../Slike/ver3.png';
 import { useState } from 'react';
 
 const Meni3 = () => {

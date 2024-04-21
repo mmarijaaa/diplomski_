@@ -30,7 +30,8 @@ class PacijentController extends Controller
         ]); 
  
         if($validator->fails()) 
-            return response()->json(['success'=> false, 'poruka'=>'Popunite ispravno sva polja!', $validator->errors()]);
+            return response()->json(['success'=> false, 'poruka'=>'Popunite ispravno sva polja!', 
+        $validator->errors()]);
 
         $pacijent = Pacijent::create([
             'ime'=>$request->ime,
@@ -43,7 +44,6 @@ class PacijentController extends Controller
         ]); 
 
         return response()->json(['success'=>true, new PacijentResource($pacijent)]);
-        //return new PacijentResource($pacijent);   
     }
 
     //************************************************************************************* 
@@ -113,14 +113,10 @@ class PacijentController extends Controller
         $pacijent->prezime = $request->prezime;
         $pacijent->uzrast = $request->uzrast;
         $pacijent->poremecaj = $request->poremecaj;
-        //$pacijent->id_paketa=$request->id_paketa;
 
         $pacijent->save();
 
-        //return response()->json(['success'=>true,'Pacijent uspesno azuriran.', $pacijent]); 
-        return response()->json(['success'=>true,'Pacijent uspešno ažuriran.', new PacijentResource($pacijent)]);  
-        //return new PacijentResource($pacijent);  
- 
+        return response()->json(['success'=>true,'Pacijent uspešno ažuriran.', new PacijentResource($pacijent)]);   
     }
 
      //************************************************************************************* 
@@ -141,7 +137,6 @@ class PacijentController extends Controller
 
         $pacijent->save();
 
-        //return new PacijentResource($pacijent); 
         return response()->json(['success'=>true, new PacijentResource($pacijent)]);  
 
     }

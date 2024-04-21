@@ -24,9 +24,7 @@ const PacijentRoditelj2 = ({pacijent}) => {
     return (
         <div className="dete_info">
             <div className="dete_dugme">
-                {/* <button  className="dete_link" onClick={sacuvajIdPacijenta}>
-                    {pacijent.ime} {pacijent.prezime}
-                </button> */}
+
             <a href='/roditelj/dete' onClick={dete}> {pacijent.ime} {pacijent.prezime}</a> 
 
             </div> 

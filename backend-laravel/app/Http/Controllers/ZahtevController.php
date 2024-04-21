@@ -18,7 +18,7 @@ class ZahtevController extends Controller
 
     //************************************************************************************* 
     //KREIRANJE ZAHTEVA NOV PACIJENT
-    public function create(Request $request, $id_logopeda_kreira, $id_logopeda_prima, $id_pacijenta, $id_roditelja) {
+    public function create(Request $request, $id_logopeda, $id_pacijenta, $id_roditelja) {
 
         $validator=Validator::make($request->all(), [
             'tip_zahteva' => '',
@@ -35,8 +35,7 @@ class ZahtevController extends Controller
             'tip_zahteva' => "Zahtev za novog pacijenta", 
             'odobren' => 0,  
             'pregledan' => 0, 
-            'id_logopeda_kreira'=>$id_logopeda_kreira,
-            'id_logopeda_prima'=>$id_logopeda_prima,
+            'id_logopeda'=>$id_logopeda,
             'id_pacijenta'=>$id_pacijenta,
             'id_roditelja'=>$id_roditelja,
             'info_pacijenta' => $request->info_pacijenta,
@@ -48,7 +47,7 @@ class ZahtevController extends Controller
 
     //************************************************************************************* 
     //KREIRANJE ZAHTEVA OBNOVA PAKETA
-    public function create2(Request $request, $id_logopeda_prima, $id_pacijenta, $id_roditelja, $zahtev) {
+    public function create2(Request $request, $id_logopeda, $id_pacijenta, $id_roditelja, $zahtev) {
 
         $validator=Validator::make($request->all(), [
             'tip_zahteva' => '',
@@ -65,8 +64,7 @@ class ZahtevController extends Controller
             'tip_zahteva' => "Zahtev za obnovu paketa", 
             'odobren' => 0,  
             'pregledan' => 0, 
-            'id_logopeda_kreira'=>0,
-            'id_logopeda_prima'=>$id_logopeda_prima,
+            'id_logopeda'=>$id_logopeda,
             'id_pacijenta'=>$id_pacijenta,
             'id_roditelja'=>$id_roditelja,
             'info_pacijenta' => $zahtev,
@@ -79,7 +77,7 @@ class ZahtevController extends Controller
     //************************************************************************************* 
     //LISTA ZAHTEVA LOGOPEDA
     public function zahtevi($id_logopeda_prima) {
-        $zahtevi = Zahtev::get()->where('id_logopeda_prima',$id_logopeda_prima); 
+        $zahtevi = Zahtev::get()->where('id_logopeda',$id_logopeda_prima); 
         if(is_null($zahtevi)) {
             return response()->json("Zahteva nema");
         }
@@ -89,7 +87,7 @@ class ZahtevController extends Controller
     }
     
     public function show($id) { 
-        $zah = Zahtev::where('id_logopeda_prima',$id)
+        $zah = Zahtev::where('id_logopeda',$id)
         ->where ([
 			['odobren',0],
 			['pregledan',0],

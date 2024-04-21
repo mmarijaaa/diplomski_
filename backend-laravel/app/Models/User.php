@@ -27,6 +27,16 @@ class User extends Authenticatable
         'gmail_link'
     ];
 
+    //jedan logoped ima vise pacijenata
+      public function pacijent() {
+        return $this->hasMany(Pacijent::class);  
+    }
+
+     //jedan logoped ima vise pacijenata
+     public function roditelj() {
+        return $this->hasMany(Roditelj::class);  
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -47,9 +57,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    //jedan logoped ima vise pacijenata
-    public function pacijent() {
-        return $this->hasMany(Pacijent::class);  
-    }
+  
 
 }

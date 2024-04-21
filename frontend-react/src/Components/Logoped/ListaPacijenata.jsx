@@ -1,8 +1,7 @@
-import React, { useReducer } from 'react'
+import React from 'react'
 import PacijentLogoped from './PacijentLogoped';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
 import Loading from '../Loading';
 
 const ListaPacijenata = () => {
@@ -46,7 +45,14 @@ const ListaPacijenata = () => {
   return (
     <div className="lista">
       <p id='lista_naslov'>LISTA PACIJENATA</p>
-      <div className='pretraga'><input type='text' className='pretraga' placeholder='Pretraži pacijente' onChange={(e) => setSearch(e.target.value)}></input></div>
+      <div className='pretraga'>
+        <input type='text' 
+        className='pretraga' 
+        placeholder='Pretraži pacijente' 
+        onChange={(e) => 
+        setSearch(e.target.value)}>
+      </input>
+      </div>
       {
         loading ? (
           pacijents == null

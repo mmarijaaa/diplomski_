@@ -112,52 +112,6 @@ const TrenutniPaket = () => {
       });
   }, []);
 
-  //USE EFFECT ZA PRIKAZ SVIH TRETMANA
-  /*useEffect(() => {
-      console.log(idp); 
-      //odradjeni tretmani
-      var config = {
-          method: 'get',
-          url: 'http://127.0.0.1:8000/api/listaTretmanaOdradjenih/' + id_dete + "/" + paketID,
-          headers: {  
-            'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
-          },
-          data : tretmani3,
-        };
-
-      axios(config)
-      .then((response) => {
-          console.log(JSON.stringify(response.data));
-          console.log("Lista ODRADJENIH tretmana prikazana");
-          setTretmani3(response.data.data); 
-      })
-      .catch((error) => {
-          console.log(error);
-          console.log("Lista tretmana NIJE prikazana");
-      });
-     
-    
-      //zakazani tretmani
-        var config = {
-            method: 'get',
-            url: 'http://127.0.0.1:8000/api/listaTretmanaZakazanih/' + id_dete + "/" + paketID,
-            headers: { 
-              'Authorization': 'Bearer '+ window.sessionStorage.getItem("auth_token2"),
-            },
-            data : tretmani4,
-          };
- 
-        axios(config)
-        .then((response) => {
-            console.log(JSON.stringify(response.data));
-            console.log("Lista ZAKAZANIH tretmana prikazana");
-            setTretmani4(response.data.data); 
-        })
-        .catch((error) => {
-            console.log(error);
-            console.log("Lista tretmana NIJE prikazana");
-        });
-  }, []);*/
 
   //OBNOVA PAKETA 
   var zahtev_paket;

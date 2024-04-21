@@ -21,7 +21,6 @@ const ZakazivanjeTretmana = () => {
     const [tretmanData, setTretmanData] = useState({
         datum_tretmana: "",
         vreme_tretmana: "",
-        // redni_broj_tretmana: "",
         id_pacijenta: "",
         id_logopeda: "",
         id_paketa: "",
@@ -161,7 +160,7 @@ const ZakazivanjeTretmana = () => {
                     mesec == mesec_liste &&
                     godina == godina_liste) {
                     Swal.fire({
-                        title: 'Tog dana vec imate zakazan tretman!',
+                        title: 'Tog dana već imate zakazan tretman!',
                     })
                     break;
                 }
@@ -510,40 +509,6 @@ const ZakazivanjeTretmana = () => {
                 }
             }
         }
-        // else if(duzina_liste_svih_tret == 0 && zakazi == true) {
-        //     redni_broj_tretmana = 1;
-        //     var config = {
-        //         method: 'post',
-        //         url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + 1 +  '/' + id_pak_pac ,
-        //         headers: { 
-        //         'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
-        //         },
-        //         data: tretmanData,
-        //     }
-        //     axios.request(config)
-        //     .then((response) => {
-
-        //         if(response.data.success == true) {
-        //             console.log(JSON.stringify(response.data.success));
-        //             console.log("Tretman kreiran!");
-        //             Swal.fire({
-        //                 title: 'Uspešno zakazan tretman!',
-        //             }).then(function(){
-        //                 navigate("/roditelj");
-        //             });
-        //         } else {
-        //             Swal.fire({
-        //                 title: 'Odaberite i datum i vreme!',
-        //             })
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //         console.log("Tretman NIJE kreiran.");
-        //         console.log("Broj tretmana potrosen!!!");
-        //      });
-
-        // }
 
         //ako su ispunjeni uslovi onda moze da se zakaze
         //ako se ne poklapa izabrani datum sa vec postojecim 
@@ -621,19 +586,11 @@ const ZakazivanjeTretmana = () => {
                                     }
                                 })
                                 .catch((error) => {
-                                    // Swal.fire({
-                                    //     title: 'GRESKA!',
-                                    // })
+                                   
                                     console.log(error);
                                     console.log("Tretman NIJE kreiran.");
                                     console.log("Broj tretmana potrosen!!!");
-                                    // Swal.fire({
-                                    //     title: 'Broj tretmana je potrošen!',
-                                    //     text: 'Da li želite da započnete novi paket tretmana?',
-                                    //     showDenyButton: true,
-                                    //     confirmButtonText: 'DA',
-                                    //     denyButtonText: 'NE',
-                                    // })
+                                    
                                 });
                         }
                     } else {

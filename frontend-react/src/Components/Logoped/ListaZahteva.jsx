@@ -55,7 +55,6 @@ const ListaZahteva = () => {
     <div className="lista">
 
       <p id='lista_naslov'>LISTA ZAHTEVA ZA OBNOVU PAKETA</p>
-      {/* <div className='pretraga'><input type='text' className='pretraga' placeholder='Pretraži zahteve' onChange={(e) => setSearch(e.target.value)}></input></div> */}
       <div className='zahtevi'>
         {
           loading ? (

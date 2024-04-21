@@ -201,31 +201,7 @@ const PocetnaRoditelj = () => {
         setLogopedTel(response.data[0].logoped.broj_telefona);
         setLogopedID(response.data[0].logoped.id);
         console.log('id logopeda: ' + logopedID);
-        //setRoditelj(response.data.roditelj);  
-
-        //INFO LOGOPEDA U MENIJU
-        // if(logoped == null) { 
-        //   var config = {
-        //       method: 'get',
-        //       url: 'http://127.0.0.1:8000/api/logoped/' + id_logopeda, 
-        //       headers: { 
-        //         'Authorization': 'Bearer '+window.localStorage.getItem("auth_token2"),
-        //       },
-        //       data : logoped,
-        //     };
-        //     axios(config)
-        //     .then((response) => {
-        //         console.log(JSON.stringify(response.data));
-        //         setLogopedIme(response.data.logoped[1].ime);  
-        //         setLogopedPrezime(response.data.logoped[1].prezime);  
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //         console.log("Logopeda NEMA");
-        //     });
-        //     }
-
-
+        
       })
       .catch((error) => {
         console.log(error);
@@ -241,115 +217,11 @@ const PocetnaRoditelj = () => {
   const [paketiPac, setPaketiPac] = useState();
   var iddete;
 
-  //FUNKCIJA ZA ISPIS PAKETA PACIJENTA U DROPDOWN LISTI 
-  /*function ip2() {
-
-    console.log(iddete); 
-    var config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:8000/api/paketiPacijentaLogoped/' + iddete,
-      headers: { 
-        'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
-        
-      },
-      data : paketiPac
-    };
-    
-    axios.request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-      setPaketiPac(response.data.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }*/
-
-  //FUNKCIJA ZA ISPIS PAKETA PACIJENTA U DROPDOWN LISTI 
-  /*function ip3() {
-
-    console.log("id jednog deteta: "+idj); 
-    var config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:8000/api/paketiPacijentaLogoped/' + idj,
-      headers: { 
-        'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
-        
-      },
-      data : paketiPac
-    };
-    
-    axios.request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-      setPaketiPac(response.data.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }*/
-
-
   //FUNKCIJA PRIKAZA TRETMANA ODREDJENOG PACIJENTA I PAKETA PACIJENTA
   const [tretmani3, setTretmani3] = useState();
   const [tretmani4, setTretmani4] = useState();
   const [idpakpac, setidpakpac] = useState();
   var id_pak_pac;
-
-  /*function t2(e) { 
-    setIzaberi("Izaberite");
-    id_pak_pac = e.target.value;
-    iddete = window.localStorage.getItem("iddete");
-    console.log(id_pak_pac); 
-    console.log(iddete);
-    
-      //odradjeni tretmani
-     
-      var config = {
-          method: 'get',
-          url: 'http://127.0.0.1:8000/api/listaTretmanaOdradjenih/' + iddete + "/" + id_pak_pac,
-          headers: { 
-            'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
-          },
-          data : tretmani3,
-        };
-
-      axios(config)
-      .then((response) => {
-          console.log(JSON.stringify(response.data));
-          console.log("Lista ODRADJENIH tretmana prikazana");
-          setTretmani3(response.data.data); 
-      })
-      .catch((error) => {
-          console.log(error);
-          console.log("Lista tretmana NIJE prikazana");
-      });
-     
-    
-      //zakazani tretmani
-     
-        var config = {
-            method: 'get',
-            url: 'http://127.0.0.1:8000/api/listaTretmanaZakazanih/' + iddete+ "/" + id_pak_pac,
-            headers: { 
-              'Authorization': 'Bearer '+ window.localStorage.getItem("auth_token2"),
-            },
-            data : tretmani4,
-          };
- 
-        axios(config)
-        .then((response) => {
-            console.log(JSON.stringify(response.data));
-            console.log("Lista ZAKAZANIH tretmana prikazana");
-            setTretmani4(response.data.data); 
-        })
-        .catch((error) => {
-            console.log(error);
-            console.log("Lista tretmana NIJE prikazana");
-        });
-  }*/
 
   //FUNCKIJA ZA ODLAZAK NA STRANICU PRETHODNIH PAKETA
   function prethodniPaketi() {
@@ -584,38 +456,7 @@ const PocetnaRoditelj = () => {
 
           </div>
 
-          {/* {jedno == true 
-                      ? <div>
-                        <button onClick={ip3}>PAKET</button> 
-                        </div>
-                      : <div></div>
-                        } */}
-
-          {/*ISPISUJE PAKETE ODABRANOG DETETA*/}
-          {/*<div className="dete_paket">
-                  <div className="dete_lista_paketa">*/}
-          {/*ukoliko ima vise dece*/}
-          {/*<select 
-                      name="id_paketa_pacijenta" 
-                      id="dete_lista_paketa" 
-                      onChange={t2}
-                      defaultValue={"placeholder"}
-                      > 
-                          <option value={"placeholder"}>{izaberi}</option>
-                          {paketiPac == null 
-                              ? (<></>)
-                              :
-                          (paketiPac.map(({id, naziv_paketa, datum_od, datum_do, id_pacijenta, id_logopeda, created_at, updated_at} )=> 
-                          <option value={id} >
-                              {naziv_paketa} ~ {moment(datum_od).local().format('ll')} - {moment(datum_do).local().format('ll')}
-                          </option>))} 
-                      </select>
-
-                   
-
-                    </div>
-                </div>*/}
-
+          
           {/*SVI TRETMANI DETETA NA OSNOVU ODABRANOG PAKETA*/}
           <div className="dete_tretmani">
             <div className="tretmani_odr" id="odr">

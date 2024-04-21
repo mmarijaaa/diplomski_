@@ -92,79 +92,21 @@ const ListaTretmana = () => {
             (pregledi == null && tretmani == null
               ? (<></>)
               :
-              // (<div>
-              //   {pregledi
-              //     .slice()
-              //     .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
-              //     .map((pregled) => <Pregled pregled={pregled} key={pregled.id} />)}
-
-              //   {tretmani
-              //     .slice()
-              //     .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
-              //     .map((tretman) => <Tretman tretman={tretman} key={tretman.id} />)}
-              // </div>)
               (<div className="lpt">
+
                 {pregledi.concat(tretmani)
                   .slice()
                   .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
-                  .map((tretman) => <Tretman tretman={tretman} key={tretman.id} />)}
+                  .map((tretman) => <Tretman tretman={tretman} key={tretman.id} />)
+                }
+
               </div>)
             )
             :
             (<Loading />)
         }
       </div>
-      {/*
-        loading ? (
-        pregledi == null
-          ? (<></>)
-          : (pregledi.map((pregled) => <Pregled pregled={pregled} key={pregled.id} />))
-          ) :
-            (<Loading/>) 
-        */}
-
-      {/*
-        loading ? (
-        tretmani == null
-          ? (<></>)
-          : (tretmani.map((tretman) => <Tretman tretman={tretman} key={tretman.id} />))
-          ) :
-            (<Loading/>) 
-        */}
-
-
-      {/* {modalP && (
-                <div className='modalP'>
-                <div className='overlayP' onClick={preglediLista}></div>
-                <div className='contentP'>
-                    <p className='dete_naslov'>PREGLEDI: </p> 
-
-                    { 
-                    pregledi == null 
-                    ? (<></>)
-                    : (pregledi.map((pregled) => <Pregled pregled={pregled} key={pregled.id}/>))
-                    }
-                
-                </div>
-                </div>
-                )} */}
-
-      {/* {modalT && (
-                <div className='modalT'>
-                <div className='overlayT' onClick={tretmaniLista}></div>
-                <div className='contentT'>
-                    <p className='dete_naslov'>TRETMANI: </p> 
-
-                    { 
-                    tretmani == null 
-                    ? (<></>)
-                    : (tretmani.map((tretman) => <Tretman tretman={tretman} key={tretman.id}/>))
-                    }
-               
-                </div>
-                </div>
-                )} */}
-
+      
     </div>
   )
 

@@ -17,7 +17,6 @@ class Pacijent extends Model
         'id_roditelja',
         'id_logopeda',
         'id_paketa',
-        // 'id_paketi_pacijent'  
     ];
 
     //jedan pacijent pripada samo jednom logopedu
@@ -30,13 +29,9 @@ class Pacijent extends Model
         return $this->belongsTo(Roditelj::class, 'id_roditelja'); 
     }
 
-    //jedan pacijent pripada samo jednom paketu odnosno odabrao je samo jedan paket
+    //jedan pacijent odabrao je samo jedan paket
     public function paket(){
         return $this->belongsTo(Paket::class, 'id_paketa');
     }
 
-    //jedan pacijent ima vise paketi_pacijenta (lista odabranih paketa)
-    // public function paketiPacijent() {
-    //     return $this->hasMany(PaketiPacijent::class, );   
-    // }
 }

@@ -118,24 +118,11 @@ const EvidentirajTretman = ({}) => {
             console.log("Pacijenta NEMA");
         });
 
-        //console.log(id_paketa_pacijenta);  
     }
 
     return (
         <div className="evidencija">
             <h1>Evidencija tretmana</h1>
-            {/* 
-            -lista dece sa imenima roditelja
-            proveri broj poslednjeg tretmana tako sto se prodje kroz listu tretmana tog deteta
-            povecaj taj broj za jedan
-            -kalendar
-            -lista sati tretmana
-            sadrzaj tretmana default prazan string
-            id logopeda local storage user id
-            id pacijenta pacijent.id
-            id paketa pacijent.id_paketa
-            klasicno kreiranje tretmana
-            */}
 
             <div className="tretman_zakazi">
                     <select name="id_pacijenta" id="pacijent" onChange={pacijentFunkcija}> 
@@ -163,7 +150,6 @@ const EvidentirajTretman = ({}) => {
                         <option value="19h">19h</option>
                         <option value="20h">20h</option> 
                     </select>
-                    {/* <button onClick={handleKreirajTretman}> */}
                     <button onClick={handleKreirajTretman}>
                         EVIDENTIRAJ 
                     </button>

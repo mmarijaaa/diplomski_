@@ -46,28 +46,33 @@ const ListaRoditelja = () => {
     <div className="lista">
 
       <p id='lista_naslov'>LISTA RODITELJA</p>
-      <div className='pretraga'><input type='text' className='pretraga' placeholder='Pretraži roditelje' onChange={(e) => setSearch(e.target.value)}></input></div>
+      
+      <div className='pretraga'>
+        <input type='text'
+          className='pretraga'
+          placeholder='Pretraži roditelje'
+          onChange={(e) => setSearch(e.target.value)}>
+        </input></div>
 
       <div className="lista_roditelja">
 
         {
-         
-         loading ? (
-          roditelji == null
-            ? (<></>)
-            : roditelji.filter((roditelj) => {
-              return search.toLowerCase() === ''
-                ? roditelj
-                : (roditelj.ime.toLowerCase().includes(search)
-                  || roditelj.prezime.toLowerCase().includes(search)
-                  || roditelj.korisnicko_ime.toLowerCase().includes(search));
-            }).map((roditelj) => (
+          loading ? (
+            roditelji == null
+              ? (<></>)
+              : roditelji.filter((roditelj) => {
+                return search.toLowerCase() === ''
+                  ? roditelj
+                  : (roditelj.ime.toLowerCase().includes(search)
+                    || roditelj.prezime.toLowerCase().includes(search)
+                    || roditelj.korisnicko_ime.toLowerCase().includes(search));
+              }).map((roditelj) => (
 
-              <Roditelj roditelj={roditelj} key={roditelj.id} />
+                <Roditelj roditelj={roditelj} key={roditelj.id} />
 
-            ))
-            ) :
-            (<Loading/>) 
+              ))
+          ) :
+            (<Loading />)
         }
 
       </div>

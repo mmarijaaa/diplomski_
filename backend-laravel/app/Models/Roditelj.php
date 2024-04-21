@@ -27,6 +27,16 @@ class Roditelj extends Authenticatable
         'id_logopeda'
     ];
 
+     //jedan roditelj ima vise dece/pacijenata
+     public function pacijent() {
+        return $this->hasMany(Pacijent::class);  
+    }
+
+    //jedan roditelj pripada samo jednom logopedu
+    public function logoped(){
+        return $this->belongsTo(User::class, 'id_logopeda'); 
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -46,15 +56,4 @@ class Roditelj extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-
-    //jedan roditelj ima vise dece/pacijenata
-    public function pacijent() {
-        return $this->hasMany(Pacijent::class);  
-    }
-
-    //jedan roditelj pripada samo jednom logopedu
-    public function logoped(){
-        return $this->belongsTo(User::class, 'id_logopeda'); 
-    }
 }
