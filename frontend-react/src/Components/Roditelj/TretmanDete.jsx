@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 const TretmanDete = ({tretman}) => {
 
     let datum1 = tretman.datum_tretmana;
-    let datum = moment(datum1).local().format('ll'); //srediti 
+    let datum = moment(datum1).local().format('ll');  
     let navigate = useNavigate();
 
     //OTKAZIVANJE TRETMANA

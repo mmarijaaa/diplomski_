@@ -211,8 +211,7 @@ const Pregled = () => {
 
                 var config = {
                     method: 'post',
-                    // url: 'http://127.0.0.1:8000/api/kreiranjeNovogPregleda/'+datum_odab+"/"+vreme_odabrano+"/"+sadrzaj, 
-                    url: 'http://127.0.0.1:8000/api/kreiranjePregleda', 
+                    url: 'http://127.0.0.1:8000/api/kreiranjePregleda',  
                     data: pregledData
                 }
 
@@ -230,7 +229,6 @@ const Pregled = () => {
                             });
                         } else {
                             Swal.fire({
-                                // title: 'Odaberite i datum i vreme!',
                                 title: 'Popunite sva polja!',
                             })
                             console.log("Pregled nije kreiran.");

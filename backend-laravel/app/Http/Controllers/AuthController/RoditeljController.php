@@ -164,7 +164,7 @@ class RoditeljController extends Controller
     public function delete($id_roditelja){
         $roditelj=Roditelj::find($id_roditelja); 
         $roditelj->delete();
-        return response()->json('Roditelj uspesno obrisan'); 
+        return response()->json('Roditelj uspesno obrisan.'); 
     }
 
     //RESURS PRIKAZA RODITELJA

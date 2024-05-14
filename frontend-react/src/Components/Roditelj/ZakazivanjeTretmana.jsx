@@ -15,6 +15,7 @@ const ZakazivanjeTretmana = () => {
     const [loading1, setLoading1] = useState(false);
     const [loading2, setLoading2] = useState(false);
     const [loading3, setLoading3] = useState(false);
+    const [loading4, setLoading4] = useState(false);
 
     let navigate = useNavigate();
 
@@ -37,6 +38,7 @@ const ZakazivanjeTretmana = () => {
     const [zakazaniTretmani, setZakazaniTretmani] = useState();
     const [zakazaniTretmaniLogoped, setZakazaniTretmaniLogoped] = useState();
     const [tretmaniSvi, setTretmaniSvi] = useState();
+    const [preglediZakazani, setPreglediZakazani] = useState();
 
     useEffect(() => {
 
@@ -103,6 +105,27 @@ const ZakazivanjeTretmana = () => {
             .catch((error) => {
                 console.log(error);
                 console.log("Lista SVIH tretmana NIJE prikazana");
+            });
+
+        //lista pregleda svih logopeda
+        var config = {
+            method: 'get',
+            url: 'http://127.0.0.1:8000/api/listaPregleda',
+            headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
+            },
+            data: preglediZakazani,
+        };
+        axios(config)
+            .then((response) => {
+                console.log(JSON.stringify(response.data));
+                console.log("Lista PREGLEDA LOGOPEDA");
+                setPreglediZakazani(response.data.data);
+                setLoading4(true);
+            })
+            .catch((error) => {
+                console.log(error);
+                console.log("Lista PREGLEDA LOGOPEDA NIJE");
             });
     }, []);
 
@@ -184,7 +207,7 @@ const ZakazivanjeTretmana = () => {
         // console.log("godina-" + godina_danas);
         console.log("DANASNJI DATUM: " + danasnji_dan);
 
-        if(danasnji_dan > odabran_dan) {
+        if (danasnji_dan > odabran_dan) {
             console.log("PROSLO PROSLO PROSLO");
         } else {
             console.log("MOZE MOZE MOZE");
@@ -363,7 +386,7 @@ const ZakazivanjeTretmana = () => {
         if (danasnji_dan > odabran_dan) {
             console.log("PROSLO PROSLO PROSLO");
             moze_datum = false;
-        } else  if (danasnji_dan < odabran_dan)  {
+        } else if (danasnji_dan < odabran_dan) {
             console.log("MOZE MOZE MOZE");
             moze_datum = true;
         } else {
@@ -432,7 +455,7 @@ const ZakazivanjeTretmana = () => {
                     }
 
                 } else {
-                    potroseno = false; 
+                    potroseno = false;
                     console.log("Broj tretmana potrošen!!!");
                     Swal.fire({
                         title: 'Broj tretmana je potrošen!',
@@ -512,109 +535,109 @@ const ZakazivanjeTretmana = () => {
 
         //ako su ispunjeni uslovi onda moze da se zakaze
         //ako se ne poklapa izabrani datum sa vec postojecim 
-        if(potroseno == true) {
-        if (moze_datum == true) {
-            if (vikend == true) {
-                if (zakaziV == true) {
-                    if (zakazi == true) {
+        if (potroseno == true) {
+            if (moze_datum == true) {
+                if (vikend == true) {
+                    if (zakaziV == true) {
+                        if (zakazi == true) {
 
-                        if (duzina_liste_svih_tret == 0) {
-                            // redni_broj_tretmana = 1;
-                            var config = {
-                                method: 'post',
-                                // url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + 1 + '/' + id_pak_pac,
-                                url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + id_pak_pac,
+                            if (duzina_liste_svih_tret == 0) {
+                                // redni_broj_tretmana = 1;
+                                var config = {
+                                    method: 'post',
+                                    // url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + 1 + '/' + id_pak_pac,
+                                    url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + id_pak_pac,
 
-                                headers: {
-                                    'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
-                                },
-                                data: tretmanData,
+                                    headers: {
+                                        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
+                                    },
+                                    data: tretmanData,
+                                }
+                                axios.request(config)
+                                    .then((response) => {
+
+                                        if (response.data.success == true) {
+                                            console.log(JSON.stringify(response.data.success));
+                                            console.log("Tretman kreiran!");
+                                            Swal.fire({
+                                                title: 'Uspešno zakazan tretman!',
+                                            }).then(function () {
+                                                navigate("/roditelj");
+                                            });
+                                        } else {
+                                            Swal.fire({
+                                                title: 'Odaberite i datum i vreme!',
+                                            })
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                        console.log("Tretman NIJE kreiran.");
+                                        console.log("Broj tretmana potrosen!!!");
+                                    });
+
                             }
-                            axios.request(config)
-                                .then((response) => {
 
-                                    if (response.data.success == true) {
-                                        console.log(JSON.stringify(response.data.success));
-                                        console.log("Tretman kreiran!");
-                                        Swal.fire({
-                                            title: 'Uspešno zakazan tretman!',
-                                        }).then(function () {
-                                            navigate("/roditelj");
-                                        });
-                                    } else {
-                                        Swal.fire({
-                                            title: 'Odaberite i datum i vreme!',
-                                        })
-                                    }
-                                })
-                                .catch((error) => {
-                                    console.log(error);
-                                    console.log("Tretman NIJE kreiran.");
-                                    console.log("Broj tretmana potrosen!!!");
-                                });
+                            else if (duzina_liste_svih_tret != 0) {
+
+                                var config = {
+                                    method: 'post',
+                                    // url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + redni_broj_tretmana + '/' + id_pak_pac,
+                                    url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + id_pak_pac,
+
+                                    headers: {
+                                        'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
+                                    },
+                                    data: tretmanData,
+                                }
+
+                                axios.request(config)
+                                    .then((response) => {
+
+                                        if (response.data.success == true) {
+                                            console.log(JSON.stringify(response.data.success));
+                                            console.log("Tretman kreiran!");
+                                            Swal.fire({
+                                                title: 'Uspešno zakazan tretman!',
+                                            }).then(function () {
+                                                navigate("/roditelj");
+                                            });
+                                        } else {
+                                            Swal.fire({
+                                                title: 'Odaberite i datum i vreme!',
+                                            })
+                                        }
+                                    })
+                                    .catch((error) => {
+
+                                        console.log(error);
+                                        console.log("Tretman NIJE kreiran.");
+                                        console.log("Broj tretmana potrosen!!!");
+
+                                    });
+                            }
+                        } else {
+                            Swal.fire({
+                                title: 'Tretman je zauzet!',
+                            })
 
                         }
 
-                        else if (duzina_liste_svih_tret != 0) {
-
-                            var config = {
-                                method: 'post',
-                                // url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + redni_broj_tretmana + '/' + id_pak_pac,
-                                url: 'http://127.0.0.1:8000/api/kreiranjeTretmana/' + id_logopeda + '/' + id_dete + '/' + id_paketa + '/' + id_pak_pac,
-
-                                headers: {
-                                    'Authorization': 'Bearer ' + window.localStorage.getItem("auth_token2"),
-                                },
-                                data: tretmanData,
-                            }
-
-                            axios.request(config)
-                                .then((response) => {
-
-                                    if (response.data.success == true) {
-                                        console.log(JSON.stringify(response.data.success));
-                                        console.log("Tretman kreiran!");
-                                        Swal.fire({
-                                            title: 'Uspešno zakazan tretman!',
-                                        }).then(function () {
-                                            navigate("/roditelj");
-                                        });
-                                    } else {
-                                        Swal.fire({
-                                            title: 'Odaberite i datum i vreme!',
-                                        })
-                                    }
-                                })
-                                .catch((error) => {
-                                   
-                                    console.log(error);
-                                    console.log("Tretman NIJE kreiran.");
-                                    console.log("Broj tretmana potrosen!!!");
-                                    
-                                });
-                        }
                     } else {
                         Swal.fire({
-                            title: 'Tretman je zauzet!',
+                            title: 'Odaberite vreme!',
                         })
-
                     }
-
                 } else {
                     Swal.fire({
-                        title: 'Odaberite vreme!',
+                        title: 'Ne radimo vikendom!',
                     })
                 }
             } else {
                 Swal.fire({
-                    title: 'Ne radimo vikendom!',
+                    title: 'Datum je prošao!',
                 })
             }
-        } else {
-            Swal.fire({
-                title: 'Datum je prošao!',
-            })
-        }
 
         }
     }
@@ -683,11 +706,12 @@ const ZakazivanjeTretmana = () => {
                                         {
                                             zakazaniTretmaniLogoped == null
                                                 ? (<></>)
-                                                : (zakazaniTretmaniLogoped
+                                                : (zakazaniTretmaniLogoped.concat(preglediZakazani)
                                                     .slice()
                                                     .sort((a, b) => new Date(a.datum_tretmana) - new Date(b.datum_tretmana))
                                                     .map((tretman) => <TretmaniLogopeda tretman={tretman} key={tretman.id} />))
                                         }
+                                        
                                     </div>
                                 </div>
                             )}

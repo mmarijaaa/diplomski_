@@ -9,7 +9,7 @@ import moment from 'moment';
 const TretmaniLogopeda = ({tretman}) => {
 
     let datum1 = tretman.datum_tretmana;
-    let datum = moment(datum1).local().format('ll'); //srediti 
+    let datum = moment(datum1).local().format('ll');  
 
     return (
         <div className="zauzeti_tret_log">

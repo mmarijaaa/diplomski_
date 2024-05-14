@@ -336,7 +336,7 @@ class DatabaseSeeder extends Seeder
         $terapija11->save();
 
         $terapija12 = new Tretman;
-        $terapija12->datum_tretmana = '2023-01-10';
+        $terapija12->datum_tretmana = '2024-01-10';
         $terapija12->vreme_tretmana = '14h';
         $terapija12->sadrzaj_tretmana = 'domaci zadatak za sledeci tretman';
         $terapija12->id_logopeda = 2;
@@ -370,7 +370,7 @@ class DatabaseSeeder extends Seeder
         $terapija15 = new Tretman;
         $terapija15->datum_tretmana = '2024-01-05';
         $terapija15->vreme_tretmana = '20h';
-        $terapija15->sadrzaj_tretmana = 'radjeno je svasta nesto';
+        $terapija15->sadrzaj_tretmana = 'domaci za sledeci tretman';
         $terapija15->id_logopeda = 2;
         $terapija15->id_pacijenta = 3;
         $terapija15->id_paketa = 4;

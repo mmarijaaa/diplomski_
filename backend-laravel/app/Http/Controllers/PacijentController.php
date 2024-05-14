@@ -146,6 +146,6 @@ class PacijentController extends Controller
     public function delete($id_pacijenta){
         $pacijent=Pacijent::find($id_pacijenta);
         $pacijent->delete();
-        return response()->json('Pacijent uspesno obrisan'); 
+        return response()->json('Pacijent uspesno obrisan.'); 
     }
 }

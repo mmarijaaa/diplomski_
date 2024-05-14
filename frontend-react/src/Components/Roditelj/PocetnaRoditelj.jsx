@@ -334,7 +334,7 @@ const PocetnaRoditelj = () => {
               </div>
             </div>
 
-            <div className='kont_info'>
+            {/* <div className='kont_info'>
               <img className="log_icon" src={link} alt="" />
               <div className="knt">
                 <b>Link ka početnoj:</b> <br></br>
@@ -342,7 +342,7 @@ const PocetnaRoditelj = () => {
                   <a href="http://localhost:3000/ " target="_blank" rel="noreferrer">L.C. Kovačev</a>
                 </div>
               </div>
-            </div>
+            </div> */}
 
           </div>
 

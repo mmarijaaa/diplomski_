@@ -140,6 +140,7 @@ const Zahtev = ({ zahtev }) => {
                     .then((response) => {
                         console.log(JSON.stringify(response.data));
                         console.log("izmenjen paket na zavrsen = 1");
+                        console.log("Paket pacijenta završen");
                         setPakPacIzmena(response.data.data);
                     })
                     .catch((error) => {

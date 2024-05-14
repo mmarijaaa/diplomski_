@@ -23,9 +23,9 @@ const Nastim = () => {
                     
                     <p>
                         Kovačev logopedski centar je privatna dečija logopedsko - defektološka ordinacija 
-                        koja je osnovana 2020. godine u Beogradu od strane Andree Kovačev, 
+                        koja je osnovana 2022. godine u Beogradu od strane Andree Kovačev, 
                         master logopeda. Naše postojanje jeste kratko, ali smo za kratko vreme stekli  
-                        veliko znanje i iskustvo. Naš stručni tim logopeda svoje strplejnje, znanje i 
+                        veliko znanje i iskustvo. Naš stručni tim logopeda svoje strpljenje, znanje i 
                         iskustvo implementira svakodnevno u radu sa decom. 
                         Naše dijagnostičke i terapijske procedure naučno su zasnovane i jasne. U našem Centru 
                         pružamo mogućnost dijagnostike govornih i jezičkih poremećaja poput disfazije ili specifičnog 
@@ -34,7 +34,7 @@ const Nastim = () => {
                         primenjujemo zasnivaju se na jezičkim i kognitivno-bihejvioralnim aspektima.
                         <br></br>
                         <br></br>
-                        Naše aktivnosti u prevencija, rana detekcija, dijagnostika i rehabilitacija dece koja poseduju neki 
+                        Naše aktivnosti su prevencija, rana detekcija, dijagnostika i rehabilitacija dece koja poseduju neki 
                         govorno jezički poremećaj i/ili poremećaj ponašanja i učenja. Cilj našeg rada jeste da se 
                         deca osećaju sigurno i lepo kod nas i da rado dolaze na tretmane.  
                         Trudimo se da obezbedimo deci interaktivni i efikasan program tretmana kako bi 
@@ -70,7 +70,7 @@ const Nastim = () => {
                         <div className='log_tekst'>
                             <h3>Andrea Kovačev</h3>
                             <p>
-                            Andrea Kovačev, rođena 14. septembra 1999. godinez. Godine 2021. je diplomirala 
+                            Andrea Kovačev, rođena 14. septembra 1999. godine. Godine 2021. je diplomirala 
                             na Visokoj školi socijalnog rada u Boegradu, na smeru Logopedija i dobila zvanje
                             Diplomiranog Logopeda. Iste godine upisuje master studije i uspešno ih završava 
                             2022. godine braneći master rad pod nazivom "Poremećaj glasa kod vokalnih profesionalaca".
@@ -92,7 +92,7 @@ const Nastim = () => {
                         Diplomirala 2019.godine na Fakultetu za specijalnu edukaciju i rehabilitaciju 
                         Univerziteta u Beogradu na odseku za logopediju i dobila zvanje Defektolog-Logoped.
                         U toku studiranja volontirala je u humanitarnoj organizaciji "Dečije srce".
-                        Od 2020.godine je deo stručnog tima "Kovačev Logopedskog centra" .
+                        Od 2022.godine je deo stručnog tima "Kovačev Logopedskog centra" .
                         Nastavlja stručno usavršavanje kao polaznik Edukacije za Senzorno-integracijskog 
                         pedagoga.
                         </p>

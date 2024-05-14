@@ -28,13 +28,18 @@ use App\Http\Controllers\MailController;
 });*/
 
 Route::post('/register', [LogopedController::class, 'register']);
+
+//prijava logopeda na sistem*
 Route::post('/login', [LogopedController::class, 'login']); 
 
-//kreiranje pregleda
+//kreiranje pregleda*
 Route::post('/kreiranjePregleda', [TretmanController::class, 'createPregled']); 
 
 //kreiranje pregleda
-Route::post('/kreiranjeNovogPregleda/{dat}/{vr}/{sadr}', [TretmanController::class, 'createPregled2']); 
+//Route::post('/kreiranjeNovogPregleda/{dat}/{vr}/{sadr}', [TretmanController::class, 'createPregled2']); 
+
+//kreiranje pregleda*
+//Route::post('/kreiranjeNovogPregleda/{log}/{pac}/{pak}/{pakpac}/{naziv}', [TretmanController::class, 'createPregled3']); 
 
 //lista svih zakazanih tretmana 
 Route::get('/listaSvihZakazanih', [TretmanController::class, 'listaSvihZakazanih']); 
@@ -49,10 +54,10 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
     Route::get('/logoped/{id_logopeda}', [LogopedController::class, 'logoped']);
     Route::resource('sviLogopedi', LogopedController::class);   
 
-    //kreiranje roditelja
+    //kreiranje roditelja*
     Route::post('/kreirajRoditelja', [RoditeljController::class, 'create']);  
 
-    //kreiranje pacijenta
+    //kreiranje pacijenta*
     Route::post('/kreirajPacijenta/{id_roditelja}/{id_paketa}',[PacijentController::class, 'create']);
 
     //lista pacijenata odredjenog logopeda
@@ -62,11 +67,12 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
     Route::resource('pacijent', PacijentController::class); 
     Route::resource('paclog', PacijentController::class);
     
+    //lista pacijenata logopeda*
     Route::resource('svipac', Pacijent2Controller::class);
 
     Route::resource('pacijent', PacijentController::class); 
 
-    //izmena pacijenta
+    //izmena pacijenta*
     Route::put('/izmenaPacijenta/{id_pacijenta}', [PacijentController::class, 'update']);
 
     //izmena paketa pacijenta
@@ -81,13 +87,13 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
     //paket pacijenta
     Route::get('/paketPacijenta/{id_paketa_pacijenta}', [PaketController::class, 'get']); 
 
-    //lista odraDJenih tretmana odredjenog pacijenta
+    //lista odradjenih tretmana odredjenog pacijenta
     Route::get('/listaTretmanaOdradjenih/{id_pacijenta}/{id_pak_pac}', [TretmanController::class, 'listaOdradjenih']);
 
     //lista zakazanih tretmana odredjenog pacijenta 
     Route::get('/listaTretmanaZakazanih/{id_pacijenta}/{id_pak_pac}', [TretmanController::class, 'listaZakazanih']); 
 
-    //lista danasnjih tretmana odredjenog pacijenta ???????
+    //lista danasnjih tretmana odredjenog pacijenta 
     Route::get('/listaTretmanaDanasnjih/{id_pacijenta}', [TretmanController::class, 'listaDanasnjih']);
     
     //lista zakazanih logoped
@@ -99,7 +105,7 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
     //dodavanje sadrzaja tretmana
     Route::put('/dodajSadrzaj/{id_tretmana}', [TretmanController::class, 'update']);
 
-    //lista roditelja logopeda
+    //lista roditelja logopeda*
     Route::get('/listaRoditeljaLogopeda/{id_logopeda}', [RoditeljController::class, 'lista']); 
     
     //lista roditelja
@@ -162,8 +168,6 @@ Route::group(['middleware'=> ['auth:sanctum']], function() {
     //paketi proba 
     Route::get('/pak', [PaketController::class, 'get2']); 
 
-    // //slanje maila roditelju
-    // Route::post('/posaljiMail/{pos}/{prim}/{rod}/{kime}/{loz}', [MailController::class, 'posaljiMejl']);
 });
 
 //************************************************************************************************************
@@ -248,6 +252,9 @@ Route::group(['middleware'=> ['auth:sanctum','abilities:roditelj']], function() 
 
     //izmena zahteva da bude pregledan
     Route::put('/zahtevPregledan/{id_zahteva}', [ZahtevController::class, 'updateP']);  
+
+    //lista pregleda logopeda
+    Route::get('/listaPregleda', [TretmanController::class, 'preglediLogoped']);
 
     //log out logopeda
     Route::post('/logoutRoditelja', [RoditeljController::class, 'logout']);
